@@ -2,10 +2,14 @@ import
 {
   Navbar,
   Nav,
+  NavDropdown
 } from 'react-bootstrap';
 import logo from '../../../public/histcatmex-logo.png'
+import languageContext from 'src/languageContext';
+import { useContext } from 'react'
 
 const Header = () => {
+  const { language,setLanguage } = useContext(languageContext)
   return(
     <>
       <Navbar id='Navbar' className="header-custom" bg='white' variant='light' expand="md" collapseOnSelect
@@ -22,7 +26,6 @@ const Header = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav"
         className="justify-content-end "
-
         >
           <Nav
             className="justify-content-end underline-nav"
@@ -42,6 +45,12 @@ const Header = () => {
               <Nav.Link>
                 <p className='nav-item'>Announcements</p>
               </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <NavDropdown title="Language" id="collapsible-nav-dropdown">
+                <NavDropdown.Item><p onClick={()=>setLanguage('en')}>English</p></NavDropdown.Item>
+                <NavDropdown.Item><p onClick={()=>setLanguage('es')}>espa&ntilde;ol</p></NavDropdown.Item>
+              </NavDropdown>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

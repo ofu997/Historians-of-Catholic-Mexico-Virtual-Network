@@ -1,9 +1,11 @@
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import languageContext from 'src/languageContext'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import { useContext, useState, useEffect } from 'react'
 
 const HomePage = () => {
+  const { language } = useContext(languageContext)
   return (
     <>
       <MainLayout>
@@ -14,6 +16,7 @@ const HomePage = () => {
         <p>
           My default route is named <code>home</code>, link to me with `
           <Link to={routes.home()}>Home</Link>`
+          language is : { language }
         </p>
       </MainLayout>
     </>
