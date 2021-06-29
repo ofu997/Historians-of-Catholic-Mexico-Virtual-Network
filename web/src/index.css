@@ -1,3 +1,13 @@
 #Navbar {
-  background-color: white;
+  /* font-family: 'Benne', serif; */
+  font-family: 'Rokkitt', serif;
 }
+
+.nav-item {
+  margin: 0px 20px 0px 20px;
+}
+
+.underline-nav {
+  border-bottom: 1px solid crimson;
+}
+
