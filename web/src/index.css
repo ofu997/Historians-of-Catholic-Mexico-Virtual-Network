@@ -4,7 +4,9 @@
 }
 
 .nav-item {
-  margin: 0px 20px 0px 20px;
+  margin: 0px 5px;
+  /* font-size: 0.9rem; */
+  font-weight: 600;
 }
 
 .underline-nav {
