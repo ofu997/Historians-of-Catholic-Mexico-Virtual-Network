@@ -1,24 +1,36 @@
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
-import languageContext from 'src/languageContext'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext, useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const HomePage = () => {
-  const { language } = useContext(languageContext)
+  const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English...')
   return (
     <>
-      <MainLayout>
-        <h1>HomePage</h1>
-        <p>
-          Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
-        </p>
-        <p>
-          My default route is named <code>home</code>, link to me with `
-          <Link to={routes.home()}>Home</Link>`
-          language is : { language }
-        </p>
+      <MainLayout
+      language={language} setLanguage={setLanguage}
+      >
+        <HomePageContent />
       </MainLayout>
+    </>
+  )
+}
+
+const HomePageContent = props => {
+  return(
+    <>
+    <h1>HomePage</h1>
+    <p>
+      Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
+    </p>
+    <p>
+      My default route is named <code>home</code>, link to me with `
+      <Link to={routes.home()}>Home</Link>`
+    </p>
+    {
+      props.language && (
+        <p>language from MainLayout: {props.language}</p>
+      )
+    }
     </>
   )
 }
