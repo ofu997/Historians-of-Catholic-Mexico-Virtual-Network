@@ -16,15 +16,18 @@ const AboutPage = () => {
 const AboutPageContent = props => {
   return(
     <>
-    <h1>AboutPage</h1>
-    <p>
-      Find me in <code>./web/src/pages/AboutPage/AboutPage.js</code>
-    </p>
-      <div>
-        My default route is named <code>about</code>, link to me with `
-        <Link to={routes.about()}>About</Link>`
-        <p>{props.language}</p>
-      </div>
+    <h1>About Page</h1>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+    <h4 style={{ maxWidth: '60%', lineHeight: '60px' }}>
+      HISTCATMEX comprises an international network of historians devoted to furthering research and promoting academic collaboration pertinent to twentieth-century Mexican Catholic history.  The network is made up of senior scholars, advanced graduate students, and everyone in between.
+    </h4>
+    </div>
+    <div>
+      {/* My default route is named <code>about</code>, link to me with `
+      <Link to={routes.about()}>About</Link>` */}
+      <p>Presented language: {props.language}</p>
+    </div>
     </>
   )
 }
