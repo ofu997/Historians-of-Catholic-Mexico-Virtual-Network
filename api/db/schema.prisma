@@ -46,7 +46,7 @@ model User {
   focusByEra   String?
 }
 
-model Announcements {
+model Announcement {
   id          Int     @id @default(autoincrement())
   headline    String
   subheadline String?
