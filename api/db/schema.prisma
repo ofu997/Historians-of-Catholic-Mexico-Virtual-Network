@@ -12,20 +12,20 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 
 model User {
-  id                   Int     @id @default(autoincrement())
-  email                String  @unique
+  id                   Int      @id @default(autoincrement())
+  email                String   @unique
   name                 String
   password             String
-  isAdmin              Boolean @default(false)
+  isAdmin              Boolean  @default(false)
   jwt                  String?
   localSessionPassword String?
-  preferSpanish        Boolean @default(false)
+  preferSpanish        Boolean? @default(false)
 
   bio         String?
-  location     String?
+  location    String?
   university  String?
   credentials String?
-  status String?
+  status      String?
 
   profilePicUrl String?
   linkAcademia  String?

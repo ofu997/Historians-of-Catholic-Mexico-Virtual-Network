@@ -7,7 +7,7 @@ export const schema = gql`
     isAdmin: Boolean!
     jwt: String
     localSessionPassword: String
-    preferSpanish: Boolean!
+    preferSpanish: Boolean
     bio: String
     location: String
     university: String
@@ -39,10 +39,9 @@ export const schema = gql`
     email: String!
     name: String!
     password: String!
-    isAdmin: Boolean!
     jwt: String
     localSessionPassword: String
-    preferSpanish: Boolean!
+    preferSpanish: Boolean
     bio: String
     location: String
     university: String
@@ -63,6 +62,11 @@ export const schema = gql`
     pub4desc: String
     focusByTopic: String
     focusByEra: String
+  }
+
+  input LoginInput {
+    email: String!
+    password: String!
   }
 
   input UpdateUserInput {
@@ -99,5 +103,8 @@ export const schema = gql`
     createUser(input: CreateUserInput!): User!
     updateUser(id: Int!, input: UpdateUserInput!): User!
     deleteUser(id: Int!): User!
+
+    loginUser(input: LoginInput!): User!
+    createAdmin(input: CreateUserInput!): User!
   }
 `
