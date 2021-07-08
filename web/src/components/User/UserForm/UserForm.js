@@ -77,52 +77,7 @@ const UserForm = (props) => {
         />
         <FieldError name="password" className="rw-field-error" />
 
-        <Label
-          name="isAdmin"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Is admin
-        </Label>
-        <CheckboxField
-          name="isAdmin"
-          defaultChecked={props.user?.isAdmin}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-        <FieldError name="isAdmin" className="rw-field-error" />
-
-        <Label
-          name="jwt"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Jwt
-        </Label>
-        <TextField
-          name="jwt"
-          defaultValue={props.user?.jwt}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-        <FieldError name="jwt" className="rw-field-error" />
-
-        <Label
-          name="localSessionPassword"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Local session password
-        </Label>
-        <TextField
-          name="localSessionPassword"
-          defaultValue={props.user?.localSessionPassword}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-        <FieldError name="localSessionPassword" className="rw-field-error" />
+        <h5 style={{marginTop: '50px'}}>Everything below is optional for now</h5>
 
         <Label
           name="preferSpanish"
@@ -151,7 +106,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.bio}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="bio" className="rw-field-error" />
 
@@ -167,7 +122,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.location}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="location" className="rw-field-error" />
 
@@ -183,7 +138,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.university}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="university" className="rw-field-error" />
 
@@ -199,7 +154,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.credentials}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="credentials" className="rw-field-error" />
 
@@ -215,7 +170,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.status}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="status" className="rw-field-error" />
 
@@ -231,7 +186,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.profilePicUrl}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="profilePicUrl" className="rw-field-error" />
 
@@ -247,7 +202,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.linkAcademia}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="linkAcademia" className="rw-field-error" />
 
@@ -263,7 +218,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.linkTwitter}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="linkTwitter" className="rw-field-error" />
 
@@ -279,7 +234,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.linkLinkedIn}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="linkLinkedIn" className="rw-field-error" />
 
@@ -295,7 +250,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.otherMedia}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="otherMedia" className="rw-field-error" />
 
@@ -311,7 +266,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub1}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub1" className="rw-field-error" />
 
@@ -327,7 +282,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub1desc}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub1desc" className="rw-field-error" />
 
@@ -343,7 +298,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub2}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub2" className="rw-field-error" />
 
@@ -359,7 +314,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub2desc}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub2desc" className="rw-field-error" />
 
@@ -375,7 +330,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub3}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub3" className="rw-field-error" />
 
@@ -391,7 +346,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub3desc}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub3desc" className="rw-field-error" />
 
@@ -407,7 +362,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub4}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub4" className="rw-field-error" />
 
@@ -423,7 +378,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.pub4desc}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="pub4desc" className="rw-field-error" />
 
@@ -439,7 +394,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.focusByTopic}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="focusByTopic" className="rw-field-error" />
 
@@ -455,7 +410,7 @@ const UserForm = (props) => {
           defaultValue={props.user?.focusByEra}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          // validation={{ required: true }}
         />
         <FieldError name="focusByEra" className="rw-field-error" />
 
