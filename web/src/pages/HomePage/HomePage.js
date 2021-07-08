@@ -7,9 +7,11 @@ const HomePage = () => {
   return (
     <>
       <MainLayout
-      language={language} setLanguage={setLanguage}
+        language={language} setLanguage={setLanguage}
       >
         <HomePageContent />
+        {/* access language from state hook or as prop from parent component */}
+        {/* <p>language is : {language}</p> */}
       </MainLayout>
     </>
   )
