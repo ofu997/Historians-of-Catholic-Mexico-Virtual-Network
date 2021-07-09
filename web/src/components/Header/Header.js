@@ -4,13 +4,43 @@ import
   Nav,
   NavDropdown
 } from 'react-bootstrap';
-import { routes } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import logo from '../../../public/histcatmex-logo.png'
+import { toast } from '@redwoodjs/web/toast'
+import { getLoggedInUser } from 'src/functions/GetLoggedInUser'
+import { useMutation } from '@redwoodjs/web'
+
+const LOG_OUT_MUTATION = gql`
+mutation LogOutMutation($id: Int!) {
+  logoutUser(id: $id) {
+    id
+  }
+}
+`
 
 const Header = props => {
+  const sessionStorageUser = getLoggedInUser()
   const englishHeader = <h3 className='branding-font'>Historians of Catholic Mexico</h3>
   const spanishHeader = <h3 className='branding-font'>Historiadores de M&eacute;xico Cat&oacute;lico</h3>
+  const spanishLogin = <p>Iniciar sesi&oacute;n</p>
+  const spanishLogout = <p>Cerrar sesi&oacute;n</p>
   const isSpanish = Boolean(props.language === 'Spanish');
+
+  const [logoutUser, { loading, error }] = useMutation(LOG_OUT_MUTATION, {
+    onCompleted: () => {
+      toast.success('Logged out', { classes: 'rw-flash-success',  position: 'bottom-center', })
+
+      sessionStorage.removeItem('user');
+      setTimeout(() => {
+        navigate(routes.home())
+      }, 200)
+    },
+    onError: (e) => {
+      console.log(e)
+    },
+    ignoreResults: false,
+  })
+
   return(
     <>
       <Navbar id='Navbar' className="header-custom" bg='white' variant='light' expand="md" collapseOnSelect
@@ -48,7 +78,9 @@ const Header = props => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link>
+              <Nav.Link
+                href={routes.announcements()}
+              >
                 <p className='nav-item'>{ isSpanish ? `ANUNCIOS`:`ANNOUNCEMENTS` }</p>
               </Nav.Link>
             </Nav.Item>
@@ -59,9 +91,23 @@ const Header = props => {
               </NavDropdown>
             </Nav.Item>
             <Nav.Item>
-              <NavDropdown title="LOGIN/ACCOUNT" id='login-account'>
-                <Nav.Link href={routes.login()}>Log in</Nav.Link>
-                <Nav.Link>Account</Nav.Link>
+              <NavDropdown title={isSpanish ? `CUENTA`:`ACCOUNT`} id='login-account'>
+                {props.isLoggedIn? (
+                  <NavDropdown.Item>
+                    <div onClick={()=>{logoutUser({ variables: { id: sessionStorageUser.id } } ); props.setIsLoggedIn(false) }}>
+                      {isSpanish? spanishLogout:`Log out`}
+                    </div>
+                  </NavDropdown.Item>
+                )
+                :(
+                  <NavDropdown.Item href={routes.login()}>{isSpanish ? spanishLogin:`Log in`}</NavDropdown.Item>
+                )}
+
+                {props.isLoggedIn && (
+                  <NavDropdown.Item href={routes.user({ id:sessionStorageUser.id })}>
+                    {isSpanish? `Mi perfil`:`My profile`}
+                  </NavDropdown.Item>
+                )}
               </NavDropdown>
             </Nav.Item>
           </Nav>
