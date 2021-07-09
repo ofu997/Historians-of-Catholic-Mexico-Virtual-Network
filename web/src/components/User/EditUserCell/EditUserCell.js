@@ -1,7 +1,7 @@
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
-import UserForm from 'src/components/User/UserForm'
+import EditUserForm from 'src/components/User/EditUserForm'
 
 export const QUERY = gql`
   query FindUserById($id: Int!) {
@@ -41,33 +41,6 @@ const UPDATE_USER_MUTATION = gql`
   mutation UpdateUserMutation($id: Int!, $input: UpdateUserInput!) {
     updateUser(id: $id, input: $input) {
       id
-      email
-      name
-      password
-      isAdmin
-      jwt
-      localSessionPassword
-      preferSpanish
-      bio
-      location
-      university
-      credentials
-      status
-      profilePicUrl
-      linkAcademia
-      linkTwitter
-      linkLinkedIn
-      otherMedia
-      pub1
-      pub1desc
-      pub2
-      pub2desc
-      pub3
-      pub3desc
-      pub4
-      pub4desc
-      focusByTopic
-      focusByEra
     }
   }
 `
@@ -92,7 +65,7 @@ export const Success = ({ user }) => {
         <h2 className="rw-heading rw-heading-secondary">Edit User {user.id}</h2>
       </header>
       <div className="rw-segment-main">
-        <UserForm user={user} onSave={onSave} error={error} loading={loading} />
+        <EditUserForm user={user} onSave={onSave} error={error} loading={loading} />
       </div>
     </div>
   )
