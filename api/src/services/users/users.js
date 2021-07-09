@@ -80,3 +80,12 @@ export const loginUser = async ({ input }) => {
     where: { email: input.email }
   })
 }
+
+export const logoutUser = ({ id }) => {
+  return db.user.update({
+    data: {
+      localSessionPassword: null
+    },
+    where: { id }
+  })
+}

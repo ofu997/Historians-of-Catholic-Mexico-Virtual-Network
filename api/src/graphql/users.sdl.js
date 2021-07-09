@@ -106,5 +106,6 @@ export const schema = gql`
 
     loginUser(input: LoginInput!): User!
     createAdmin(input: CreateUserInput!): User!
+    logoutUser(id: Int!): User!
   }
 `
