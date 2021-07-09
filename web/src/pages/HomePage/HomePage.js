@@ -4,10 +4,13 @@ import { useState } from 'react'
 
 const HomePage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English...')
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
+
   return (
     <>
       <MainLayout
         language={language} setLanguage={setLanguage}
+        isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
       >
         <HomePageContent />
         {/* access language from state hook or as prop from parent component */}

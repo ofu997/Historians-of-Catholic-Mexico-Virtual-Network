@@ -26,10 +26,13 @@ const LOG_IN_MUTATION = gql`
 
 const LoginPage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English...')
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
+
   return (
     <>
       <MainLayout
         language={language} setLanguage={setLanguage}
+        isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
       >
         <LoginPageContent />
       </MainLayout>
@@ -63,6 +66,13 @@ const LoginPageContent = props => {
   }
   return (
     <>
+      {props.isLoggedIn ?
+        (
+          <p>you shouldn't be seeing this</p>
+        )
+        :
+        (
+<>
       <h1>LoginPage</h1>
       <p>
         Find me in <code>./web/src/pages/LoginPage/LoginPage.js</code>
@@ -120,6 +130,9 @@ const LoginPageContent = props => {
           </div>
         </Form>
       </div>
+      </>
+        )
+      }
     </>
   )
 }

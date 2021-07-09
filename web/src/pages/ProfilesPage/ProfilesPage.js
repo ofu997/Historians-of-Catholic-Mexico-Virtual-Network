@@ -4,9 +4,12 @@ import { useState } from 'react'
 
 const ProfilesPage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
+
   return (
     <MainLayout
       language={language} setLanguage={setLanguage}
+      isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
     >
       <ProfilesPageContent />
     </MainLayout>
