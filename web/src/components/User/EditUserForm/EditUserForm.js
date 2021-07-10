@@ -8,6 +8,8 @@ import {
   CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
+import { useState } from 'react'
+import { storage } from 'src/firebase/firebase'
 
 const formatDatetime = (value) => {
   if (value) {
@@ -16,8 +18,52 @@ const formatDatetime = (value) => {
 }
 
 const EditUserForm = (props) => {
+  const [profilePicAsFile, setProfilePicAsFile] = useState('')
+  const [profilePicUrl, setProfilePicUrl] = useState(props.user.profilePicUrl)
+  const [showInput, setShowInput] = useState(true)
+  const [showUpload, setShowUpload] = useState(false)
+
   const onSubmit = (data) => {
-    props.onSave(data, props?.user?.id)
+    const dataWithProfilePicUrl = Object.assign(data, { profilePicUrl } )
+    props.onSave(dataWithProfilePicUrl, props?.user?.id)
+  }
+
+  const handleProfilePicAsFile = (e) => {
+    setProfilePicAsFile(e.target.files[0])
+    setShowUpload(true)
+  }
+
+  const handleFirebaseUpload = (e) => {
+    if (!profilePicAsFile) {
+      console.log('no file selected')
+      return;
+    }
+    e.preventDefault()
+    console.log('start of upload')
+    if (profilePicAsFile === '') {
+      console.error(`not an image, the image file is a ${typeof (profilePicAsFile)}`)
+    }
+    const uploadTask = storage.ref(`/profile-pics/${profilePicAsFile.name}`).put(profilePicAsFile)
+    uploadTask.on('state_changed',
+      (snapShot) => {
+        console.log(`snapshot: ${snapShot}`)
+      }, (err) => {
+        console.log(err)
+      }, () => {
+        storage
+          .ref('profile-pics')
+          .child(profilePicAsFile.name)
+          .getDownloadURL()
+          .then(fireBaseUrl => {
+            console.log(`firebaseurl: ${fireBaseUrl}`)
+            setProfilePicUrl(fireBaseUrl)
+          })
+          .then(() =>{
+            setShowUpload(false)
+            setShowInput(false)
+          })
+      }
+    )
   }
 
   return (
@@ -59,6 +105,52 @@ const EditUserForm = (props) => {
           errorClassName="rw-input rw-input-error"
         />
         <FieldError name="bio" className="rw-field-error" />
+
+            {/* profilePicUrl start */}
+
+            <Label
+          name="profile-picture"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+          style={{
+            marginTop: '100px'
+          }}
+        >
+          Profile picture
+        </Label>
+        {showInput && !profilePicUrl &&
+          <input
+            type='file'
+            onChange={handleProfilePicAsFile}
+          />
+        }
+        {showUpload &&
+          <div style={{ marginTop: '50px', maxWidth: '25%' }}>
+            <div className="rw-button-group rw-button rw-button-green" onClick={handleFirebaseUpload}
+            >
+              Upload
+            </div>
+          </div>
+        }
+
+        {profilePicUrl && (
+          <div style={{ maxWidth: '25%' }}>
+            <img src={profilePicUrl} style={{ display: 'block', margin: '2rem 0' }} />
+            <div
+              onClick={() => {
+                setProfilePicUrl(null)
+                setShowInput(true)
+              }
+              }
+              className="bg-blue-100 rw-button-small hover:bg-red-100 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
+              style={{ textAlign: 'center' }}
+            >
+              Replace Image
+            </div>
+          </div>
+        )}
+
+        {/* profilePicUrl end */}
 
         <Label
           name="location"
