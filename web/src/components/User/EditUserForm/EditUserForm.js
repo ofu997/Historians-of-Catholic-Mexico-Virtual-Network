@@ -106,9 +106,9 @@ const EditUserForm = (props) => {
         />
         <FieldError name="bio" className="rw-field-error" />
 
-        {/* profilePicUrl start */}
+            {/* profilePicUrl start */}
 
-        <Label
+            <Label
           name="profile-picture"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
