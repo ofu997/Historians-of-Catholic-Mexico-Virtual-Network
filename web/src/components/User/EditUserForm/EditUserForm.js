@@ -10,18 +10,36 @@ import {
 } from '@redwoodjs/forms'
 import { useState } from 'react'
 import { storage } from 'src/firebase/firebase'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import { useQuery } from '@redwoodjs/web'
 
-// const formatDatetime = (value) => {
-//   if (value) {
-//     return value.replace(/:\d{2}\.\d{3}\w/, '')
-//   }
-// }
+const USER_QUERY = gql`
+query GetUserByIdNewUserComponent($userId: Int!) {
+  user (id: $userId) {
+    id
+    isAdmin
+    localSessionPassword
+  }
+}
+`
+
+const dummyObject = { error: null, data: null };
 
 const EditUserForm = (props) => {
   const [profilePicAsFile, setProfilePicAsFile] = useState('')
   const [profilePicUrl, setProfilePicUrl] = useState(props.user.profilePicUrl)
   const [showInput, setShowInput] = useState(true)
   const [showUpload, setShowUpload] = useState(false)
+
+  const currentUser = getLoggedInUser();
+  const userId = props.user.id
+
+  const { error:useQueryError, data } = userId ?
+    useQuery(USER_QUERY, {
+      variables: { userId }
+    })
+    :
+    dummyObject;
 
   const onSubmit = (data) => {
     const dataWithProfilePicUrl = Object.assign(data, { profilePicUrl } )
@@ -67,7 +85,9 @@ const EditUserForm = (props) => {
   }
 
   return (
+    (currentUser.localSessionPassword === data?.user.localSessionPassword) ? (
     <div className="rw-form-wrapper">
+      <h2>{useQueryError}</h2>
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -213,7 +233,7 @@ const EditUserForm = (props) => {
         />
         <FieldError name="status" className="rw-field-error" />
 
-        <Label
+        {/* <Label
           name="profilePicUrl"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -226,7 +246,7 @@ const EditUserForm = (props) => {
           className="rw-input"
           errorClassName="rw-input rw-input-error"
         />
-        <FieldError name="profilePicUrl" className="rw-field-error" />
+        <FieldError name="profilePicUrl" className="rw-field-error" /> */}
 
         <Label
           name="linkAcademia"
@@ -445,6 +465,11 @@ const EditUserForm = (props) => {
         </div>
       </Form>
     </div>
+    )
+    :
+    (
+      <h2>Invalid credentials</h2>
+    )
   )
 }
 
