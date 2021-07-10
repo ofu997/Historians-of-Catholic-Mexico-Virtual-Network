@@ -9,7 +9,7 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 import { useState } from 'react'
-import { storage } from 'src/firebase/firebase'
+// import { storage } from 'src/firebase/firebase'
 
 // const formatDatetime = (value) => {
 //   if (value) {
@@ -28,43 +28,43 @@ const EditUserForm = (props) => {
     props.onSave(dataWithProfilePicUrl, props?.user?.id)
   }
 
-  const handleProfilePicAsFile = (e) => {
-    setProfilePicAsFile(e.target.files[0])
-    setShowUpload(true)
-  }
+  // const handleProfilePicAsFile = (e) => {
+  //   setProfilePicAsFile(e.target.files[0])
+  //   setShowUpload(true)
+  // }
 
-  const handleFirebaseUpload = (e) => {
-    if (!profilePicAsFile) {
-      console.log('no file selected')
-      return;
-    }
-    e.preventDefault()
-    console.log('start of upload')
-    if (profilePicAsFile === '') {
-      console.error(`not an image, the image file is a ${typeof (profilePicAsFile)}`)
-    }
-    const uploadTask = storage.ref(`/profile-pics/${profilePicAsFile.name}`).put(profilePicAsFile)
-    uploadTask.on('state_changed',
-      (snapShot) => {
-        console.log(`snapshot: ${snapShot}`)
-      }, (err) => {
-        console.log(err)
-      }, () => {
-        storage
-          .ref('profile-pics')
-          .child(profilePicAsFile.name)
-          .getDownloadURL()
-          .then(fireBaseUrl => {
-            console.log(`firebaseurl: ${fireBaseUrl}`)
-            setProfilePicUrl(fireBaseUrl)
-          })
-          .then(() =>{
-            setShowUpload(false)
-            setShowInput(false)
-          })
-      }
-    )
-  }
+  // const handleFirebaseUpload = (e) => {
+  //   if (!profilePicAsFile) {
+  //     console.log('no file selected')
+  //     return;
+  //   }
+  //   e.preventDefault()
+  //   console.log('start of upload')
+  //   if (profilePicAsFile === '') {
+  //     console.error(`not an image, the image file is a ${typeof (profilePicAsFile)}`)
+  //   }
+  //   const uploadTask = storage.ref(`/profile-pics/${profilePicAsFile.name}`).put(profilePicAsFile)
+  //   uploadTask.on('state_changed',
+  //     (snapShot) => {
+  //       console.log(`snapshot: ${snapShot}`)
+  //     }, (err) => {
+  //       console.log(err)
+  //     }, () => {
+  //       storage
+  //         .ref('profile-pics')
+  //         .child(profilePicAsFile.name)
+  //         .getDownloadURL()
+  //         .then(fireBaseUrl => {
+  //           console.log(`firebaseurl: ${fireBaseUrl}`)
+  //           setProfilePicUrl(fireBaseUrl)
+  //         })
+  //         .then(() =>{
+  //           setShowUpload(false)
+  //           setShowInput(false)
+  //         })
+  //     }
+  //   )
+  // }
 
   return (
     <div className="rw-form-wrapper">
