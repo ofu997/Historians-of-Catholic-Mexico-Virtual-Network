@@ -12,32 +12,35 @@ import { useState } from 'react'
 import { storage } from 'src/firebase/firebase'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 import { useQuery } from '@redwoodjs/web'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
-const USER_QUERY = gql`
-query GetUserByIdNewUserComponent($userId: Int!) {
-  user (id: $userId) {
-    id
-    isAdmin
-    localSessionPassword
-    preferSpanish
-  }
-}
-`
+// const USER_QUERY = gql`
+// query GetUserByIdNewUserComponent($userId: Int!) {
+//   user (id: $userId) {
+//     id
+//     isAdmin
+//     localSessionPassword
+//     preferSpanish
+//   }
+// }
+// `
 
-const dummyObject = { error: null, data: null };
+// const dummyObject = { error: null, data: null };
 
 const EditUserForm = (props) => {
   const [profilePicAsFile, setProfilePicAsFile] = useState('')
   const [profilePicUrl, setProfilePicUrl] = useState(props.user.profilePicUrl)
   const [showInput, setShowInput] = useState(true)
   const [showUpload, setShowUpload] = useState(false)
+  const isSpanish = Boolean(props.language==='Spanish')
 
   const currentUser = getLoggedInUser();
-  const userId = props.user.id
+  const currentUserId = props.user.id
 
-  const { error:useQueryError, data } = userId ?
+  const { error:useQueryError, data } = currentUserId ?
     useQuery(USER_QUERY, {
-      variables: { userId }
+      variables: { currentUserId }
     })
     :
     dummyObject;
@@ -97,20 +100,27 @@ const EditUserForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
+        <div style={{ display: 'flex' }}>
         <Label
           name="preferSpanish"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Prefer spanish
+          <p style={{ verticalAlign: 'center' }}>Prefer spanish</p>
         </Label>
         <CheckboxField
           name="preferSpanish"
           defaultChecked={props.user?.preferSpanish}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
+          style={{ margin: '30px 20px 0px 20px' }}
         />
+        </div>
+        {/* <Label>
+          {isSpanish
+          ? <p><span>(</span>Su cambio de preferencia va a tener efecto en la pr&oacute;xima sesi&oacute;n<span>)</span></p>
+          : <p><span>(</span>A change in your preference will take effect in your next session<span>)</span></p>}
+        </Label> */}
         <FieldError name="preferSpanish" className="rw-field-error" />
 
         <Label
@@ -128,9 +138,9 @@ const EditUserForm = (props) => {
         />
         <FieldError name="bio" className="rw-field-error" />
 
-            {/* profilePicUrl start */}
+        {/* profilePicUrl start */}
 
-            <Label
+        <Label
           name="profile-picture"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -156,16 +166,18 @@ const EditUserForm = (props) => {
         }
 
         {profilePicUrl && (
-          <div style={{ maxWidth: '25%' }}>
-            <img src={profilePicUrl} style={{ display: 'block', margin: '2rem 0' }} />
+          <div
+            // style={{ maxHeight: '25%' }}
+          >
+            <img src={profilePicUrl} style={{ display: 'block', margin: '2rem 0', objectFit: 'contain' }} height='300' />
             <div
               onClick={() => {
                 setProfilePicUrl(null)
                 setShowInput(true)
+                }
               }
-              }
-              className="bg-blue-100 rw-button-small hover:bg-red-100 text-xs rounded px-4 py-2 uppercase font-semibold tracking-wide"
-              style={{ textAlign: 'center' }}
+              className="rw-button rw-button-small rw-button-blue"
+              style={{ textAlign: 'center', width: '50%' }}
             >
               Replace Image
             </div>

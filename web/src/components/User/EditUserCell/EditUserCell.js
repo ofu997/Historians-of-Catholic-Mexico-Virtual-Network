@@ -42,6 +42,7 @@ const UPDATE_USER_MUTATION = gql`
   mutation UpdateUserMutation($id: Int!, $input: UpdateUserInput!) {
     updateUser(id: $id, input: $input) {
       id
+      preferSpanish
     }
   }
 `
@@ -54,8 +55,10 @@ export const Success = ({ user }) => {
   const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
 
   const [updateUser, { loading, error }] = useMutation(UPDATE_USER_MUTATION, {
-    onCompleted: () => {
+    onCompleted: ({ updateUser }) => {
       toast.success('User updated')
+      const languageOnCompleted = updateUser.preferSpanish ? 'Spanish' : 'English'
+      sessionStorage.setItem('language', languageOnCompleted)
       navigate(routes.users())
     },
   })
@@ -67,7 +70,7 @@ export const Success = ({ user }) => {
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit User {user.id}</h2>
+        {/* <h2 className="rw-heading rw-heading-secondary">Edit User {user.id}</h2> */}
       </header>
       <div className="rw-segment-main">
         <EditUserForm user={user} onSave={onSave} error={error} loading={loading} language={language} />
