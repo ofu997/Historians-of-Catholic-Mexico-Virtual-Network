@@ -19,6 +19,7 @@ query GetUserByIdNewUserComponent($userId: Int!) {
     id
     isAdmin
     localSessionPassword
+    preferSpanish
   }
 }
 `
@@ -88,6 +89,7 @@ const EditUserForm = (props) => {
     (currentUser.localSessionPassword === data?.user.localSessionPassword) ? (
     <div className="rw-form-wrapper">
       <h2>{useQueryError}</h2>
+      <h2>{props.language}</h2>
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -473,4 +475,4 @@ const EditUserForm = (props) => {
   )
 }
 
-export default EditUserForm
+export { EditUserForm, USER_QUERY }

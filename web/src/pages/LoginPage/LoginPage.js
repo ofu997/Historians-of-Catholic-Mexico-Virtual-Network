@@ -7,12 +7,12 @@ import {
   FieldError,
   Label,
   TextField,
-  CheckboxField,
   Submit,
 } from '@redwoodjs/forms'
 import { toast } from '@redwoodjs/web/toast'
 import { useMutation } from '@redwoodjs/web'
 import { navigate } from '@redwoodjs/router'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 
 const LOG_IN_MUTATION = gql`
   mutation LogInMutation($input: LoginInput!) {
@@ -20,6 +20,7 @@ const LOG_IN_MUTATION = gql`
       id
       name
       localSessionPassword
+      preferSpanish
     }
   }
 `
@@ -28,10 +29,12 @@ const LoginPage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English...')
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
 
+  const currentUser = getLoggedInUser();
+
   return (
     <>
       <MainLayout
-        language={language} setLanguage={setLanguage}
+        language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
         isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
       >
         <LoginPageContent />
@@ -47,8 +50,7 @@ const LoginPageContent = props => {
     onCompleted: ({ loginUser }) => {
       toast.success('Signed in', { classes: 'rw-flash-success' })
 
-      const { id, name, localSessionPassword } = loginUser;
-      const user = { id, name, localSessionPassword }
+      const user = loginUser;
       sessionStorage.setItem('user', JSON.stringify(user));
       setTimeout(() => {
         navigate(routes.profiles())
@@ -68,69 +70,57 @@ const LoginPageContent = props => {
     <>
       {props.isLoggedIn ?
         (
-          <p>you shouldn't be seeing this</p>
+          <p><Link to={routes.home()}>Home</Link></p>
         )
         :
         (
-<>
-      <h1>LoginPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/LoginPage/LoginPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>login</code>, link to me with `
-        <Link to={routes.login()}>Login</Link>`
-      </p>
-      <div className="rw-form-wrapper">
-        <Form onSubmit={handleLogin} error={error}>
-          <FormError
-            error={error}
-            wrapperClassName="rw-form-error-wrapper"
-            titleClassName="rw-form-error-title"
-            listClassName="rw-form-error-list"
-          />
+          <>
+            <div className="rw-form-wrapper">
+              <Form onSubmit={handleLogin} error={error}>
+                <FormError
+                  error={error}
+                  wrapperClassName="rw-form-error-wrapper"
+                  titleClassName="rw-form-error-title"
+                  listClassName="rw-form-error-list"
+                />
+                <Label
+                  name="email"
+                  className="rw-label"
+                  errorClassName="rw-label rw-label-error"
+                >
+                  Email
+                </Label>
+                <TextField
+                  name="email"
+                  className="rw-input"
+                  errorClassName="rw-input rw-input-error"
+                  validation={{ required: true }}
+                />
+                <FieldError name="email" className="rw-field-error" />
 
-          <Label
-            name="email"
-            className="rw-label"
-            errorClassName="rw-label rw-label-error"
-          >
-            Email
-          </Label>
-          <TextField
-            name="email"
-            // defaultValue={props.user?.email}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-          <FieldError name="email" className="rw-field-error" />
-
-
-
-          <Label
-            name="password"
-            className="rw-label"
-            errorClassName="rw-label rw-label-error"
-          >
-            Password
-          </Label>
-          <TextField
-            name="password"
-            defaultValue={props.user?.password}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-          <FieldError name="password" className="rw-field-error" />
-          <div className="rw-button-group">
-            <Submit disabled={loading} className="rw-button rw-button-blue">
-              Log in
-            </Submit>
-          </div>
-        </Form>
-      </div>
-      </>
+                <Label
+                  name="password"
+                  className="rw-label"
+                  errorClassName="rw-label rw-label-error"
+                >
+                  Password
+                </Label>
+                <TextField
+                  name="password"
+                  defaultValue={props.user?.password}
+                  className="rw-input"
+                  errorClassName="rw-input rw-input-error"
+                  validation={{ required: true }}
+                />
+                <FieldError name="password" className="rw-field-error" />
+                <div className="rw-button-group">
+                  <Submit disabled={loading} className="rw-button rw-button-blue">
+                    Log in
+                  </Submit>
+                </div>
+              </Form>
+            </div>
+          </>
         )
       }
     </>

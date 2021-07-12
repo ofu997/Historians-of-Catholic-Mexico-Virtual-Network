@@ -1,14 +1,18 @@
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { useState } from 'react'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import UsersCell from 'src/components/User/UsersCell'
 
 const ProfilesPage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
 
+  const currentUser = getLoggedInUser();
+
   return (
     <MainLayout
-      language={language} setLanguage={setLanguage}
+      language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
       isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
     >
       <ProfilesPageContent />
@@ -20,14 +24,8 @@ const ProfilesPageContent = props => {
   return(
     <>
       <h1>ProfilesPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/ProfilesPage/ProfilesPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>profiles</code>, link to me with `
-        <Link to={routes.profiles()}>Profiles</Link>`
-      </p>
       <p>{props.language}</p>
+      <UsersCell />
     </>
   )
 }

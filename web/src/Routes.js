@@ -16,18 +16,16 @@ const Routes = () => {
     <Router>
       <Route path="/admin/register-user" page={AdminRegisterUserPage} name="adminRegisterUser" />
       <Route path="/login" page={LoginPage} name="login" />
-        <Route path="/announcements/new" page={AnnouncementNewAnnouncementPage} name="newAnnouncement" />
-        <Route path="/announcements/{id:Int}/edit" page={AnnouncementEditAnnouncementPage} name="editAnnouncement" />
-        <Route path="/announcements/{id:Int}" page={AnnouncementAnnouncementPage} name="announcement" />
-        <Route path="/announcements" page={AnnouncementAnnouncementsPage} name="announcements" />
-      <Set wrap={UsersLayout}>
-        {/* not needed? */}
-        <Route path="/users/new" page={UserNewUserPage} name="newUser" />
+      <Route path="/announcements/new" page={AnnouncementNewAnnouncementPage} name="newAnnouncement" />
+      <Route path="/announcements/{id:Int}/edit" page={AnnouncementEditAnnouncementPage} name="editAnnouncement" />
+      <Route path="/announcements/{id:Int}" page={AnnouncementAnnouncementPage} name="announcement" />
+      <Route path="/announcements" page={AnnouncementAnnouncementsPage} name="announcements" />
+      {/* not needed? */}
+      <Route path="/users/new" page={UserNewUserPage} name="newUser" />
 
-        <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-        <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
-        <Route path="/users" page={UserUsersPage} name="users" />
-      </Set>
+      <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
+      <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
+      <Route path="/users" page={UserUsersPage} name="users" />
       <Route path="/admin/register-admin" page={AdminRegisterPage} name="adminRegister" />
       <Route path="/" page={HomePage} name="home" />
       <Route path="/about" page={AboutPage} name="about" />

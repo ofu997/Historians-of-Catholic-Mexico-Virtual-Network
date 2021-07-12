@@ -1,15 +1,18 @@
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { useState } from 'react'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 
 const HomePage = () => {
-  const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English...')
+  const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
+
+  const currentUser = getLoggedInUser();
 
   return (
     <>
       <MainLayout
-        language={language} setLanguage={setLanguage}
+        language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
         isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
       >
         <HomePageContent />
@@ -23,19 +26,10 @@ const HomePage = () => {
 const HomePageContent = props => {
   return(
     <>
-    <h1>HomePage</h1>
-    <p>
-      Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
-    </p>
-    <p>
-      My default route is named <code>home</code>, link to me with `
-      <Link to={routes.home()}>Home</Link>`
-    </p>
-    {
-      props.language && (
-        <p>language from MainLayout: {props.language}</p>
-      )
-    }
+      <h1>HomePage</h1>
+      <p>I don't know what goes here</p>
+      <p>Presented language: {props.language}</p>
+      <p>Loggedin: {props.isLoggedIn}</p>
     </>
   )
 }

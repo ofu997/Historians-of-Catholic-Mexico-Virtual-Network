@@ -1,14 +1,16 @@
 import MainLayout from 'src/layouts/MainLayout/MainLayout';
-import { Link, routes } from '@redwoodjs/router'
 import { useState } from 'react'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 
 const AboutPage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
 
+  const currentUser = getLoggedInUser();
+
   return (
     <MainLayout
-      language={language} setLanguage={setLanguage}
+      language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
       isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
     >
       <AboutPageContent />
@@ -27,9 +29,8 @@ const AboutPageContent = props => {
     </h4>
     </div>
     <div>
-      {/* My default route is named <code>about</code>, link to me with `
-      <Link to={routes.about()}>About</Link>` */}
       <p>Presented language: {props.language}</p>
+      <p>Loggedin: {props.isLoggedIn}</p>
     </div>
     </>
   )

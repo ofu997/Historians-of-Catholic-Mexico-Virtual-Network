@@ -1,7 +1,8 @@
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
-import EditUserForm from 'src/components/User/EditUserForm'
+import { EditUserForm } from 'src/components/User/EditUserForm'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 
 export const QUERY = gql`
   query FindUserById($id: Int!) {
@@ -48,6 +49,10 @@ const UPDATE_USER_MUTATION = gql`
 export const Loading = () => <div>Loading...</div>
 
 export const Success = ({ user }) => {
+  const currentUser = getLoggedInUser();
+
+  const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
+
   const [updateUser, { loading, error }] = useMutation(UPDATE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User updated')
@@ -65,7 +70,7 @@ export const Success = ({ user }) => {
         <h2 className="rw-heading rw-heading-secondary">Edit User {user.id}</h2>
       </header>
       <div className="rw-segment-main">
-        <EditUserForm user={user} onSave={onSave} error={error} loading={loading} />
+        <EditUserForm user={user} onSave={onSave} error={error} loading={loading} language={language} />
       </div>
     </div>
   )

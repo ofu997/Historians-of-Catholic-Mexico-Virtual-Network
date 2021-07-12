@@ -30,7 +30,7 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />
 }
 
-const User = ({ user }) => {
+const User = ({ user, language }) => {
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
@@ -51,6 +51,7 @@ const User = ({ user }) => {
           <h2 className="rw-heading rw-heading-secondary">
             User {user.id} Detail
           </h2>
+          <h2>{language}</h2>
         </header>
         <table className="rw-table">
           <tbody>

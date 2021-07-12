@@ -1,4 +1,5 @@
 import User from 'src/components/User/User'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 
 export const QUERY = gql`
   query FindUserById($id: Int!) {
@@ -40,5 +41,9 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => <div>User not found</div>
 
 export const Success = ({ user }) => {
-  return <User user={user} />
+  const currentUser = getLoggedInUser();
+
+  const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
+
+  return <User user={user} language={language} />
 }
