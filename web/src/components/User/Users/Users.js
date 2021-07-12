@@ -1,8 +1,11 @@
-import { useMutation } from '@redwoodjs/web'
+import { useQuery, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
 
 import { QUERY } from 'src/components/User/UsersCell'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
 const DELETE_USER_MUTATION = gql`
   mutation DeleteUserMutation($id: Int!) {
@@ -39,6 +42,16 @@ const checkboxInputTag = (checked) => {
 }
 
 const UsersList = ({ users }) => {
+  const currentUser = getLoggedInUser();
+  const currentUserId = currentUser.id;
+
+  const { error:useQueryError, data } = currentUserId ?
+  useQuery(USER_QUERY, {
+    variables: { currentUserId }
+  })
+  :
+  dummyObject;
+
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
@@ -132,21 +145,28 @@ const UsersList = ({ users }) => {
                   >
                     Show
                   </Link>
-                  <Link
-                    to={routes.editUser({ id: user.id })}
-                    title={'Edit user ' + user.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <a
-                    href="#"
-                    title={'Delete user ' + user.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(user.id)}
-                  >
-                    Delete
-                  </a>
+                  {user.localSessionPassword === currentUser.localSessionPassword && (
+                    <>
+                      <Link
+                        to={routes.editUser({ id: user.id })}
+                        title={'Edit user ' + user.id}
+                        className="rw-button rw-button-small rw-button-blue"
+                      >
+                        Edit
+                      </Link>
+                    </>
+                  )}
+                  {((data?.user.localSessionPassword === currentUser.localSessionPassword) && data?.user.isAdmin ) && (
+                      <a
+                        href="#"
+                        title={'Delete user ' + user.id}
+                        className="rw-button rw-button-small rw-button-red"
+                        onClick={() => onDeleteClick(user.id)}
+                      >
+                        Delete
+                      </a>
+                    )
+                  }
                 </nav>
               </td>
             </tr>

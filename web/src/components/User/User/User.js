@@ -1,6 +1,9 @@
-import { useMutation } from '@redwoodjs/web'
+import { useQuery, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
 const DELETE_USER_MUTATION = gql`
   mutation DeleteUserMutation($id: Int!) {
@@ -43,6 +46,16 @@ const User = ({ user, language }) => {
       deleteUser({ variables: { id } })
     }
   }
+
+  const currentUser = getLoggedInUser();
+  const currentUserId = currentUser.id
+
+  const { error:useQueryError, data } = currentUserId ?
+    useQuery(USER_QUERY, {
+      variables: { currentUserId }
+    })
+    :
+    dummyObject;
 
   return (
     <>
@@ -171,12 +184,16 @@ const User = ({ user, language }) => {
         </table>
       </div>
       <nav className="rw-button-group">
+      {currentUser.localSessionPassword === data?.user.localSessionPassword && (
         <Link
           to={routes.editUser({ id: user.id })}
           className="rw-button rw-button-blue"
         >
           Edit
         </Link>
+      )}
+      {((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) && (
+
         <a
           href="#"
           className="rw-button rw-button-red"
@@ -184,6 +201,7 @@ const User = ({ user, language }) => {
         >
           Delete
         </a>
+      )}
       </nav>
     </>
   )

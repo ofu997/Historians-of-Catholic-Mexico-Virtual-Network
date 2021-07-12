@@ -1,7 +1,6 @@
 import MainLayout from 'src/layouts/MainLayout/MainLayout';
 import { useState } from 'react'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
-import { Link, routes } from '@redwoodjs/router'
 import NewUser from 'src/components/User/NewUser'
 
 const AdminRegisterUserPage = () => {
@@ -12,13 +11,12 @@ const AdminRegisterUserPage = () => {
 
   return (
     <>
-          <MainLayout
-      language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
-      isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
-    >
-      <AdminRegisterUserPageContent />
-    </MainLayout>
-
+      <MainLayout
+        language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
+        isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+      >
+        <AdminRegisterUserPageContent />
+      </MainLayout>
     </>
   )
 }

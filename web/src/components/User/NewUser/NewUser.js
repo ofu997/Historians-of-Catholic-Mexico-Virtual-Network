@@ -3,6 +3,8 @@ import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import NewUserForm from 'src/components/User/NewUserForm'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
 const CREATE_USER_MUTATION = gql`
   mutation CreateUserMutation($input: CreateUserInput!) {
@@ -12,17 +14,17 @@ const CREATE_USER_MUTATION = gql`
   }
 `
 
-const USER_QUERY = gql`
-query GetUserByIdNewUserComponent($currentUserId: Int!) {
-  user (id: $currentUserId) {
-    id
-    isAdmin
-    localSessionPassword
-  }
-}
-`
+// const USER_QUERY = gql`
+// query GetUserByIdNewUserComponent($currentUserId: Int!) {
+//   user (id: $currentUserId) {
+//     id
+//     isAdmin
+//     localSessionPassword
+//   }
+// }
+// `
 
-const dummyObject = { error: null, data: null };
+// const dummyObject = { error: null, data: null };
 
 const NewUser = () => {
   const [createUser, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
