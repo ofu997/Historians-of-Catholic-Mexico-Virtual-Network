@@ -1,8 +1,10 @@
 export const schema = gql`
   type Announcement {
     id: Int!
-    headline: String!
-    subheadline: String
+    englishHeadline: String!
+    englishSubheadline: String
+    spanishHeadline: String
+    spanishSubheadline: String
     date: String
   }
 
@@ -12,14 +14,18 @@ export const schema = gql`
   }
 
   input CreateAnnouncementInput {
-    headline: String!
-    subheadline: String
+    englishHeadline: String!
+    englishSubheadline: String
+    spanishHeadline: String
+    spanishSubheadline: String
     date: String
   }
 
   input UpdateAnnouncementInput {
-    headline: String
-    subheadline: String
+    englishHeadline: String
+    englishSubheadline: String
+    spanishHeadline: String
+    spanishSubheadline: String
     date: String
   }
 

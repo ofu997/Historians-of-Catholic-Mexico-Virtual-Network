@@ -47,8 +47,10 @@ model User {
 }
 
 model Announcement {
-  id          Int     @id @default(autoincrement())
-  headline    String
-  subheadline String?
-  date        String?
+  id                 Int     @id @default(autoincrement())
+  englishHeadline    String
+  englishSubheadline String?
+  spanishHeadline    String?
+  spanishSubheadline String?
+  date               String?
 }
