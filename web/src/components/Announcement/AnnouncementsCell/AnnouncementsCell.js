@@ -6,8 +6,10 @@ export const QUERY = gql`
   query ANNOUNCEMENTS {
     announcements {
       id
-      headline
-      subheadline
+      englishHeadline
+      spanishHeadline
+      englishSubheadline
+      spanishSubheadline
       date
     }
   }

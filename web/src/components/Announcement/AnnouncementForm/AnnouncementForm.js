@@ -29,36 +29,66 @@ const AnnouncementForm = (props) => {
         />
 
         <Label
-          name="headline"
+          name="englishHeadline"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Headline
         </Label>
         <TextField
-          name="headline"
-          defaultValue={props.announcement?.headline}
+          name="englishHeadline"
+          defaultValue={props.announcement?.englishHeadline}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-        <FieldError name="headline" className="rw-field-error" />
+        <FieldError name="englishHeadline" className="rw-field-error" />
 
         <Label
-          name="subheadline"
+          name="englishSubheadline"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
           Subheadline
         </Label>
         <TextField
-          name="subheadline"
-          defaultValue={props.announcement?.subheadline}
+          name="englishSubheadline"
+          defaultValue={props.announcement?.englishSubheadline}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-        <FieldError name="subheadline" className="rw-field-error" />
+        <FieldError name="englishSubheadline" className="rw-field-error" />
+
+        <Label
+          name="spanishHeadline"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Spanish headline
+        </Label>
+        <TextField
+          name="spanishHeadline"
+          defaultValue={props.announcement?.spanishHeadline}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+        <FieldError name="spanishHeadline" className="rw-field-error" />
+
+        <Label
+          name="spanishSubheadline"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Spanish subheadline
+        </Label>
+        <TextField
+          name="spanishSubheadline"
+          defaultValue={props.announcement?.spanishSubheadline}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+        <FieldError name="spanishSubheadline" className="rw-field-error" />
 
         <Label
           name="date"
@@ -72,7 +102,6 @@ const AnnouncementForm = (props) => {
           defaultValue={props.announcement?.date}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
         <FieldError name="date" className="rw-field-error" />
 

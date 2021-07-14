@@ -1,14 +1,19 @@
-import { useMutation } from '@redwoodjs/web'
+import { useQuery, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import AnnouncementForm from 'src/components/Announcement/AnnouncementForm'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
 export const QUERY = gql`
   query FindAnnouncementById($id: Int!) {
     announcement: announcement(id: $id) {
       id
-      headline
-      subheadline
+      englishHeadline
+      spanishHeadline
+      englishSubheadline
+      spanishSubheadline
       date
     }
   }
@@ -20,8 +25,8 @@ const UPDATE_ANNOUNCEMENT_MUTATION = gql`
   ) {
     updateAnnouncement(id: $id, input: $input) {
       id
-      headline
-      subheadline
+      englishHeadline
+      englishSubheadline
       date
     }
   }
@@ -44,21 +49,36 @@ export const Success = ({ announcement }) => {
     updateAnnouncement({ variables: { id, input } })
   }
 
+  const currentUser = getLoggedInUser();
+  const currentUserId = currentUser.id;
+
+  const { loading:useQueryLoading, error: useQueryError, data } = currentUserId ?
+    useQuery(USER_QUERY, {
+      variables: { currentUserId }
+    })
+    :
+    dummyObject;
+
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">
-          Edit Announcement {announcement.id}
-        </h2>
-      </header>
-      <div className="rw-segment-main">
-        <AnnouncementForm
-          announcement={announcement}
-          onSave={onSave}
-          error={error}
-          loading={loading}
-        />
+    ((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) ? (
+      <div className="rw-segment">
+        <header className="rw-segment-header">
+          <h2 className="rw-heading rw-heading-secondary">
+            Edit Announcement {announcement.id}
+          </h2>
+        </header>
+        <div className="rw-segment-main">
+          <AnnouncementForm
+            announcement={announcement}
+            onSave={onSave}
+            error={error}
+            useQueryError={useQueryError}
+            loading={loading}
+            useQueryLoading={useQueryLoading}
+          />
+        </div>
       </div>
-    </div>
+    ) :
+    ( <h2>Invalid credentials</h2>)
   )
 }

@@ -60,11 +60,11 @@ const Announcement = ({ announcement }) => {
             </tr>
             <tr>
               <th>Headline</th>
-              <td>{announcement.headline}</td>
+              <td>{announcement.englishHeadline}</td>
             </tr>
             <tr>
               <th>Subheadline</th>
-              <td>{announcement.subheadline}</td>
+              <td>{announcement.englishSubheadline}</td>
             </tr>
             <tr>
               <th>Date</th>

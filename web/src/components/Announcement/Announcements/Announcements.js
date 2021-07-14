@@ -1,8 +1,11 @@
-import { useMutation } from '@redwoodjs/web'
+import { useQuery, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
 
 import { QUERY } from 'src/components/Announcement/AnnouncementsCell'
+import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
 const DELETE_ANNOUNCEMENT_MUTATION = gql`
   mutation DeleteAnnouncementMutation($id: Int!) {
@@ -39,13 +42,22 @@ const checkboxInputTag = (checked) => {
 }
 
 const AnnouncementsList = ({ announcements }) => {
+
+
+  return (
+<div>
+        {announcements.map((announcement) => (
+          <AnnouncementBox announcement={announcement} key={announcement.id} />
+        ))}
+</div>
+  )
+}
+
+const AnnouncementBox = ( {announcement} ) => {
   const [deleteAnnouncement] = useMutation(DELETE_ANNOUNCEMENT_MUTATION, {
     onCompleted: () => {
       toast.success('Announcement deleted')
     },
-    // This refetches the query on the list page. Read more about other ways to
-    // update the cache over here:
-    // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
     refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
   })
@@ -55,26 +67,57 @@ const AnnouncementsList = ({ announcements }) => {
       deleteAnnouncement({ variables: { id } })
     }
   }
+  const currentUser = getLoggedInUser();
+  const currentUserId = currentUser.id;
+
+  const { error:useQueryError, data } = currentUserId ?
+    useQuery(USER_QUERY, {
+      variables: { currentUserId }
+    })
+    :
+    dummyObject;
 
   return (
-    <div className="rw-segment rw-table-wrapper-responsive">
-      <table className="rw-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Headline</th>
-            <th>Subheadline</th>
-            <th>Date</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {announcements.map((announcement) => (
-            <tr key={announcement.id}>
+    <section id='announcement-box' style={{ minWidth: '400px', width: '60%', borderBottom: '1px solid black', margin: '0px auto 250px auto' }}>
+      <p>{useQueryError}</p>
+      <h1>{announcement.englishHeadline}</h1>
+      <h1>{announcement.spanishHeadline}</h1>
+      <h1>{announcement.englishSubheadline}</h1>
+      <h1>{announcement.spanishSubheadline}</h1>
+      <p>{announcement.date}</p>
+      {( (currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin ) && (
+      <>
+      <Link
+        to={routes.editAnnouncement({ id: announcement.id })}
+        title={'Edit announcement ' + announcement.id}
+        className="rw-button rw-button-small rw-button-blue"
+      >
+        Edit
+      </Link>
+      <a
+        href="#"
+        title={'Delete announcement ' + announcement.id}
+        className="rw-button rw-button-small rw-button-red"
+        onClick={() => onDeleteClick(announcement.id)}
+      >
+        Delete
+      </a>
+      </>
+      )}
+    </section>
+  )
+}
+
+
+export default AnnouncementsList
+
+
+            {/* <tr key={announcement.id}>
               <td>{truncate(announcement.id)}</td>
-              <td>{truncate(announcement.headline)}</td>
-              <td>{truncate(announcement.subheadline)}</td>
+              <td>{truncate(announcement.englishHeadline)}</td>
+              <td>{truncate(announcement.englishSubheadline)}</td>
               <td>{truncate(announcement.date)}</td>
+              { ((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) && (
               <td>
                 <nav className="rw-table-actions">
                   <Link
@@ -101,12 +144,5 @@ const AnnouncementsList = ({ announcements }) => {
                   </a>
                 </nav>
               </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-export default AnnouncementsList
+              )}
+            </tr> */}

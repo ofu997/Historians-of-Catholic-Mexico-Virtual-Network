@@ -4,8 +4,10 @@ export const QUERY = gql`
   query FindAnnouncementById($id: Int!) {
     announcement: announcement(id: $id) {
       id
-      headline
-      subheadline
+      englishHeadline
+      spanishHeadline
+      englishSubheadline
+      spanishSubheadline
       date
     }
   }
