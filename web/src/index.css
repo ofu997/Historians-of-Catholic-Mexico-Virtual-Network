@@ -20,3 +20,15 @@
 #nav {
   margin-right: 50px;
 }
+
+#announcement-box h1, h2, h3, p {
+  text-align: center;
+  font-family:'Rokkitt', serif;
+  margin: 20px 0px;
+}
+
+.rw-label-preferSpanish {
+  display: block;
+  color: #4a5568;
+  font-weight: 600;
+}

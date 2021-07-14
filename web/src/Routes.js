@@ -14,11 +14,12 @@ import UsersLayout from 'src/layouts/UsersLayout'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/admin/delete-user" page={AdminDeleteUserPage} name="adminDeleteUser" />
       <Route path="/admin/register-user" page={AdminRegisterUserPage} name="adminRegisterUser" />
       <Route path="/login" page={LoginPage} name="login" />
-      <Route path="/announcements/new" page={AnnouncementNewAnnouncementPage} name="newAnnouncement" />
-      <Route path="/announcements/{id:Int}/edit" page={AnnouncementEditAnnouncementPage} name="editAnnouncement" />
-      {/* <Route path="/announcements/{id:Int}" page={AnnouncementAnnouncementPage} name="announcement" /> */}
+      <Route path="/admin/announcements/new" page={AnnouncementNewAnnouncementPage} name="newAnnouncement" />
+      <Route path="/admin/announcements/{id:Int}/edit" page={AnnouncementEditAnnouncementPage} name="editAnnouncement" />
+      <Route path="/announcements/{id:Int}" page={AnnouncementAnnouncementPage} name="announcement" />
       <Route path="/announcements" page={AnnouncementAnnouncementsPage} name="announcements" />
       {/* not needed? */}
       <Route path="/users/new" page={UserNewUserPage} name="newUser" />
