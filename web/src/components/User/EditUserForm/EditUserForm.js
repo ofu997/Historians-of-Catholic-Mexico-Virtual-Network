@@ -106,7 +106,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          <p style={{ verticalAlign: 'center' }}>Prefer spanish</p>
+          Prefer spanish
         </Label>
         <CheckboxField
           name="preferSpanish"
@@ -319,6 +319,7 @@ const EditUserForm = (props) => {
           defaultValue={props.user?.otherMedia}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
+          placeholder='video, personal website, article...'
         />
         <FieldError name="otherMedia" className="rw-field-error" />
 
@@ -344,7 +345,7 @@ const EditUserForm = (props) => {
         >
           Description
         </Label>
-        <TextField
+        <TextAreaField
           name="pub1desc"
           defaultValue={props.user?.pub1desc}
           className="rw-input"
@@ -374,7 +375,7 @@ const EditUserForm = (props) => {
         >
           Description
         </Label>
-        <TextField
+        <TextAreaField
           name="pub2desc"
           defaultValue={props.user?.pub2desc}
           className="rw-input"
@@ -404,7 +405,7 @@ const EditUserForm = (props) => {
         >
           Description
         </Label>
-        <TextField
+        <TextAreaField
           name="pub3desc"
           defaultValue={props.user?.pub3desc}
           className="rw-input"
@@ -434,7 +435,7 @@ const EditUserForm = (props) => {
         >
           Description
         </Label>
-        <TextField
+        <TextAreaField
           name="pub4desc"
           defaultValue={props.user?.pub4desc}
           className="rw-input"
@@ -449,7 +450,7 @@ const EditUserForm = (props) => {
         >
           Topics of interest
         </Label>
-        <TextField
+        <TextAreaField
           name="focusByTopic"
           defaultValue={props.user?.focusByTopic}
           className="rw-input"
@@ -464,7 +465,7 @@ const EditUserForm = (props) => {
         >
           Time periods of interest
         </Label>
-        <TextField
+        <TextAreaField
           name="focusByEra"
           defaultValue={props.user?.focusByEra}
           className="rw-input"
@@ -487,4 +488,4 @@ const EditUserForm = (props) => {
   )
 }
 
-export { EditUserForm, USER_QUERY }
+export default EditUserForm

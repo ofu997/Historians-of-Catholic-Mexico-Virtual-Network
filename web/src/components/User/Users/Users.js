@@ -145,7 +145,7 @@ const UsersList = ({ users }) => {
                   >
                     Show
                   </Link>
-                  {user.localSessionPassword === currentUser.localSessionPassword && (
+                  {user?.localSessionPassword === currentUser?.localSessionPassword && (
                     <>
                       <Link
                         to={routes.editUser({ id: user.id })}

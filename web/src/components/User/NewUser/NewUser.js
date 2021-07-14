@@ -51,7 +51,6 @@ const { error:useQueryError, data } = currentUserId ?
 
   return (
     ((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) ? (
-
     <div className="rw-segment">
       <p>{useQueryError}</p>
       <header className="rw-segment-header">

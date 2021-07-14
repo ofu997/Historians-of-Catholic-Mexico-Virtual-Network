@@ -48,21 +48,39 @@ const User = ({ user, language }) => {
   }
 
   const currentUser = getLoggedInUser();
-  const currentUserId = currentUser.id
+  const currentUserId = currentUser.id;
 
-  const { error:useQueryError, data } = currentUserId ?
+  const CURRENT_USER_QUERY = gql`
+    query GetUserByIdUserComponent($userId: Int!) {
+      user (id: $userId) {
+        isAdmin
+      }
+    }
+  `
+
+  // const { error:currentUserInfoError, data:currentUserInfo } = currentUserId ?
+  //   useQuery(CURRENT_USER_QUERY, {
+  //       variables: { userId: currentUserId }
+  //     })
+  //     :
+  //     dummyObject;
+
+  // query the user being displayed instead of currentUser
+  const { error, data } = user.id ?
     useQuery(USER_QUERY, {
-      variables: { currentUserId }
+      variables: { currentUserId : user.id }
     })
     :
     dummyObject;
 
+
   return (
     <>
       <div className="rw-segment">
+        {/* <h1>{useQueryError}</h1> */}
         <header className="rw-segment-header">
           <h2 className="rw-heading rw-heading-secondary">
-            User {user.id} Detail
+            {user.name}
           </h2>
           <h2>{language}</h2>
         </header>
@@ -184,7 +202,8 @@ const User = ({ user, language }) => {
         </table>
       </div>
       <nav className="rw-button-group">
-      {currentUser.localSessionPassword === data?.user.localSessionPassword && (
+      {// currentUser owns displayed user
+      (currentUser.localSessionPassword === data.user.localSessionPassword) && (
         <Link
           to={routes.editUser({ id: user.id })}
           className="rw-button rw-button-blue"
@@ -192,8 +211,16 @@ const User = ({ user, language }) => {
           Edit
         </Link>
       )}
-      {((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) && (
+      {/*
+      {
+        // delete: user being displayed can't be admin
+        // current user should be admin
+        // previously: displayed user is current user
+        ( data.user.isAdmin===false
+         //&& currentUserInfo.user.isAdmin
 
+        )
+        && (
         <a
           href="#"
           className="rw-button rw-button-red"
@@ -201,10 +228,15 @@ const User = ({ user, language }) => {
         >
           Delete
         </a>
-      )}
+        )
+      }
+      */}
       </nav>
     </>
   )
 }
 
 export default User
+
+        {/* currentUser.id &&  */}
+      {/* data object: for user being displayed */}

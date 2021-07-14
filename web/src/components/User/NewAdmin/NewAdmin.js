@@ -15,7 +15,7 @@ const NewAdmin = () => {
   const [createAdmin, { loading, error }] = useMutation(CREATE_ADMIN_MUTATION, {
     onCompleted: () => {
       toast.success('User created')
-      navigate(routes.users())
+      navigate(routes.profiles())
     },
   })
 
