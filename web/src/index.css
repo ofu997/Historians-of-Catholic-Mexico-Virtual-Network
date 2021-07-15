@@ -27,8 +27,65 @@
   margin: 20px 0px;
 }
 
-.rw-label-preferSpanish {
+/* .rw-label-preferSpanish {
   display: block;
   color: #4a5568;
   font-weight: 600;
+} */
+
+.rw-button-profiles {
+  /* color: #718096; */
+  color: black;
+  cursor: pointer;
+  display: flex;
+  /* justify-content: center; */
+  font-size: 0.75rem;
+  font-weight: 600;
+  /* padding: 0.25rem 1rem; */
+  /* text-transform: uppercase; */
+  text-decoration: none;
+  letter-spacing: 0.025em;
+  border-radius: 0.25rem;
+  /* line-height: 2; */
+}
+
+.rw-table-actions .rw-button-profiles {
+  background-color: transparent;
+}
+
+.rw-table-actions .rw-button-profiles:hover {
+  /* background-color: #718096; */
+  background-color: #dae8f1;
+  color: #fff;
+}
+
+.rw-button-profiles :hover {
+  /* background-color: #718096; */
+  background-color: #f7fafc;
+  /* color: #fff; */
+  color: gray;
+  /* background-color: gray; */
+}
+
+.rw-button-profiles.rw-button-small {
+  font-size: 0.75rem;
+  border-radius: 0.125rem;
+  padding: 0.25rem 0.5rem;
+  line-height: inherit;
+}
+
+/* #td-username {
+  padding-left: 0px;
+} */
+
+/* #th-name {
+  width: 50%;
+} */
+
+#user-table {
+  overflow-x: hidden;
+}
+
+#link-for-username {
+  padding-left: 0px;
 }

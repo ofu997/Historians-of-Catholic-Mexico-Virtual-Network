@@ -64,7 +64,7 @@
   background-color: #fff;
   border-width: 1px;
   border-radius: 0.5rem;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .rw-segment-header {
   background-color: #e2e8f0;
@@ -227,7 +227,7 @@
   color: #c53030;
 }
 .rw-table-wrapper-responsive {
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
 }
 .rw-table-wrapper-responsive .rw-table {
   min-width: 48rem;
@@ -241,10 +241,10 @@
 .rw-table td {
   padding: 0.75rem;
 }
-.rw-table thead tr {
+/* .rw-table thead tr {
   background-color: #e2e8f0;
   color: #4a5568;
-}
+} */
 .rw-table th {
   font-weight: 600;
   text-align: left;
@@ -261,8 +261,9 @@
   }
 }
 .rw-table tbody tr {
-  background-color: #f7fafc;
-  border-top-width: 1px;
+  /* background-color: #f7fafc; */
+  background-color: #fafaff;
+  /* border-top-width: 1px; */
 }
 .rw-table tbody tr:nth-child(even) {
   background-color: #fff;
