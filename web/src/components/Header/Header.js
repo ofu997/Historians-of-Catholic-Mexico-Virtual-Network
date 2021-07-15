@@ -21,7 +21,7 @@ mutation LogOutMutation($id: Int!) {
 const Header = props => {
   const sessionStorageUser = getLoggedInUser()
   const englishHeader = <h3 className='branding-font'>Historians of Catholic Mexico</h3>
-  const spanishHeader = <h3 className='branding-font'>Historiadores de M&eacute;xico Cat&oacute;lico</h3>
+  const spanishHeader = <h3 className='branding-font'>Historiadores del Catolicismo en M&eacute;xico</h3>
   const spanishLogin = <p>Iniciar sesi&oacute;n</p>
   const spanishLogout = <p>Cerrar sesi&oacute;n</p>
   const isSpanish = Boolean(props.language === 'Spanish');
