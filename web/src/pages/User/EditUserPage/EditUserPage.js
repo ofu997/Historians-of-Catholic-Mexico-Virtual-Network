@@ -11,8 +11,10 @@ const EditUserPage = ({ id }) => {
 
   return(
     <MainLayout
-      language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
-      isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+      language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+      setLanguage={setLanguage}
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn={setIsLoggedIn}
     >
       <EditUserCell id={id} language={language} />
     </MainLayout>

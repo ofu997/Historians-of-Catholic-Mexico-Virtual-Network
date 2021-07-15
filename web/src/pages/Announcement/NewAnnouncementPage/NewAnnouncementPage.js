@@ -4,8 +4,11 @@ import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 import { useQuery } from '@redwoodjs/web'
 import USER_QUERY from 'src/graphql-helpers/userquery'
 import dummyObject from 'src/graphql-helpers/dummyobject'
+import { useState } from 'react'
 
 const NewAnnouncementPage = () => {
+  const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
   const currentUser = getLoggedInUser();
   const currentUserId = currentUser.id;
 
@@ -22,7 +25,12 @@ const NewAnnouncementPage = () => {
 
   return (
   ((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) ? (
-    <MainLayout>
+    <MainLayout
+      language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+      setLanguage={setLanguage}
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn={setIsLoggedIn}
+    >
       <NewAnnouncement loading={loading} error={useQueryError} />
     </MainLayout>
     ):

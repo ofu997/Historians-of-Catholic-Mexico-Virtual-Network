@@ -14,8 +14,10 @@ const AdminRegisterPage = () => {
   return (
     <>
       <MainLayout
-        language={currentUser.preferSpanish ? 'Spanish' : language} setLanguage={setLanguage}
-        isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
+        language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+        setLanguage={setLanguage}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
       >
         <AdminRegisterPageContent />
       </MainLayout>
