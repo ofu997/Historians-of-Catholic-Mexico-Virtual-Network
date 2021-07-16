@@ -13,31 +13,11 @@ const DELETE_USER_MUTATION = gql`
   }
 `
 
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
-
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toUTCString()}
-    </time>
-  )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
 const User = ({ user, language }) => {
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
-      navigate(routes.users())
+      navigate(routes.profiles())
     },
   })
 
@@ -48,22 +28,6 @@ const User = ({ user, language }) => {
   }
 
   const currentUser = getLoggedInUser();
-  const currentUserId = currentUser.id;
-
-  const CURRENT_USER_QUERY = gql`
-    query GetUserByIdUserComponent($userId: Int!) {
-      user (id: $userId) {
-        isAdmin
-      }
-    }
-  `
-
-  // const { error:currentUserInfoError, data:currentUserInfo } = currentUserId ?
-  //   useQuery(CURRENT_USER_QUERY, {
-  //       variables: { userId: currentUserId }
-  //     })
-  //     :
-  //     dummyObject;
 
   // query the user being displayed instead of currentUser
   const { error, data } = user.id ?
@@ -76,167 +40,149 @@ const User = ({ user, language }) => {
 
   return (
     <>
-      <div className="rw-segment">
-        {/* <h1>{useQueryError}</h1> */}
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            {user.name}
-          </h2>
-          <h2>{language}</h2>
-        </header>
-        <table className="rw-table">
+      <div id='user-component'>
+        <h1>{error}</h1>
+        <h3 className="rw-heading cntr-h">
+          {user.name}
+        </h3>
+        {user.profilePicUrl && (
+          <div id='img-container'>
+            <img src={user.profilePicUrl} width='400' height='400' />
+          </div>
+        )}
+        <table id='primary-profile-table' className="rw-table-profile">
           <tbody>
-            <tr>
-              <th>Id</th>
-              <td>{user.id}</td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td>{user.email}</td>
-            </tr>
-            <tr>
-              <th>Name</th>
-              <td>{user.name}</td>
-            </tr>
-            <tr>
-              <th>Password</th>
-              <td>{user.password}</td>
-            </tr>
-            <tr>
-              <th>Is admin</th>
-              <td>{checkboxInputTag(user.isAdmin)}</td>
-            </tr>
-            <tr>
-              <th>Jwt</th>
-              <td>{user.jwt}</td>
-            </tr>
-            <tr>
-              <th>Local session password</th>
-              <td>{user.localSessionPassword}</td>
-            </tr>
-            <tr>
-              <th>Prefer spanish</th>
-              <td>{checkboxInputTag(user.preferSpanish)}</td>
-            </tr>
-            <tr>
-              <th>Bio</th>
-              <td>{user.bio}</td>
-            </tr>
-            <tr>
-              <th>Location</th>
-              <td>{user.location}</td>
-            </tr>
-            <tr>
-              <th>University</th>
-              <td>{user.university}</td>
-            </tr>
-            <tr>
-              <th>Credentials</th>
-              <td>{user.credentials}</td>
-            </tr>
-            <tr>
-              <th>Status</th>
-              <td>{user.status}</td>
-            </tr>
-            <tr>
-              <th>Profile pic url</th>
-              <td>{user.profilePicUrl}</td>
-            </tr>
-            <tr>
-              <th>Link academia</th>
-              <td>{user.linkAcademia}</td>
-            </tr>
-            <tr>
-              <th>Link twitter</th>
-              <td>{user.linkTwitter}</td>
-            </tr>
-            <tr>
-              <th>Link linked in</th>
-              <td>{user.linkLinkedIn}</td>
-            </tr>
-            <tr>
-              <th>Other media</th>
-              <td>{user.otherMedia}</td>
-            </tr>
-            <tr>
-              <th>Pub1</th>
-              <td>{user.pub1}</td>
-            </tr>
-            <tr>
-              <th>Pub1desc</th>
-              <td>{user.pub1desc}</td>
-            </tr>
-            <tr>
-              <th>Pub2</th>
-              <td>{user.pub2}</td>
-            </tr>
-            <tr>
-              <th>Pub2desc</th>
-              <td>{user.pub2desc}</td>
-            </tr>
-            <tr>
-              <th>Pub3</th>
-              <td>{user.pub3}</td>
-            </tr>
-            <tr>
-              <th>Pub3desc</th>
-              <td>{user.pub3desc}</td>
-            </tr>
-            <tr>
-              <th>Pub4</th>
-              <td>{user.pub4}</td>
-            </tr>
-            <tr>
-              <th>Pub4desc</th>
-              <td>{user.pub4desc}</td>
-            </tr>
-            <tr>
-              <th>Focus by topic</th>
-              <td>{user.focusByTopic}</td>
-            </tr>
-            <tr>
-              <th>Focus by era</th>
-              <td>{user.focusByEra}</td>
-            </tr>
+            {user.bio && (
+              <tr>
+                <th>Bio</th>
+                <td>{user.bio}</td>
+              </tr>
+            )}
+
+            {user.status && (
+              <tr>
+                <th>Status</th>
+                <td>{user.status}</td>
+              </tr>
+            )}
+            {user.university && (
+              <tr>
+                <th>University/Affiliation</th>
+                <td>{user.university}</td>
+              </tr>
+            )}
+            {user.credentials && (
+              <tr>
+                <th>Credentials</th>
+                <td>{user.credentials}</td>
+              </tr>
+            )}
+            {user.focusByTopic && (
+              <tr>
+                <th>Focus by topic</th>
+                <td>{user.focusByTopic}</td>
+              </tr>
+            )}
+            {user.focusByEra && (
+              <tr>
+                <th>Focus by era</th>
+                <td>{user.focusByEra}</td>
+              </tr>
+            )}
           </tbody>
         </table>
+
+        {user.pub1 && (
+          <h4 className="rw-heading cntr-h">Publications</h4>
+        )}
+        <table className="rw-table-profile">
+          <tbody>
+            {user.pub1 && (
+              <>
+                <tr>
+                  <td>{user.pub1}</td>
+                </tr>
+                {user.pub1desc && (
+                  <tr>
+                    <td>Description/link: {user.pub1desc}</td>
+                  </tr>
+                )}
+                <hr />
+              </>
+            )}
+            {user.pub2 && (
+              <>
+                <tr>
+                  <td>{user.pub2}</td>
+                </tr>
+                {user.pub2desc && (
+                <tr>
+                  <td>Description/link: {user.pub2desc}</td>
+                </tr>
+                )}
+                <hr />
+              </>
+            )}
+            {user.pub3 && (
+              <>
+                <tr>
+                  <td>{user.pub3}</td>
+                </tr>
+                {user.pub3desc && (
+                <tr>
+                  <td>Description/link: {user.pub3desc}</td>
+                </tr>
+                )}
+                <hr />
+              </>
+            )}
+            {user.pub4 && (
+              <>
+                <tr>
+                  <td>{user.pub4}</td>
+                </tr>
+                {user.pub4desc && (
+                <tr>
+                  <td>Description/link: {user.pub4desc}</td>
+                </tr>
+                )}
+                <hr />
+              </>
+            )}
+          </tbody>
+        </table>
+
+        <h4 className="rw-heading cntr-h">Contact</h4>
+        <section id='user-social-media'>
+          <p><a href={`mailto:${user.email}`}>{user.email}</a></p>
+          {user.linkAcademia && (
+            <p><a href={user.linkAcademia} target='_blank' rel="noopener noreferrer">Academia.edu</a></p>
+          )}
+          {user.linkTwitter && (
+          <p><a href={user.linkTwitter} target='_blank' rel="noopener noreferrer">Twitter</a></p>
+          )}
+          {user.linkLinkedIn && (
+          <p><a href={user.linkLinkedIn} target='_blank' rel="noopener noreferrer">LinkedIn</a></p>
+          )}
+          {user.otherMedia && (
+          <p><a href={user.otherMedia} target='_blank' rel="noopener noreferrer">{user.otherMedia}</a></p>
+          )}
+        </section>
       </div>
+
       <nav className="rw-button-group">
       {// currentUser owns displayed user
       (currentUser.localSessionPassword === data.user.localSessionPassword) && (
         <Link
-          to={routes.editUser({ id: user.id })}
+          to={routes.editProfile({ id: user.id })}
           className="rw-button rw-button-blue"
         >
           Edit
         </Link>
       )}
-      {/*
-      {
-        // delete: user being displayed can't be admin
-        // current user should be admin
-        // previously: displayed user is current user
-        ( data.user.isAdmin===false
-         //&& currentUserInfo.user.isAdmin
-
-        )
-        && (
-        <a
-          href="#"
-          className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(user.id)}
-        >
-          Delete
-        </a>
-        )
-      }
-      */}
       </nav>
     </>
   )
 }
 
 export default User
-
-        {/* currentUser.id &&  */}
-      {/* data object: for user being displayed */}

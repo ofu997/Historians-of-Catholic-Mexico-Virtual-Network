@@ -262,7 +262,7 @@
 }
 .rw-table tbody tr {
   /* background-color: #f7fafc; */
-  background-color: #fafaff;
+  background-color: #f7f7ff;
   /* border-top-width: 1px; */
 }
 .rw-table tbody tr:nth-child(even) {
