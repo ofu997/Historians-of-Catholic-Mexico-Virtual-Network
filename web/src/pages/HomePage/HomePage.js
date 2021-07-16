@@ -2,12 +2,14 @@ import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { useState } from 'react'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import { useQuery } from '@redwoodjs/web'
+import USER_QUERY from 'src/graphql-helpers/userquery'
+import dummyObject from 'src/graphql-helpers/dummyobject'
 
 const HomePage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('user')||false)
-
-  const currentUser = getLoggedInUser();
+  const currentUser = getLoggedInUser()
 
   return (
     <>
@@ -26,12 +28,49 @@ const HomePage = () => {
 }
 
 const HomePageContent = props => {
+  const { language } = props;
+  const currentUser = getLoggedInUser()
+  const { error, data } = currentUser.id
+    ? useQuery(USER_QUERY, {
+      variables: { currentUserId : currentUser.id }
+    })
+    : dummyObject;
+
   return(
     <>
-      <h1>HomePage</h1>
-      <p>I don't know what goes here</p>
-      <p>Presented language: {props.language}</p>
-      <p>Loggedin: {props.isLoggedIn}</p>
+      <h1>Home Page</h1>
+      {((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin)
+        && (
+          <>
+            <hr />
+            <Link
+              to={routes.adminRegisterUser()}
+              className='rw-button rw-button-blue home-page-buttons cntr-h'
+            >
+              Create a new user
+            </Link>
+            <hr />
+            <Link
+              to={routes.adminDeleteUser()}
+              className='rw-button rw-button-red home-page-buttons cntr-h'
+            >
+              Delete a user
+            </Link>
+            <hr />
+            <Link
+              to={routes.newAnnouncement()}
+              className='rw-button rw-button-blue home-page-buttons cntr-h'
+            >
+              Create an announcement
+            </Link>
+            <hr />
+          </>
+        )
+      }
+      {language==='Spanish'
+        ? <h1>No s&eacute; qu&eacute; poner aqu&iacute;</h1>
+        : <h1>I don't know what goes here</h1>
+      }
     </>
   )
 }

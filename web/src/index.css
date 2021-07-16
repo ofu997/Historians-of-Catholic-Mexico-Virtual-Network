@@ -173,3 +173,11 @@
 #primary-profile-table tr {
   border-bottom: 1px solid gray;
 }
+
+/* home page */
+
+.home-page-buttons {
+  /* width: 50%; */
+  max-width: 200px;
+  padding: 20px 0px;
+}
