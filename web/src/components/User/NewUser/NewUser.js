@@ -14,23 +14,11 @@ const CREATE_USER_MUTATION = gql`
   }
 `
 
-// const USER_QUERY = gql`
-// query GetUserByIdNewUserComponent($currentUserId: Int!) {
-//   user (id: $currentUserId) {
-//     id
-//     isAdmin
-//     localSessionPassword
-//   }
-// }
-// `
-
-// const dummyObject = { error: null, data: null };
-
 const NewUser = () => {
   const [createUser, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User created')
-      navigate(routes.users())
+      navigate(routes.profiles())
     },
   })
 

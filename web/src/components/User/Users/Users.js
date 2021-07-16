@@ -86,7 +86,7 @@ const UsersList = ({ users }) => {
           {users.map((user) => (
             <tr key={user.id}>
               <Link
-                to={routes.user({ id: user.id })}
+                to={routes.profile({ id: user.id })}
                 id='link-for-username'
                 className="rw-button-profiles rw-button-small"
               >
