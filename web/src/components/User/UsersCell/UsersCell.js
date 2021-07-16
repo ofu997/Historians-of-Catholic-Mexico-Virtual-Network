@@ -43,7 +43,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No users yet. '}
-      <Link to={routes.newUser()} className="rw-link">
+      <Link to={routes.adminRegisterUser()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

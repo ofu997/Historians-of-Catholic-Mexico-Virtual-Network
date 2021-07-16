@@ -15,19 +15,6 @@ import { useQuery } from '@redwoodjs/web'
 import USER_QUERY from 'src/graphql-helpers/userquery'
 import dummyObject from 'src/graphql-helpers/dummyobject'
 
-// const USER_QUERY = gql`
-// query GetUserByIdNewUserComponent($userId: Int!) {
-//   user (id: $userId) {
-//     id
-//     isAdmin
-//     localSessionPassword
-//     preferSpanish
-//   }
-// }
-// `
-
-// const dummyObject = { error: null, data: null };
-
 const EditUserForm = (props) => {
   const [profilePicAsFile, setProfilePicAsFile] = useState('')
   const [profilePicUrl, setProfilePicUrl] = useState(props.user.profilePicUrl)
@@ -247,21 +234,6 @@ const EditUserForm = (props) => {
         />
         <FieldError name="status" className="rw-field-error" />
 
-        {/* <Label
-          name="profilePicUrl"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Profile pic url
-        </Label>
-        <TextField
-          name="profilePicUrl"
-          defaultValue={props.user?.profilePicUrl}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
-        <FieldError name="profilePicUrl" className="rw-field-error" /> */}
-
         <Label
           name="linkAcademia"
           className="rw-label"
@@ -328,9 +300,9 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Publication link
+          Publication
         </Label>
-        <TextField
+        <TextAreaField
           name="pub1"
           defaultValue={props.user?.pub1}
           className="rw-input"
@@ -360,7 +332,7 @@ const EditUserForm = (props) => {
         >
           Second publication
         </Label>
-        <TextField
+        <TextAreaField
           name="pub2"
           defaultValue={props.user?.pub2}
           className="rw-input"
@@ -390,7 +362,7 @@ const EditUserForm = (props) => {
         >
           Third publication
         </Label>
-        <TextField
+        <TextAreaField
           name="pub3"
           defaultValue={props.user?.pub3}
           className="rw-input"
@@ -420,7 +392,7 @@ const EditUserForm = (props) => {
         >
           Fourth publication
         </Label>
-        <TextField
+        <TextAreaField
           name="pub4"
           defaultValue={props.user?.pub4}
           className="rw-input"

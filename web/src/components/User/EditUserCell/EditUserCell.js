@@ -59,7 +59,7 @@ export const Success = ({ user }) => {
       toast.success('User updated')
       const languageOnCompleted = updateUser.preferSpanish ? 'Spanish' : 'English'
       sessionStorage.setItem('language', languageOnCompleted)
-      navigate(routes.user({ id: updateUser.id }))
+      navigate(routes.profile({ id: updateUser.id }))
     },
   })
 

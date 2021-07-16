@@ -45,11 +45,11 @@ const AnnouncementsList = ({ announcements }) => {
 
 
   return (
-<div>
-        {announcements.map((announcement) => (
-          <AnnouncementBox announcement={announcement} key={announcement.id} />
-        ))}
-</div>
+    <div>
+      {announcements.map((announcement) => (
+        <AnnouncementBox announcement={announcement} key={announcement.id} />
+      ))}
+    </div>
   )
 }
 
@@ -95,7 +95,7 @@ const AnnouncementBox = ( {announcement} ) => {
         Edit
       </Link>
       <a
-        href="#"
+        href="/"
         title={'Delete announcement ' + announcement.id}
         className="rw-button rw-button-small rw-button-red"
         onClick={() => onDeleteClick(announcement.id)}
@@ -108,41 +108,4 @@ const AnnouncementBox = ( {announcement} ) => {
   )
 }
 
-
 export default AnnouncementsList
-
-
-            {/* <tr key={announcement.id}>
-              <td>{truncate(announcement.id)}</td>
-              <td>{truncate(announcement.englishHeadline)}</td>
-              <td>{truncate(announcement.englishSubheadline)}</td>
-              <td>{truncate(announcement.date)}</td>
-              { ((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) && (
-              <td>
-                <nav className="rw-table-actions">
-                  <Link
-                    to={routes.announcement({ id: announcement.id })}
-                    title={'Show announcement ' + announcement.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </Link>
-                  <Link
-                    to={routes.editAnnouncement({ id: announcement.id })}
-                    title={'Edit announcement ' + announcement.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </Link>
-                  <a
-                    href="#"
-                    title={'Delete announcement ' + announcement.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(announcement.id)}
-                  >
-                    Delete
-                  </a>
-                </nav>
-              </td>
-              )}
-            </tr> */}

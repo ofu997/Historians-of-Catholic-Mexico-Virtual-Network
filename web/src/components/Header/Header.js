@@ -20,10 +20,6 @@ mutation LogOutMutation($id: Int!) {
 
 const Header = props => {
   const sessionStorageUser = getLoggedInUser()
-  const englishHeader = <h3 className='branding-font'>Historians of Catholic Mexico</h3>
-  const spanishHeader = <h3 className='branding-font'>Historiadores del Catolicismo en M&eacute;xico</h3>
-  const spanishLogin = <p>Iniciar sesi&oacute;n</p>
-  const spanishLogout = <p>Cerrar sesi&oacute;n</p>
   const isSpanish = Boolean(props.language === 'Spanish');
 
   const [logoutUser, { loading, error }] = useMutation(LOG_OUT_MUTATION, {
@@ -50,7 +46,7 @@ const Header = props => {
         >
           <img src={logo} width='120' height='120' />
         </div>
-        <Navbar.Brand href="/">{ isSpanish ? spanishHeader : englishHeader }</Navbar.Brand>
+        <Navbar.Brand href="/">{ isSpanish ? <h3 className='branding-font'>Historiadores del Catolicismo en M&eacute;xico</h3> : <h3 className='branding-font'>Historians of Catholic Mexico</h3> }</Navbar.Brand>
         <Navbar.Toggle
         // aria-controls="basic-navbar-nav"
         aria-controls="responsive-navbar-nav"
@@ -95,17 +91,17 @@ const Header = props => {
                 {props.isLoggedIn? (
                   <NavDropdown.Item>
                     <div onClick={()=>{logoutUser({ variables: { id: sessionStorageUser.id } } ); props.setIsLoggedIn(false) }}>
-                      {isSpanish? spanishLogout:`Log out`}
+                      {isSpanish? <p>Cerrar sesi&oacute;n</p> : <p>Log out</p>}
                     </div>
                   </NavDropdown.Item>
                 )
                 :(
-                  <NavDropdown.Item href={routes.login()}>{isSpanish ? spanishLogin:`Log in`}</NavDropdown.Item>
+                  <NavDropdown.Item href={routes.login()}>{isSpanish ? <p>Iniciar sesi&oacute;n</p> : <p>Log in</p>}</NavDropdown.Item>
                 )}
 
                 {props.isLoggedIn && (
-                  <NavDropdown.Item href={routes.user({ id:sessionStorageUser.id })}>
-                    {isSpanish? `Mi perfil`:`My profile`}
+                  <NavDropdown.Item href={routes.profile({ id:sessionStorageUser.id })}>
+                    {isSpanish? <p>Mi perfil</p> : <p>My profile</p>}
                   </NavDropdown.Item>
                 )}
               </NavDropdown>

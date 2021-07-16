@@ -7,9 +7,7 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Set, Router, Route } from '@redwoodjs/router'
-import AnnouncementsLayout from 'src/layouts/AnnouncementsLayout'
-import UsersLayout from 'src/layouts/UsersLayout'
+import { Router, Route } from '@redwoodjs/router'
 
 const Routes = () => {
   return (
@@ -22,8 +20,8 @@ const Routes = () => {
       {/* <Route path="/announcements/{id:Int}" page={AnnouncementAnnouncementPage} name="announcement" /> */}
       <Route path="/announcements" page={AnnouncementAnnouncementsPage} name="announcements" />
       {/* <Route path="/users/new" page={UserNewUserPage} name="newUser" /> */}
-      <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-      <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
+      <Route path="/profiles/{id:Int}/edit" page={UserEditUserPage} name="editProfile" />
+      <Route path="/profiles/{id:Int}" page={UserUserPage} name="profile" />
       {/* <Route path="/users" page={UserUsersPage} name="users" /> */}
       <Route path="/admin/register-admin" page={AdminRegisterPage} name="adminRegister" />
       <Route path="/" page={HomePage} name="home" />
