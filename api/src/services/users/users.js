@@ -22,18 +22,20 @@ export const user = ({ id }) => {
 // flow: create admins. login as admins. protect /admins/register page. create other users.
 // FE validate
 export const createUser = async ({ input }) => {
+  const email = input.email.toLowerCase();
   const password = await bcrypt.hash(input.password, 10);
-  const isAdmin = (admins.includes(input.email)) ? true : false;
-  const data = { ...input, password, isAdmin }
+  const isAdmin = (admins.includes(input.email.toLowerCase())) ? true : false;
+  const data = { ...input, email, password, isAdmin }
   return db.user.create({
     data,
   })
 }
 
 export const createAdmin = async ({ input }) => {
+  const email = input.email.toLowerCase();
   const password = await bcrypt.hash(input.password, 10);
-  const isAdmin = (admins.includes(input.email)) ? true : false;
-  const data = { ...input, password, isAdmin }
+  const isAdmin = (admins.includes(input.email.toLowerCase())) ? true : false;
+  const data = { ...input, email, password, isAdmin }
   if (!isAdmin) {
     throw new Error('you can\'t do that')
   }
@@ -57,7 +59,7 @@ export const deleteUser = ({ id }) => {
 
 export const loginUser = async ({ input }) => {
   const user = await db.user.findUnique({
-    where: { email: input.email },
+    where: { email: input.email.toLowerCase() },
   })
   const passwordMatch = await bcrypt.compare(input.password, user.password)
   if (!passwordMatch) {
