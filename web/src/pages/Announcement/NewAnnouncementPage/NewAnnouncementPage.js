@@ -26,7 +26,7 @@ const NewAnnouncementPage = () => {
   return (
   ((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) ? (
     <MainLayout
-      language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+      language={currentUser.preferSpanish ? 'Spanish' : language}
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}

@@ -13,7 +13,7 @@ const AnnouncementsPage = () => {
   return (
     <>
       <MainLayout
-        language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+        language={currentUser.preferSpanish ? 'Spanish' : language}
         setLanguage={setLanguage}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}

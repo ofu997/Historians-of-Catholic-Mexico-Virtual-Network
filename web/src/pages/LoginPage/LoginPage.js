@@ -34,7 +34,7 @@ const LoginPage = () => {
   return (
     <>
       <MainLayout
-        language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+        language={currentUser.preferSpanish ? 'Spanish' : language}
         setLanguage={setLanguage}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
@@ -47,6 +47,7 @@ const LoginPage = () => {
 }
 
 const LoginPageContent = props => {
+  const isSpanish = Boolean(props.language==='Spanish' ? true : false);
 
   const [loginUser, { loading, error }] = useMutation(LOG_IN_MUTATION, {
     onCompleted: ({ loginUser }) => {
@@ -90,7 +91,7 @@ const LoginPageContent = props => {
                   className="rw-label"
                   errorClassName="rw-label rw-label-error"
                 >
-                  Email
+                  {isSpanish ? <span>Correo electr&oacute;nico</span> : <span>Email</span>}
                 </Label>
                 <TextField
                   name="email"
@@ -105,7 +106,7 @@ const LoginPageContent = props => {
                   className="rw-label"
                   errorClassName="rw-label rw-label-error"
                 >
-                  Password
+                  {isSpanish? <span>Contrase&ntilde;a</span> : <span>Password</span>}
                 </Label>
                 <TextField
                   name="password"
@@ -117,7 +118,7 @@ const LoginPageContent = props => {
                 <FieldError name="password" className="rw-field-error" />
                 <div className="rw-button-group">
                   <Submit disabled={loading} className="rw-button rw-button-blue">
-                    Log in
+                    {isSpanish? <span>Iniciar sesi&oacute;n</span> : <span>Log in</span>}
                   </Submit>
                 </div>
               </Form>

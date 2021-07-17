@@ -43,10 +43,9 @@ export const Empty = () => <div>User not found</div>
 export const Success = ({ user }) => {
   const currentUser = getLoggedInUser();
   const language = sessionStorage.getItem('language')||'English';
-  // preferSpanish is priority. || operator needed in case language is set
-  // with dropdown. English is set if sessionStorage language key is English
+  // preferSpanish is priority. English is set if sessionStorage language key is English
   // or if there is no key at all
-  const getLanguage = currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English';
+  const getLanguage = currentUser.preferSpanish ? 'Spanish' : language;
 
   return <User user={user} language={getLanguage} />
 }
