@@ -1,13 +1,13 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "isAdmin" BOOLEAN NOT NULL DEFAULT false,
     "jwt" TEXT,
     "localSessionPassword" TEXT,
-    "preferSpanish" BOOLEAN NOT NULL DEFAULT false,
+    "preferSpanish" BOOLEAN DEFAULT false,
     "bio" TEXT,
     "location" TEXT,
     "university" TEXT,
@@ -27,15 +27,21 @@ CREATE TABLE "User" (
     "pub4" TEXT,
     "pub4desc" TEXT,
     "focusByTopic" TEXT,
-    "focusByEra" TEXT
+    "focusByEra" TEXT,
+
+    PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Announcements" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "headline" TEXT NOT NULL,
-    "subheadline" TEXT,
-    "date" TEXT
+CREATE TABLE "Announcement" (
+    "id" SERIAL NOT NULL,
+    "englishHeadline" TEXT NOT NULL,
+    "englishSubheadline" TEXT,
+    "spanishHeadline" TEXT,
+    "spanishSubheadline" TEXT,
+    "date" TEXT,
+
+    PRIMARY KEY ("id")
 );
 
 -- CreateIndex
