@@ -78,8 +78,12 @@ const LoginPageContent = props => {
         :
         (
           <>
-            <div className="rw-form-wrapper">
-              <Form onSubmit={handleLogin} error={error}>
+            <div id='login-form-wrapper' className="rw-form-wrapper">
+              <Form
+                onSubmit={handleLogin}
+                error={error}
+                id='login-form'
+              >
                 <FormError
                   error={error}
                   wrapperClassName="rw-form-error-wrapper"

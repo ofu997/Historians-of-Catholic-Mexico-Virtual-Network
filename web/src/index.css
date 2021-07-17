@@ -181,3 +181,21 @@
   max-width: 200px;
   padding: 20px 0px;
 }
+
+/* log in page */
+
+#login-form-wrapper {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 4 rem;
+}
+
+#login-form {
+  border: 1px solid rgba(0, 0, 255, .2);
+  width: 50%;
+  min-width: 200px;
+  padding: 50px;
+  margin-top: 75px;
+  box-shadow: 12px 12px 2px 1px #afeeee;
+}
