@@ -22,9 +22,12 @@ export const user = ({ id }) => {
 // flow: create admins. login as admins. protect /admins/register page. create other users.
 // FE validate
 export const createUser = async ({ input }) => {
-  const email = input.email.toLowerCase();
-  const password = await bcrypt.hash(input.password, 10);
-  const isAdmin = (admins.includes(input.email.toLowerCase())) ? true : false;
+  const email = input.email.toLowerCase().trim();
+  const password = await bcrypt.hash(input.password.trim(), 10);
+
+
+
+  const isAdmin = (admins.includes(email)) ? true : false;
   const data = { ...input, email, password, isAdmin }
   return db.user.create({
     data,
@@ -32,9 +35,9 @@ export const createUser = async ({ input }) => {
 }
 
 export const createAdmin = async ({ input }) => {
-  const email = input.email.toLowerCase();
-  const password = await bcrypt.hash(input.password, 10);
-  const isAdmin = (admins.includes(input.email.toLowerCase())) ? true : false;
+  const email = input.email.toLowerCase().trim();
+  const password = await bcrypt.hash(input.password.trim(), 10);
+  const isAdmin = (admins.includes(email)) ? true : false;
   const data = { ...input, email, password, isAdmin }
   if (!isAdmin) {
     throw new Error('you can\'t do that')
@@ -45,10 +48,20 @@ export const createAdmin = async ({ input }) => {
 }
 
 export const updateUser = ({ id, input }) => {
+  input.linkAcademia = checkLinkFormat(input.linkAcademia);
+  input.linkTwitter = checkLinkFormat(input.linkTwitter);
+  input.linkLinkedIn = checkLinkFormat(input.linkLinkedIn);
+  input.otherMedia = checkLinkFormat(input.otherMedia);
+
   return db.user.update({
     data: input,
     where: { id },
   })
+}
+
+const checkLinkFormat = link => {
+  link && link.split('').slice(0,4).join('')!=='http' && (link = `https://${link}`)
+  return link
 }
 
 export const deleteUser = ({ id }) => {
@@ -59,9 +72,9 @@ export const deleteUser = ({ id }) => {
 
 export const loginUser = async ({ input }) => {
   const user = await db.user.findUnique({
-    where: { email: input.email.toLowerCase() },
+    where: { email: input.email.toLowerCase().trim() },
   })
-  const passwordMatch = await bcrypt.compare(input.password, user.password)
+  const passwordMatch = await bcrypt.compare(input.password.trim(), user.password)
   if (!passwordMatch) {
     throw new Error('Invalid Login')
   }
@@ -79,7 +92,7 @@ export const loginUser = async ({ input }) => {
     data: {
       localSessionPassword,
     },
-    where: { email: input.email }
+    where: { email: input.email.trim() }
   })
 }
 
