@@ -78,8 +78,8 @@ const EditUserForm = (props) => {
   return (
     (currentUser.localSessionPassword === data?.user.localSessionPassword) ? (
     <div className="rw-form-wrapper">
-      <h2>{useQueryError}</h2>
-      <h2>{props.language}</h2>
+      {useQueryError && <h2>{useQueryError}</h2>}
+      {/* <h2>{props.language}</h2> */}
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -93,7 +93,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Prefer spanish
+          {isSpanish?<span>Prefiero espa&ntilde;ol</span>:<span>Prefer spanish</span>}
         </Label>
         <CheckboxField
           name="preferSpanish"
@@ -135,7 +135,7 @@ const EditUserForm = (props) => {
             marginTop: '100px'
           }}
         >
-          Profile picture
+          {isSpanish?`Foto de perfil`:`Profile picture`}
         </Label>
         {showInput && !profilePicUrl &&
           <input
@@ -147,7 +147,7 @@ const EditUserForm = (props) => {
           <div style={{ marginTop: '50px', maxWidth: '25%' }}>
             <div className="rw-button-group rw-button rw-button-green" onClick={handleFirebaseUpload}
             >
-              Upload
+              {isSpanish?`Cargar`:`Upload`}
             </div>
           </div>
         }
@@ -166,7 +166,7 @@ const EditUserForm = (props) => {
               className="rw-button rw-button-small rw-button-blue"
               style={{ textAlign: 'center', width: '50%' }}
             >
-              Replace Image
+              {isSpanish?`Reemplazar imagen`:`Replace image`}
             </div>
           </div>
         )}
@@ -178,7 +178,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Location
+          {isSpanish?<span>Ubicaci&oacute;n</span>:<span>Location</span>}
         </Label>
         <TextField
           name="location"
@@ -193,7 +193,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          University or academic affiliation
+          {isSpanish?<span>Universidad o afiliaci&oacute;n acad&eacute;mica</span>:<span>University or academic affiliation</span>}
         </Label>
         <TextField
           name="university"
@@ -208,7 +208,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Credentials
+         {isSpanish?`Credenciales`:`Credentials`}
         </Label>
         <TextAreaField
           name="credentials"
@@ -223,15 +223,28 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Status
+          {isSpanish?`Estado`:`Status`}
         </Label>
-        <TextField
-          name="status"
-          defaultValue={props.user?.status}
-          placeholder="What's on your mind?"
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-        />
+        {isSpanish
+          ? (
+          <TextField
+            name="status"
+            defaultValue={props.user?.status}
+            placeholder="Comparte un pensamiento"
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          )
+          : (
+          <TextField
+            name="status"
+            defaultValue={props.user?.status}
+            placeholder="What's on your mind?"
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          )
+        }
         <FieldError name="status" className="rw-field-error" />
 
         <Label
@@ -239,7 +252,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Academia.edu link
+          {isSpanish?`Cuenta de Academia.edu`:`Academia.edu link`}
         </Label>
         <TextField
           name="linkAcademia"
@@ -254,7 +267,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Twitter link
+          {isSpanish?`Cuenta de Twitter`:`Twitter link`}
         </Label>
         <TextField
           name="linkTwitter"
@@ -269,7 +282,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Linkedin account
+          {isSpanish?`Cuenta de LinkedIn`:`LinkedIn account`}
         </Label>
         <TextField
           name="linkLinkedIn"
@@ -284,15 +297,28 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Other media
+          {isSpanish?<span>Otra media de comunicaci&oacute;n</span>:<span>Other media</span>}
         </Label>
-        <TextField
-          name="otherMedia"
-          defaultValue={props.user?.otherMedia}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          placeholder='video, personal website, article...'
-        />
+        {isSpanish
+          ? (
+          <TextField
+            name="otherMedia"
+            defaultValue={props.user?.otherMedia}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+            placeholder='video, sitio web personal, podcast...'
+          />
+          )
+          : (
+          <TextField
+            name="otherMedia"
+            defaultValue={props.user?.otherMedia}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+            placeholder='video, personal website, podcast...'
+          />
+          )
+        }
         <FieldError name="otherMedia" className="rw-field-error" />
 
         <Label
@@ -300,7 +326,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Publication
+          {isSpanish?<span>Publicaci&oacute;n</span>:<span>Publication</span>}
         </Label>
         <TextAreaField
           name="pub1"
@@ -315,7 +341,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Description
+          {isSpanish?<span>Descripci&oacute;n</span>:<span>Description</span>}
         </Label>
         <TextAreaField
           name="pub1desc"
@@ -330,7 +356,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Second publication
+          {isSpanish?<span>Segunda publicaci&oacute;n</span>:<span>Second publication</span>}
         </Label>
         <TextAreaField
           name="pub2"
@@ -345,7 +371,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Description
+          {isSpanish?<span>Descripci&oacute;n</span>:<span>Description</span>}
         </Label>
         <TextAreaField
           name="pub2desc"
@@ -360,7 +386,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Third publication
+          {isSpanish?<span>Tercera publicaci&oacute;n</span>:<span>Third publication</span>}
         </Label>
         <TextAreaField
           name="pub3"
@@ -375,7 +401,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Description
+          {isSpanish?<span>Descripci&oacute;n</span>:<span>Description</span>}
         </Label>
         <TextAreaField
           name="pub3desc"
@@ -390,7 +416,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Fourth publication
+          {isSpanish?<span>Cuarta publicaci&oacute;n</span>:<span>Fourth publication</span>}
         </Label>
         <TextAreaField
           name="pub4"
@@ -405,7 +431,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Description
+          {isSpanish?<span>Descripci&oacute;n</span>:<span>Description</span>}
         </Label>
         <TextAreaField
           name="pub4desc"
@@ -420,7 +446,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Topics of interest
+          {isSpanish?<span>&Aacute;reas de concentraci&oacute;n</span>:<span>Focus by topic</span>}
         </Label>
         <TextAreaField
           name="focusByTopic"
@@ -435,7 +461,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Time periods of interest
+          {isSpanish?<span>Eras de concentraci&oacute;n</span>:<span>Time periods of interest</span>}
         </Label>
         <TextAreaField
           name="focusByEra"
@@ -447,7 +473,7 @@ const EditUserForm = (props) => {
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
-            Save
+            {isSpanish?`Guardar cambios`:`Save`}
           </Submit>
         </div>
       </Form>
@@ -459,5 +485,9 @@ const EditUserForm = (props) => {
     )
   )
 }
+
+// const placeholder=document.createElement('span');
+// placeholder.innerHTML='&iquest;Qu&eacute; est&aacute;s pensando?'
+// document.getElementById('status-placeholder').placeholder=placeholder.textContent;
 
 export default EditUserForm

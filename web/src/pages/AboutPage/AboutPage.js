@@ -10,7 +10,7 @@ const AboutPage = () => {
 
   return (
     <MainLayout
-      language={currentUser.preferSpanish || language === 'Spanish' ? 'Spanish' : 'English'}
+      language={currentUser.preferSpanish ? 'Spanish' : language}
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
@@ -21,19 +21,26 @@ const AboutPage = () => {
 }
 
 const AboutPageContent = props => {
+  const isSpanish = Boolean(props.language==='Spanish' ? true : false);
   return(
     <>
-    <h1>About Page</h1>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-    <h4 style={{ maxWidth: '60%', lineHeight: '60px' }}>
-      HISTCATMEX comprises an international network of historians devoted to furthering research and promoting academic collaboration pertinent to twentieth-century Mexican Catholic history.  The network is made up of senior scholars, advanced graduate students, and everyone in between.
-    </h4>
-    </div>
-    <div>
-      <p>Presented language: {props.language}</p>
-      <p>Loggedin: {props.isLoggedIn}</p>
-    </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      {isSpanish
+      ? (
+        <h4 style={{ maxWidth: '60%', lineHeight: '60px' }}>
+          HISTCATMEX se compone de una red internacional dedicada a fomentar investigaciones y promover colaboraci&oacute;n acad&eacute;mica
+          relacionada con la historia del catolicismo en M&eacute;xico en el siglo XX. La red se compone de eruditos mayores, estudiantes de posgrado, entre otros
+          tipos de personas.
+        </h4>
+      )
+      : (
+        <h4 style={{ maxWidth: '60%', lineHeight: '60px' }}>
+          HISTCATMEX comprises an international network of historians devoted to furthering research and promoting academic collaboration
+          pertinent to twentieth-century Mexican Catholic history.  The network is made up of senior scholars, advanced graduate students,
+          and everyone in between.
+        </h4>
+      )}
+      </div>
     </>
   )
 }

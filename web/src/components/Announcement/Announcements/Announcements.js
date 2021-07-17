@@ -15,45 +15,18 @@ const DELETE_ANNOUNCEMENT_MUTATION = gql`
   }
 `
 
-const MAX_STRING_LENGTH = 150
-
-const truncate = (text) => {
-  let output = text
-  if (text && text.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
-  }
-  return output
-}
-
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
-
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toUTCString()}
-    </time>
-  )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
-const AnnouncementsList = ({ announcements }) => {
-
-
-  return (
-    <div>
-      {announcements.map((announcement) => (
-        <AnnouncementBox announcement={announcement} key={announcement.id} />
-      ))}
-    </div>
-  )
-}
+const AnnouncementsList = ({ announcements }) =>
+  <div>
+    {announcements.map((announcement) => (
+      <AnnouncementBox announcement={announcement} key={announcement.id} />
+    ))}
+  </div>
 
 const AnnouncementBox = ( {announcement} ) => {
+  const currentUser = getLoggedInUser();
+  const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
+  const isSpanish = Boolean(language==='Spanish' ? true : false)
+
   const [deleteAnnouncement] = useMutation(DELETE_ANNOUNCEMENT_MUTATION, {
     onCompleted: () => {
       toast.success('Announcement deleted')
@@ -67,7 +40,7 @@ const AnnouncementBox = ( {announcement} ) => {
       deleteAnnouncement({ variables: { id } })
     }
   }
-  const currentUser = getLoggedInUser();
+
   const currentUserId = currentUser.id;
 
   const { error:useQueryError, data } = currentUserId ?
@@ -80,10 +53,8 @@ const AnnouncementBox = ( {announcement} ) => {
   return (
     <section id='announcement-box' style={{ minWidth: '400px', width: '60%', borderBottom: '1px solid black', margin: '0px auto 250px auto' }}>
       <p>{useQueryError}</p>
-      <h1>{announcement.englishHeadline}</h1>
-      <h1>{announcement.spanishHeadline}</h1>
-      <h1>{announcement.englishSubheadline}</h1>
-      <h1>{announcement.spanishSubheadline}</h1>
+      <h1>{isSpanish?announcement.spanishHeadline:announcement.englishHeadline}</h1>
+      <h2>{isSpanish?announcement.spanishSubheadline:announcement.englishSubheadline}</h2>
       <p>{announcement.date}</p>
       {( (currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin ) && (
       <>

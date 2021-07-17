@@ -13,7 +13,7 @@ const DELETE_USER_MUTATION = gql`
   }
 `
 
-const User = ({ user, language }) => {
+const User = ({ user }) => {
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
@@ -27,8 +27,6 @@ const User = ({ user, language }) => {
     }
   }
 
-  const currentUser = getLoggedInUser();
-
   // query the user being displayed instead of currentUser
   const { error, data } = user.id ?
     useQuery(USER_QUERY, {
@@ -37,6 +35,11 @@ const User = ({ user, language }) => {
     :
     dummyObject;
 
+  const currentUser = getLoggedInUser();
+  // preferSpanish is priority. English is set if sessionStorage language key is English
+  // or if there is no key at all
+  const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
+  const isSpanish = Boolean(language==='Spanish' ? true : false)
 
   return (
     <>
@@ -61,31 +64,31 @@ const User = ({ user, language }) => {
 
             {user.status && (
               <tr>
-                <th>Status</th>
+                <th>{isSpanish?`Estado`:`Status`}</th>
                 <td>{user.status}</td>
               </tr>
             )}
             {user.university && (
               <tr>
-                <th>University/Affiliation</th>
+                <th>{isSpanish?<span>Universidad o afiliaci&oacute;n</span>:<span>University or affiliation</span>}</th>
                 <td>{user.university}</td>
               </tr>
             )}
             {user.credentials && (
               <tr>
-                <th>Credentials</th>
+                <th>{isSpanish?`Credenciales`:`Credentials`}</th>
                 <td>{user.credentials}</td>
               </tr>
             )}
             {user.focusByTopic && (
               <tr>
-                <th>Focus by topic</th>
+                <th>{isSpanish?<span>&Aacute;reas de concentraci&oacute;n</span>:<span>Focus by topic</span>}</th>
                 <td>{user.focusByTopic}</td>
               </tr>
             )}
             {user.focusByEra && (
               <tr>
-                <th>Focus by era</th>
+                <th>{isSpanish?<span>Eras de concentraci&oacute;n</span>:<span>Focus by era</span>}</th>
                 <td>{user.focusByEra}</td>
               </tr>
             )}
@@ -93,7 +96,7 @@ const User = ({ user, language }) => {
         </table>
 
         {user.pub1 && (
-          <h4 className="rw-heading cntr-h">Publications</h4>
+          <h4 className="rw-heading cntr-h">{isSpanish?`Publicaciones`:`Publications`}</h4>
         )}
         <table className="rw-table-profile">
           <tbody>
@@ -104,7 +107,7 @@ const User = ({ user, language }) => {
                 </tr>
                 {user.pub1desc && (
                   <tr>
-                    <td>Description/link: {user.pub1desc}</td>
+                    <td>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub1desc}</td>
                   </tr>
                 )}
                 <hr />
@@ -117,7 +120,7 @@ const User = ({ user, language }) => {
                 </tr>
                 {user.pub2desc && (
                 <tr>
-                  <td>Description/link: {user.pub2desc}</td>
+                  <td>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub2desc}</td>
                 </tr>
                 )}
                 <hr />
@@ -130,7 +133,7 @@ const User = ({ user, language }) => {
                 </tr>
                 {user.pub3desc && (
                 <tr>
-                  <td>Description/link: {user.pub3desc}</td>
+                  <td>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub3desc}</td>
                 </tr>
                 )}
                 <hr />
@@ -143,7 +146,7 @@ const User = ({ user, language }) => {
                 </tr>
                 {user.pub4desc && (
                 <tr>
-                  <td>Description/link: {user.pub4desc}</td>
+                  <td>{isSpanish?<span>Descripci&oacut;en/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub4desc}</td>
                 </tr>
                 )}
                 <hr />
@@ -152,7 +155,7 @@ const User = ({ user, language }) => {
           </tbody>
         </table>
 
-        <h4 className="rw-heading cntr-h">Contact</h4>
+        <h4 className="rw-heading cntr-h">{isSpanish?`Contacto`:`Contact`}</h4>
         <section id='user-social-media'>
           <p><a href={`mailto:${user.email}`}>{user.email}</a></p>
           {user.linkAcademia && (
@@ -177,7 +180,7 @@ const User = ({ user, language }) => {
           to={routes.editProfile({ id: user.id })}
           className="rw-button rw-button-blue"
         >
-          Edit
+          {isSpanish?`Editar`:`Edit`}
         </Link>
       )}
       </nav>

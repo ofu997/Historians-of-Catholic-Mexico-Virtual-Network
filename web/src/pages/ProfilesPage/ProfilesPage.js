@@ -25,8 +25,6 @@ const ProfilesPage = () => {
 const ProfilesPageContent = props => {
   return(
     <>
-      <h1>ProfilesPage</h1>
-      <p>{props.language}</p>
       <UsersCell />
     </>
   )
