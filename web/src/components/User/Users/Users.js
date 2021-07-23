@@ -26,8 +26,8 @@ const UsersList = ({ users }) => {
           <th>{isSpanish?`Universidad`:`University`}</th>
           <th>{isSpanish?<span>Ubicaci&oacute;n</span>:<span>Location</span>}</th>
           <th>{isSpanish?`Credenciales`:`Credentials`}</th>
-          <th>{isSpanish?<span>&Aacute;reas de concentraci&oacute;n</span>:<span>Focus by topic</span>}</th>
-          <th>{isSpanish?<span>Eras de concentraci&oacute;n</span>:<span>Focus by era</span>}</th>
+          <th>{isSpanish?`Temas de enfoque`:`Focus by topic`}</th>
+          <th>{isSpanish?`Eras de enfoque`:`Focus by era`}</th>
         </tr>
       </thead>
       <tbody>

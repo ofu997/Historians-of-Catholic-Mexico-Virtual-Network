@@ -3,6 +3,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import EditUserForm from 'src/components/User/EditUserForm'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import Spinner from 'react-bootstrap/Spinner'
 
 export const QUERY = gql`
   query FindUserById($id: Int!) {
@@ -47,7 +48,10 @@ const UPDATE_USER_MUTATION = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () =>
+  <div className='spinner cntr-h'>
+    <Spinner animation="border" variant="success" />
+  </div>
 
 export const Success = ({ user }) => {
   const currentUser = getLoggedInUser();
@@ -69,9 +73,6 @@ export const Success = ({ user }) => {
 
   return (
     <div className="rw-segment">
-      {/* <header className="rw-segment-header">
-       <h2 className="rw-heading rw-heading-secondary">Edit User {user.id}</h2>
-      </header> */}
       <div className="rw-segment-main">
         <EditUserForm user={user} onSave={onSave} error={error} loading={loading} language={language} />
       </div>

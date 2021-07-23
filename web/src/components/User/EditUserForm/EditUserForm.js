@@ -1,4 +1,4 @@
-import {
+ import {
   Form,
   FormError,
   FieldError,
@@ -79,7 +79,6 @@ const EditUserForm = (props) => {
     (currentUser.localSessionPassword === data?.user.localSessionPassword) ? (
     <div className="rw-form-wrapper">
       {useQueryError && <h2>{useQueryError}</h2>}
-      {/* <h2>{props.language}</h2> */}
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -103,11 +102,6 @@ const EditUserForm = (props) => {
           style={{ margin: '30px 20px 0px 20px' }}
         />
         </div>
-        {/* <Label>
-          {isSpanish
-          ? <p><span>(</span>Su cambio de preferencia va a tener efecto en la pr&oacute;xima sesi&oacute;n<span>)</span></p>
-          : <p><span>(</span>A change in your preference will take effect in your next session<span>)</span></p>}
-        </Label> */}
         <FieldError name="preferSpanish" className="rw-field-error" />
 
         <Label
@@ -153,9 +147,7 @@ const EditUserForm = (props) => {
         }
 
         {profilePicUrl && (
-          <div
-            // style={{ maxHeight: '25%' }}
-          >
+          <div>
             <img src={profilePicUrl} style={{ display: 'block', margin: '2rem 0', objectFit: 'contain' }} height='300' />
             <div
               onClick={() => {
@@ -446,7 +438,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          {isSpanish?<span>&Aacute;reas de concentraci&oacute;n</span>:<span>Focus by topic</span>}
+          {isSpanish?`Temas de enfoque`:`Focus by topic`}
         </Label>
         <TextAreaField
           name="focusByTopic"
@@ -461,7 +453,7 @@ const EditUserForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          {isSpanish?<span>Eras de concentraci&oacute;n</span>:<span>Time periods of interest</span>}
+          {isSpanish?`Eras de enfoque`:`Time periods of interest`}
         </Label>
         <TextAreaField
           name="focusByEra"
@@ -485,9 +477,5 @@ const EditUserForm = (props) => {
     )
   )
 }
-
-// const placeholder=document.createElement('span');
-// placeholder.innerHTML='&iquest;Qu&eacute; est&aacute;s pensando?'
-// document.getElementById('status-placeholder').placeholder=placeholder.textContent;
 
 export default EditUserForm

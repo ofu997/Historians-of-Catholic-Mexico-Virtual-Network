@@ -27,14 +27,16 @@ const AboutPageContent = props => {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
       {isSpanish
       ? (
-        <h4 style={{ maxWidth: '60%', lineHeight: '60px' }}>
+        <h4
+        className='about-page-content'>
           HISTCATMEX se compone de una red internacional dedicada a fomentar investigaciones y promover colaboraci&oacute;n acad&eacute;mica
-          relacionada con la historia del catolicismo en M&eacute;xico en el siglo XX. La red se compone de eruditos mayores, estudiantes de posgrado, entre otros
-          tipos de personas.
+          relacionada con la historia del catolicismo en M&eacute;xico en el siglo XX. La red se compone de eruditos mayores, estudiantes de
+          posgrado, y todo tipo de personas.
         </h4>
       )
       : (
-        <h4 style={{ maxWidth: '60%', lineHeight: '60px' }}>
+        <h4
+        className='about-page-content'>
           HISTCATMEX comprises an international network of historians devoted to furthering research and promoting academic collaboration
           pertinent to twentieth-century Mexican Catholic history.  The network is made up of senior scholars, advanced graduate students,
           and everyone in between.

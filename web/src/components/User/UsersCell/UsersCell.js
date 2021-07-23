@@ -1,5 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import Users from 'src/components/User/Users'
+import Spinner from 'react-bootstrap/Spinner'
 
 export const QUERY = gql`
   query USERS {
@@ -36,7 +37,10 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () =>
+  <div className='spinner cntr-h'>
+    <Spinner animation="border" variant="success" />
+  </div>
 
 export const Empty = () => {
   return (

@@ -39,7 +39,7 @@ const HomePageContent = props => {
   return(
     <>
       <h1>Home Page</h1>
-      {((currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin)
+      {((currentUser?.localSessionPassword === data?.user?.localSessionPassword) && data?.user?.isAdmin)
         && (
           <>
             <hr />

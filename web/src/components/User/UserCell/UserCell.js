@@ -1,5 +1,5 @@
 import User from 'src/components/User/User'
-// import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import Spinner from 'react-bootstrap/Spinner'
 
 export const QUERY = gql`
   query FindUserById($id: Int!) {
@@ -36,19 +36,14 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () =>
+  <div className='spinner cntr-h'>
+    <Spinner animation="border" variant="success" />
+  </div>
 
 export const Empty = () => <div>User not found</div>
 
 export const Success = ({ user }) => {
-  // const currentUser = getLoggedInUser();
-  // const language = sessionStorage.getItem('language')||'English';
-  // // preferSpanish is priority. English is set if sessionStorage language key is English
-  // // or if there is no key at all
-  // const getLanguage = currentUser.preferSpanish ? 'Spanish' : language;
-
   return <User user={user}
-  // language={getLanguage}
-
   />
 }

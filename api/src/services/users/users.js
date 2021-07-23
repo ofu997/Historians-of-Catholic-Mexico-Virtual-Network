@@ -1,5 +1,4 @@
 import { db } from 'src/lib/db'
-import { requireAuth } from 'src/lib/auth'
 import admins from 'src/lib/admins'
 import bcrypt from 'bcryptjs'
 
@@ -24,9 +23,6 @@ export const user = ({ id }) => {
 export const createUser = async ({ input }) => {
   const email = input.email.toLowerCase().trim();
   const password = await bcrypt.hash(input.password.trim(), 10);
-
-
-
   const isAdmin = (admins.includes(email)) ? true : false;
   const data = { ...input, email, password, isAdmin }
   return db.user.create({
@@ -71,8 +67,9 @@ export const deleteUser = ({ id }) => {
 }
 
 export const loginUser = async ({ input }) => {
+  const email = input.email.toLowerCase().trim();
   const user = await db.user.findUnique({
-    where: { email: input.email.toLowerCase().trim() },
+    where: { email },
   })
   const passwordMatch = await bcrypt.compare(input.password.trim(), user.password)
   if (!passwordMatch) {
@@ -92,7 +89,7 @@ export const loginUser = async ({ input }) => {
     data: {
       localSessionPassword,
     },
-    where: { email: input.email.trim() }
+    where: { email }
   })
 }
 

@@ -51,7 +51,7 @@ const AnnouncementBox = ( {announcement} ) => {
     dummyObject;
 
   return (
-    <section id='announcement-box' style={{ minWidth: '400px', width: '60%', borderBottom: '1px solid black', margin: '0px auto 250px auto' }}>
+    <section id='announcement-box'>
       <p>{useQueryError}</p>
       <h1>{isSpanish?announcement.spanishHeadline:announcement.englishHeadline}</h1>
       <h2>{isSpanish?announcement.spanishSubheadline:announcement.englishSubheadline}</h2>
@@ -61,14 +61,14 @@ const AnnouncementBox = ( {announcement} ) => {
       <Link
         to={routes.editAnnouncement({ id: announcement.id })}
         title={'Edit announcement ' + announcement.id}
-        className="rw-button rw-button-small rw-button-blue"
+        className="rw-button rw-button-blue home-page-buttons cntr-h"
       >
         Edit
       </Link>
       <a
         href="/"
         title={'Delete announcement ' + announcement.id}
-        className="rw-button rw-button-small rw-button-red"
+        className="rw-button rw-button-red home-page-buttons cntr-h"
         onClick={() => onDeleteClick(announcement.id)}
       >
         Delete
