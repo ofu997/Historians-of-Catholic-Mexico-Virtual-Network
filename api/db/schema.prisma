@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:NTntlSEocZM3XYWfRlFb@containers-us-west-10.railway.app:6208/railway?connection_limit=1"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -15,6 +15,7 @@ model User {
   id                   Int      @id @default(autoincrement())
   email                String   @unique
   name                 String
+  lastname             String?
   password             String
   isAdmin              Boolean  @default(false)
   jwt                  String?
@@ -44,6 +45,21 @@ model User {
 
   focusByTopic String?
   focusByEra   String?
+
+  tagChurchStateRels            Boolean @default(false)
+  tagCathGender                 Boolean @default(false)
+  tagRightLeftWing              Boolean @default(false)
+  tagViolenceMilitancyMartyrdom Boolean @default(false)
+  tagCathYouthStudentGroups     Boolean @default(false)
+  tagNationalism                Boolean @default(false)
+  tagMigrations                 Boolean @default(false)
+  tagModernitySecSciences       Boolean @default(false)
+  tagPressLitIntelHist          Boolean @default(false)
+  tagMusArts                    Boolean @default(false)
+  tagVisCulture                 Boolean @default(false)
+  tagTransIntlHist              Boolean @default(false)
+  tagLocRegHist                 Boolean @default(false)
+  tagOralHist                   Boolean @default(false)
 }
 
 model Announcement {
