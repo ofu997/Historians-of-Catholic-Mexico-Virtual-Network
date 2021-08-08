@@ -21,12 +21,6 @@ const User = ({ user }) => {
     },
   })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete user ' + id + '?')) {
-      deleteUser({ variables: { id } })
-    }
-  }
-
   // query the user being displayed instead of currentUser
   const { error, data } = user.id ?
     useQuery(USER_QUERY, {
@@ -82,13 +76,13 @@ const User = ({ user }) => {
             )}
             {user.focusByTopic && (
               <tr>
-                <th>{isSpanish?<span>&Aacute;reas de concentraci&oacute;n</span>:<span>Focus by topic</span>}</th>
+                <th>{isSpanish?<span>Temas de enfoque</span>:<span>Focus by topic</span>}</th>
                 <td>{user.focusByTopic}</td>
               </tr>
             )}
             {user.focusByEra && (
               <tr>
-                <th>{isSpanish?<span>Eras de concentraci&oacute;n</span>:<span>Focus by era</span>}</th>
+                <th>{isSpanish?<span>Eras de enfoque</span>:<span>Focus by era</span>}</th>
                 <td>{user.focusByEra}</td>
               </tr>
             )}
@@ -96,67 +90,91 @@ const User = ({ user }) => {
         </table>
 
         {user.pub1 && (
-          <h4 className="rw-heading cntr-h">{isSpanish?`Publicaciones`:`Publications`}</h4>
+          <h4 className="rw-heading cntr-h v-margin">{isSpanish?`Publicaciones`:`Publications`}</h4>
         )}
-        <table className="rw-table-profile">
-          <tbody>
-            {user.pub1 && (
-              <>
-                <tr>
-                  <td>{user.pub1}</td>
-                </tr>
-                {user.pub1desc && (
-                  <tr>
-                    <td>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub1desc}</td>
-                  </tr>
-                )}
-                <hr />
-              </>
+        {user.pub1 && (
+          <div className='userPubSeparator'>
+            <p>{user.pub1}</p>
+            {user.pub1desc && (
+              <p>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub1desc}</p>
             )}
-            {user.pub2 && (
-              <>
-                <tr>
-                  <td>{user.pub2}</td>
-                </tr>
-                {user.pub2desc && (
-                <tr>
-                  <td>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub2desc}</td>
-                </tr>
-                )}
-                <hr />
-              </>
+          </div>
+        )}
+        {user.pub2 && (
+          <div className='userPubSeparator'>
+            <p>{user.pub2}</p>
+            {user.pub2desc && (
+              <p>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub2desc}</p>
             )}
-            {user.pub3 && (
-              <>
-                <tr>
-                  <td>{user.pub3}</td>
-                </tr>
-                {user.pub3desc && (
-                <tr>
-                  <td>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub3desc}</td>
-                </tr>
-                )}
-                <hr />
-              </>
+          </div>
+        )}
+        {user.pub3 && (
+          <div className='userPubSeparator'>
+            <p>{user.pub3}</p>
+            {user.pub3desc && (
+              <p>{isSpanish?<span>Descripci&oacute;n/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub3desc}</p>
             )}
-            {user.pub4 && (
-              <>
-                <tr>
-                  <td>{user.pub4}</td>
-                </tr>
-                {user.pub4desc && (
-                <tr>
-                  <td>{isSpanish?<span>Descripci&oacut;en/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub4desc}</td>
-                </tr>
-                )}
-                <hr />
-              </>
+          </div>
+        )}
+        {user.pub4 && (
+          <div className='userPubSeparator'>
+            <p>{user.pub4}</p>
+            {user.pub4desc && (
+              <p>{isSpanish?<span>Descripci&oacut;en/v&iacute;nculo</span>:<span>Description/link</span>}: {user.pub4desc}</p>
             )}
-          </tbody>
-        </table>
+          </div>
+        )}
+
+        <h4 className="rw-heading cntr-h">{isSpanish?`Palabras Claves`:`Tags`}</h4>
+        <section className='flex-wrap-items tags v-margin'>
+          {user.tagChurchStateRels && (
+            <div>
+              {isSpanish ? <span>Relaci&oacute;n Iglesia-Estado</span> : <span>Church-State relations</span>}
+            </div>
+          )}
+          {user.tagCathGender && (
+            <div>{isSpanish ? <span>Catolicismo y g&eacute;nero</span> : <span>Catholicism and gender</span>}</div>
+          )}
+          {user.tagRightLeftWing && (
+            <div>{isSpanish ? <span>Derechas y/o izquierdas</span> : <span>Right and left-wing politics</span>}</div>
+          )}
+          {user.tagViolenceMilitancyMartyrdom && (
+            <div>{isSpanish ? <span>Violencia, militancia, y martirio</span> : <span>Violence, militancy, and martyrdom</span>}</div>
+          )}
+          {user.tagCathYouthStudentGroups && (
+            <div>{isSpanish ? <span>Catolicismo y juventudes</span> : <span>Catholicism and youth/student groups</span>}</div>
+          )}
+          {user.tagNationalism && (
+            <div>{isSpanish ? <span>Nacionalismo</span> : <span>Nationalism</span>}</div>
+          )}
+          {user.tagMigrations && (
+            <div>{isSpanish ? <span>Migraciones</span> : <span>Migrations</span>}</div>
+          )}
+          {user.tagModernitySecSciences && (
+            <div>{isSpanish ? <span>Modernidad, ciencias, y secularizaci&oacute;n</span> : <span>Modernity, secularization, and the sciences</span>}</div>
+          )}
+          {user.tagPressLitIntelHist && (
+            <div>{isSpanish ? <span>Prensa, literatura, e historia intelectual</span> : <span>Press, literature, and intellectual history</span>}</div>
+          )}
+          {user.tagMusArts && (
+            <div>{isSpanish ? <span>M&uacute;sica y artes</span> : <span>Music and the arts</span>}</div>
+          )}
+          {user.tagVisCulture && (
+            <div>{isSpanish ? <span>Cultura visual</span> : <span>Visual culture</span>}</div>
+          )}
+          {user.tagTransIntlHist && (
+            <div>{isSpanish ? <span>Historia transnacional o internacional</span> : <span>Transnational and/or international history</span>}</div>
+          )}
+          {user.tagLocRegHist && (
+            <div>{isSpanish ? <span>Historia local o regional</span> : <span>Local and/or regional history</span>}</div>
+          )}
+          {user.tagOralHist && (
+            <div>{isSpanish ? <span>Testimonio oral</span> : <span>Oral history</span>}</div>
+          )}
+        </section>
 
         <h4 className="rw-heading cntr-h">{isSpanish?`Contacto`:`Contact`}</h4>
-        <section id='user-social-media'>
+        <section className='flex-wrap-items space-between'>
           <p><a href={`mailto:${user.email}`}>{user.email}</a></p>
           {user.linkAcademia && (
             <p><a href={user.linkAcademia} target='_blank' rel="noopener noreferrer">Academia.edu</a></p>
