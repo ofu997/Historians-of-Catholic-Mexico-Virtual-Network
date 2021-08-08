@@ -3,6 +3,7 @@ export const schema = gql`
     id: Int!
     email: String!
     name: String!
+    lastname: String
     password: String!
     isAdmin: Boolean!
     jwt: String
@@ -28,18 +29,35 @@ export const schema = gql`
     pub4desc: String
     focusByTopic: String
     focusByEra: String
+    tagChurchStateRels: Boolean
+    tagCathGender: Boolean
+    tagRightLeftWing: Boolean
+    tagViolenceMilitancyMartyrdom: Boolean
+    tagCathYouthStudentGroups: Boolean
+    tagNationalism: Boolean
+    tagMigrations: Boolean
+    tagModernitySecSciences: Boolean
+    tagPressLitIntelHist: Boolean
+    tagMusArts: Boolean
+    tagVisCulture: Boolean
+    tagTransIntlHist: Boolean
+    tagLocRegHist: Boolean
+    tagOralHist: Boolean
+
   }
 
   type Query {
     users: [User!]!
     user(id: Int!): User
+
+    findUsersByTag(tag: String): [User]
   }
 
   input CreateUserInput {
     email: String!
     name: String!
     password: String!
-    jwt: String
+    isAdmin: Boolean
     localSessionPassword: String
     preferSpanish: Boolean
     bio: String
@@ -62,6 +80,20 @@ export const schema = gql`
     pub4desc: String
     focusByTopic: String
     focusByEra: String
+    tagChurchStateRels:Boolean
+    tagCathGender: Boolean
+    tagRightLeftWing: Boolean
+    tagViolenceMilitancyMartyrdom: Boolean
+    tagCathYouthStudentGroups: Boolean
+    tagNationalism: Boolean
+    tagMigrations: Boolean
+    tagModernitySecSciences: Boolean
+    tagPressLitIntelHist: Boolean
+    tagMusArts: Boolean
+    tagVisCulture: Boolean
+    tagTransIntlHist: Boolean
+    tagLocRegHist: Boolean
+    tagOralHist: Boolean
   }
 
   input LoginInput {
@@ -72,6 +104,7 @@ export const schema = gql`
   input UpdateUserInput {
     email: String
     name: String
+    lastname: String
     password: String
     isAdmin: Boolean
     jwt: String
@@ -97,6 +130,20 @@ export const schema = gql`
     pub4desc: String
     focusByTopic: String
     focusByEra: String
+    tagChurchStateRels:Boolean
+    tagCathGender: Boolean
+    tagRightLeftWing: Boolean
+    tagViolenceMilitancyMartyrdom: Boolean
+    tagCathYouthStudentGroups: Boolean
+    tagNationalism: Boolean
+    tagMigrations: Boolean
+    tagModernitySecSciences: Boolean
+    tagPressLitIntelHist: Boolean
+    tagMusArts: Boolean
+    tagVisCulture: Boolean
+    tagTransIntlHist: Boolean
+    tagLocRegHist: Boolean
+    tagOralHist: Boolean
   }
 
   type Mutation {
