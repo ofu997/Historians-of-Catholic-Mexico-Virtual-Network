@@ -9,7 +9,11 @@ export const beforeResolver = (rules) => {
 }
 
 export const users = () => {
-  return db.user.findMany()
+  return db.user.findMany({
+    orderBy: {
+      lastname: 'asc'
+    }
+  })
 }
 
 export const user = ({ id }) => {
@@ -24,10 +28,16 @@ export const createUser = async ({ input }) => {
   const email = input.email.toLowerCase().trim();
   const password = await bcrypt.hash(input.password.trim(), 10);
   const isAdmin = (admins.includes(email)) ? true : false;
-  const data = { ...input, email, password, isAdmin }
+  const lastname = getLastName(input.name)
+  const data = { ...input, email, password, isAdmin, lastname }
   return db.user.create({
     data,
   })
+}
+
+const getLastName = name => {
+  let nameArray = name.split(' ')
+  return nameArray[1];
 }
 
 export const createAdmin = async ({ input }) => {
@@ -71,6 +81,9 @@ export const loginUser = async ({ input }) => {
   const user = await db.user.findUnique({
     where: { email },
   })
+  if (!user) {
+    throw new Error(`\u2715 email`)
+  }
   const passwordMatch = await bcrypt.compare(input.password.trim(), user.password)
   if (!passwordMatch) {
     throw new Error('Invalid Login')
@@ -100,4 +113,143 @@ export const logoutUser = ({ id }) => {
     },
     where: { id }
   })
+}
+
+export const findUsersByTag = ({ tag }) => {
+  switch(tag) {
+    case "church-and-state-relations":
+      return db.user.findMany({
+        where: {
+          tagChurchStateRels: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+    case "catholicism-and-gender":
+      return db.user.findMany({
+        where: {
+          tagCathGender: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+    case "right-and-left-wing-politics":
+      return db.user.findMany({
+        where: {
+          tagRightLeftWing: true,
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+    case "violence-militancy-martyrdom":
+      return db.user.findMany({
+        where: {
+          tagViolenceMilitancyMartyrdom: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "catholicism-and-youth-student-groups":
+      return db.user.findMany({
+        where: {
+          tagCathYouthStudentGroups: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "nationalism":
+      return db.user.findMany({
+        where: {
+          tagNationalism: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "migrations":
+      return db.user.findMany({
+        where: {
+          tagMigrations: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "modernity-secularization-sciences":
+      return db.user.findMany({
+        where: {
+          tagModernitySecSciences: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "press-literature-intellectual-history":
+      return db.user.findMany({
+        where: {
+          tagPressLitIntelHist: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "music-and-arts":
+      return db.user.findMany({
+        where: {
+          tagMusArts: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "visual-culture":
+      return db.user.findMany({
+        where: {
+          tagVisCulture: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "transnational-and-international-history":
+      return db.user.findMany({
+        where: {
+          tagTransIntlHist: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "local-and-regional-history":
+      return db.user.findMany({
+        where: {
+          tagLocRegHist : true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "oral-history":
+        return db.user.findMany({
+          where: {
+            tagOralHist: true
+          },
+          orderBy: {
+            lastname: 'asc'
+          }
+      })
+      default:
+        return;
+  }
+
+  return db.tag
+    .findUnique({
+      where: { name: tag},
+    })
+    .users({ include: { tags: true } })
 }
