@@ -38,7 +38,6 @@ const HomePageContent = props => {
 
   return(
     <>
-      <h1>Home Page</h1>
       {((currentUser?.localSessionPassword === data?.user?.localSessionPassword) && data?.user?.isAdmin)
         && (
           <>
@@ -68,8 +67,8 @@ const HomePageContent = props => {
         )
       }
       {language==='Spanish'
-        ? <h1>No s&eacute; qu&eacute; poner aqu&iacute;</h1>
-        : <h1>I don't know what goes here</h1>
+        ? <h1>Resumen de HISTCATMEX</h1>
+        : <h1>Summary of HISTCATMEX</h1>
       }
     </>
   )

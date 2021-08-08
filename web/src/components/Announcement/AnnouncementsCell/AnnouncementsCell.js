@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
-
 import Announcements from 'src/components/Announcement/Announcements'
+import Spinner from 'react-bootstrap/Spinner'
 
 export const QUERY = gql`
   query ANNOUNCEMENTS {
@@ -15,7 +15,10 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () =>
+  <div className='spinner cntr-h'>
+    <Spinner animation="border" variant="success" />
+  </div>
 
 export const Empty = () => {
   return (

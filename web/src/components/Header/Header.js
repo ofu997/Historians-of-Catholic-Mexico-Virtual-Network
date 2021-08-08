@@ -2,7 +2,8 @@ import
 {
   Navbar,
   Nav,
-  NavDropdown
+  NavDropdown,
+  Container
 } from 'react-bootstrap';
 import { navigate, routes } from '@redwoodjs/router'
 import logo from '../../../public/histcatmex-logo.png'
@@ -39,6 +40,7 @@ const Header = props => {
 
   return(
     <>
+      <Container>
       <Navbar id='Navbar' className="header-custom" bg='white' variant='light' expand="md" collapseOnSelect
       >
         <div
@@ -109,6 +111,7 @@ const Header = props => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      </Container>
     </>
   )
 }
