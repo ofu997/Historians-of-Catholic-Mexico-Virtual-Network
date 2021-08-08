@@ -6,7 +6,7 @@ import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 import Spinner from 'react-bootstrap/Spinner'
 
 export const QUERY = gql`
-  query FindUserById($id: Int!) {
+  query FindUserByIdForEditing($id: Int!) {
     user: user(id: $id) {
       id
       email
@@ -36,6 +36,20 @@ export const QUERY = gql`
       pub4desc
       focusByTopic
       focusByEra
+      tagChurchStateRels
+      tagCathGender
+      tagRightLeftWing
+      tagViolenceMilitancyMartyrdom
+      tagCathYouthStudentGroups
+      tagNationalism
+      tagMigrations
+      tagModernitySecSciences
+      tagPressLitIntelHist
+      tagMusArts
+      tagVisCulture
+      tagTransIntlHist
+      tagLocRegHist
+      tagOralHist
     }
   }
 `
