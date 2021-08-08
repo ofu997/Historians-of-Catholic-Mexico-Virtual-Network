@@ -32,6 +32,20 @@ export const QUERY = gql`
       pub4desc
       focusByTopic
       focusByEra
+      tagChurchStateRels
+      tagCathGender
+      tagRightLeftWing
+      tagViolenceMilitancyMartyrdom
+      tagCathYouthStudentGroups
+      tagNationalism
+      tagMigrations
+      tagModernitySecSciences
+      tagPressLitIntelHist
+      tagMusArts
+      tagVisCulture
+      tagTransIntlHist
+      tagLocRegHist
+      tagOralHist
     }
   }
 `
