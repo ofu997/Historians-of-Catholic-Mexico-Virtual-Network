@@ -27,6 +27,7 @@ const Routes = () => {
       <Route path="/" page={HomePage} name="home" />
       <Route path="/about" page={AboutPage} name="about" />
       <Route path="/profiles" page={ProfilesPage} name="profiles" />
+      <Route path="/profiles/tags/{tag:String}" page={TaggedUsersPage} name="taggedUsers" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )
