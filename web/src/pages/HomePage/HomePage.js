@@ -67,8 +67,8 @@ const HomePageContent = props => {
         )
       }
       {language==='Spanish'
-        ? <h1>Resumen de HISTCATMEX</h1>
-        : <h1>Summary of HISTCATMEX</h1>
+        ? <h1 className='rokkitt'>Resumen de HISTCATMEX</h1>
+        : <h1 className='rokkitt'>Summary of HISTCATMEX</h1>
       }
     </>
   )

@@ -29,7 +29,12 @@ const AdminRegisterPage = () => {
 const AdminRegisterPageContent = () => {
   return (
     <div>
-      <h1>Sole purpose of this page is for admins to register themselves</h1>
+      <h1
+        className='rokkitt'
+        style={{ marginBottom : 50 }}
+      >
+        Sole purpose of this page is for admins to register themselves
+      </h1>
       <NewAdmin />
     </div>
   )

@@ -35,6 +35,10 @@
   margin: 20px 0px;
 }
 
+.rokkitt {
+  font-family:'Rokkitt', serif;
+}
+
 /* users component */
 
 .rw-button-profiles {
