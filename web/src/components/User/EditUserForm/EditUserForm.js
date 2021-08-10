@@ -86,6 +86,22 @@ const EditUserForm = (props) => {
             titleClassName="rw-form-error-title"
             listClassName="rw-form-error-list"
           />
+
+          <Label
+            name="email"
+            className="rw-label"
+            errorClassName="rw-label rw-label-error"
+          >
+            Email
+          </Label>
+          <TextField
+            name="email"
+            defaultValue={props.user?.email}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <FieldError name="email" className="rw-field-error" />
+
           <div style={{ display: 'flex' }}>
             <Label
               name="preferSpanish"
