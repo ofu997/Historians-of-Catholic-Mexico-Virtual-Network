@@ -2425,7 +2425,7 @@ async function main() {
         tagLocRegHist,
         tagOralHist
       } = user;
-      const record = await db.user.create({
+      const record = await db.user.createMany({
         data: {
           email,
           name,

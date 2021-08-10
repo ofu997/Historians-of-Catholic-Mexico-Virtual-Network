@@ -44,7 +44,8 @@ export const createAdmin = async ({ input }) => {
   const email = input.email.toLowerCase().trim();
   const password = await bcrypt.hash(input.password.trim(), 10);
   const isAdmin = (admins.includes(email)) ? true : false;
-  const data = { ...input, email, password, isAdmin }
+  const lastname = getLastName(input.name)
+  const data = { ...input, email, password, isAdmin, lastname }
   if (!isAdmin) {
     throw new Error('you can\'t do that')
   }

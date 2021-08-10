@@ -69,4 +69,6 @@ model Announcement {
   spanishHeadline    String?
   spanishSubheadline String?
   date               String?
+  spanishDate        String?
+  important          Boolean @default(false)
 }
