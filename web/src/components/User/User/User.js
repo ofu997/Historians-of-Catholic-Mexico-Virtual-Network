@@ -29,6 +29,22 @@ const User = ({ user }) => {
     :
     dummyObject;
 
+  const tagValues = [ user.tagChurchStateRels,
+    user.tagCathGender,
+    user.tagRightLeftWing,
+    user.tagViolenceMilitancyMartyrdom,
+    user.tagCathYouthStudentGroups,
+    user.tagNationalism,
+    user.tagMigrations,
+    user.tagModernitySecSciences,
+    user.tagPressLitIntelHist,
+    user.tagMusArts,
+    user.tagVisCulture,
+    user.tagTransIntlHist,
+    user.tagLocRegHist,
+    user.tagOralHist
+  ]
+
   const currentUser = getLoggedInUser();
   // preferSpanish is priority. English is set if sessionStorage language key is English
   // or if there is no key at all
@@ -125,7 +141,7 @@ const User = ({ user }) => {
           </div>
         )}
 
-        <h4 className="rw-heading cntr-h">{isSpanish?`Palabras Claves`:`Tags`}</h4>
+        {tagValues.includes(true) &&(<h4 className="rw-heading cntr-h">{isSpanish?`Palabras Claves`:`Tags`}</h4>)}
         <section className='flex-wrap-items tags v-margin'>
           {user.tagChurchStateRels && (
             <div>
