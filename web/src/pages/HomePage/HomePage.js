@@ -5,6 +5,7 @@ import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 import { useQuery } from '@redwoodjs/web'
 import USER_QUERY from 'src/graphql-helpers/userquery'
 import dummyObject from 'src/graphql-helpers/dummyobject'
+import ImportantAnnouncementsCell from 'src/components/Announcement/ImportantAnnouncementsCell'
 
 const HomePage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
@@ -70,6 +71,7 @@ const HomePageContent = props => {
         ? <h1 className='rokkitt'>Resumen de HISTCATMEX</h1>
         : <h1 className='rokkitt'>Summary of HISTCATMEX</h1>
       }
+      <ImportantAnnouncementsCell />
     </>
   )
 }
