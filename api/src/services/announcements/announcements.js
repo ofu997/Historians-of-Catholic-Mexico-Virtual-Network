@@ -3,7 +3,8 @@ import { requireAuth } from 'src/lib/auth'
 
 // Used when the environment variable REDWOOD_SECURE_SERVICES=1
 export const beforeResolver = (rules) => {
-  rules.add(requireAuth)
+  // rules.add(requireAuth)
+  rules.skip()
 }
 
 export const announcements = () => {
@@ -32,5 +33,13 @@ export const updateAnnouncement = ({ id, input }) => {
 export const deleteAnnouncement = ({ id }) => {
   return db.announcement.delete({
     where: { id },
+  })
+}
+
+export const importantAnnouncements = () => {
+  return db.announcement.findMany({
+    where: {
+      important : true
+    }
   })
 }

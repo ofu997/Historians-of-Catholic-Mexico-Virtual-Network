@@ -6,11 +6,15 @@ export const schema = gql`
     spanishHeadline: String
     spanishSubheadline: String
     date: String
+    spanishDate: String
+    important: Boolean
   }
 
   type Query {
     announcements: [Announcement!]!
     announcement(id: Int!): Announcement
+
+    importantAnnouncements: [Announcement!]
   }
 
   input CreateAnnouncementInput {
@@ -19,6 +23,8 @@ export const schema = gql`
     spanishHeadline: String
     spanishSubheadline: String
     date: String
+    spanishDate: String
+    important: Boolean
   }
 
   input UpdateAnnouncementInput {
@@ -27,6 +33,8 @@ export const schema = gql`
     spanishHeadline: String
     spanishSubheadline: String
     date: String
+    spanishDate: String
+    important: Boolean
   }
 
   type Mutation {
