@@ -5,6 +5,7 @@ import {
   Label,
   TextField,
   Submit,
+  CheckboxField,
 } from '@redwoodjs/forms'
 
 const formatDatetime = (value) => {
@@ -56,7 +57,6 @@ const AnnouncementForm = (props) => {
           defaultValue={props.announcement?.englishSubheadline}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
         <FieldError name="englishSubheadline" className="rw-field-error" />
 
@@ -104,6 +104,35 @@ const AnnouncementForm = (props) => {
           errorClassName="rw-input rw-input-error"
         />
         <FieldError name="date" className="rw-field-error" />
+
+        <Label
+          name="spanishDate"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Spanish date
+        </Label>
+        <TextField
+          name="spanishDate"
+          defaultValue={props.announcement?.spanishDate}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+        <FieldError name="spanishDate" className="rw-field-error" />
+
+        <Label
+          name="important"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Important
+        </Label>
+        <CheckboxField
+          name="important"
+          defaultChecked={props.announcement?.important}
+          className="rw-input editUserCheckbox"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

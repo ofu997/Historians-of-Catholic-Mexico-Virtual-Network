@@ -55,7 +55,7 @@ const AnnouncementBox = ( {announcement} ) => {
       <p>{useQueryError}</p>
       <h1>{isSpanish?announcement.spanishHeadline:announcement.englishHeadline}</h1>
       <h2>{isSpanish?announcement.spanishSubheadline:announcement.englishSubheadline}</h2>
-      <p>{announcement.date}</p>
+      <p>{isSpanish?announcement.spanishDate:announcement.date}</p>
       {( (currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin ) && (
       <>
       <Link

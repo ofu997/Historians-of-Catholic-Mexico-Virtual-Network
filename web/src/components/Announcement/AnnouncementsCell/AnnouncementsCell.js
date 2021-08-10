@@ -11,6 +11,8 @@ export const QUERY = gql`
       englishSubheadline
       spanishSubheadline
       date
+      spanishDate
+      important
     }
   }
 `
@@ -23,10 +25,13 @@ export const Loading = () =>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No announcements yet. '}
+      {/* {'No announcements yet. '}
       <Link to={routes.newAnnouncement()} className="rw-link">
         {'Create one?'}
-      </Link>
+      </Link> */}
+      <h1 style={{fontSize:'48px'}}>
+        <span style={{color:'red'}}>.</span><span style={{color:'blue'}}>.</span><span style={{color:'green'}}>.</span>
+      </h1>
     </div>
   )
 }

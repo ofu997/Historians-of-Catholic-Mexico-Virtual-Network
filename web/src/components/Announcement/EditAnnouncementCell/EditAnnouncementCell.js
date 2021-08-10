@@ -15,19 +15,15 @@ export const QUERY = gql`
       englishSubheadline
       spanishSubheadline
       date
+      spanishDate
+      important
     }
   }
 `
 const UPDATE_ANNOUNCEMENT_MUTATION = gql`
-  mutation UpdateAnnouncementMutation(
-    $id: Int!
-    $input: UpdateAnnouncementInput!
-  ) {
+  mutation UpdateAnnouncementMutation($id: Int!, $input: UpdateAnnouncementInput!) {
     updateAnnouncement(id: $id, input: $input) {
       id
-      englishHeadline
-      englishSubheadline
-      date
     }
   }
 `
