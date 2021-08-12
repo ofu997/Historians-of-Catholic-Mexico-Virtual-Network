@@ -31,6 +31,7 @@ const HomePage = () => {
 const HomePageContent = props => {
   const { language } = props;
   const currentUser = getLoggedInUser()
+  const isSpanish = Boolean(language==='Spanish' ? true : false)
   const { error, data } = currentUser.id
     ? useQuery(USER_QUERY, {
       variables: { currentUserId : currentUser.id }
@@ -67,10 +68,9 @@ const HomePageContent = props => {
           </>
         )
       }
-      {language==='Spanish'
-        ? <h1 className='rokkitt'>Resumen de HISTCATMEX</h1>
-        : <h1 className='rokkitt'>Summary of HISTCATMEX</h1>
-      }
+      <section id='homepageContent'>
+        <h1 className='rokkitt'>{isSpanish?<span>Resumen de HISTCATMEX</span>:<span>Summary of HISTCATMEX</span>}</h1>
+      </section>
       <ImportantAnnouncementsCell />
     </>
   )
