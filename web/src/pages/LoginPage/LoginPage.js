@@ -55,7 +55,7 @@ const LoginPageContent = props => {
 
       const user = loginUser;
       sessionStorage.setItem('user', JSON.stringify(user));
-      setTimeout(() => {
+      user && setTimeout(() => {
         navigate(routes.profiles())
       }, 50)
     },
