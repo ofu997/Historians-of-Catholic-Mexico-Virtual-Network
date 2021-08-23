@@ -16,6 +16,7 @@ const ProfilesPage = () => {
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
+      showFooter={false}
     >
       <ProfilesPageContent />
     </MainLayout>
