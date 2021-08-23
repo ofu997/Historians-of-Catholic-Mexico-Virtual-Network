@@ -43,11 +43,13 @@ const Header = props => {
       <Container>
       <Navbar id='Navbar' className="header-custom" bg='white' variant='light' expand="md" collapseOnSelect
       >
-        <div
-          style={{ backgroundColor: '#ffffff' }}
-        >
-          <img src={logo} width='120' height='120' />
-        </div>
+        <a href="/">
+          <div
+            style={{ backgroundColor: '#ffffff' }}
+          >
+            <img src={logo} width='120' height='120' />
+          </div>
+        </a>
         <Navbar.Brand href="/">{ isSpanish ? <h3 className='branding-font'>Historiadores del Catolicismo en M&eacute;xico</h3> : <h3 className='branding-font'>Historians of Catholic Mexico</h3> }</Navbar.Brand>
         <Navbar.Toggle
         // aria-controls="basic-navbar-nav"
@@ -61,21 +63,21 @@ const Header = props => {
             activeKey='/'
             id='nav'
           >
-            <Nav.Item>
+            <Nav.Item className='react-bootstrap-nav'>
               <Nav.Link
                 href={routes.about()}
               >
                 <p className='nav-item'>{ isSpanish ? `SOBRE NOSOTROS`:`ABOUT` }</p>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item className='react-bootstrap-nav'>
               <Nav.Link
                 href={routes.profiles()}
               >
                 <p className='nav-item'>{ isSpanish ? `PERFILES`:`PROFILES` }</p>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item className='react-bootstrap-nav'>
               <Nav.Link
                 href={routes.announcements()}
               >
