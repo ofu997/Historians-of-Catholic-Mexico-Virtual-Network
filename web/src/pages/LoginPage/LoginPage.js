@@ -66,7 +66,6 @@ const LoginPageContent = props => {
   })
 
   const handleLogin = input => {
-    console.table(input)
     loginUser({ variables: { input } })
   }
   return (

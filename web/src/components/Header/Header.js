@@ -84,15 +84,25 @@ const Header = props => {
             </Nav.Item>
             <Nav.Item>
               <NavDropdown title="LANGUAGE/IDIOMA" id="collapsible-nav-dropdown">
-                <NavDropdown.Item><p onClick={()=>{sessionStorage.setItem('language', 'English'); props.setLanguage('English')}}>English</p></NavDropdown.Item>
-                <NavDropdown.Item><p onClick={()=>{sessionStorage.setItem('language', 'Spanish'); props.setLanguage('Spanish')}}>espa&ntilde;ol</p></NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={()=>{sessionStorage.setItem('language', 'English'); props.setLanguage('English')}}
+                >
+                  <p>English</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={()=>{sessionStorage.setItem('language', 'Spanish'); props.setLanguage('Spanish')}}
+                >
+                  <p>espa&ntilde;ol</p>
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav.Item>
             <Nav.Item>
               <NavDropdown title={isSpanish ? `CUENTA`:`ACCOUNT`} id='login-account'>
                 {props.isLoggedIn? (
-                  <NavDropdown.Item>
-                    <div onClick={()=>{logoutUser({ variables: { id: sessionStorageUser.id } } ); props.setIsLoggedIn(false) }}>
+                  <NavDropdown.Item
+                    onClick={()=>{logoutUser({ variables: { id: sessionStorageUser.id } } ); props.setIsLoggedIn(false) }}
+                  >
+                    <div>
                       {isSpanish? <p>Cerrar sesi&oacute;n</p> : <p>Log out</p>}
                     </div>
                   </NavDropdown.Item>

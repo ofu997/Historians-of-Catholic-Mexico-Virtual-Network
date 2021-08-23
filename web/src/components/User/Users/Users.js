@@ -9,12 +9,14 @@ const truncate = (text) => {
   return output
 }
 
-const UsersList = ({ users }) => {
+const UsersList = props => {
   const currentUser = getLoggedInUser();
   // preferSpanish is priority. English is set if sessionStorage language key is English
   // or if there is no key at all
   const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
   const isSpanish = Boolean(language==='Spanish' ? true : false)
+
+  const users = props.users.filter(user => user.email != 'ofu997@gmail.com')
 
   return (
     <>
@@ -151,7 +153,7 @@ const UsersList = ({ users }) => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((user) =>
               <tr key={user.id}>
                 <td id='td-username'>
                   <Link
@@ -169,7 +171,7 @@ const UsersList = ({ users }) => {
                 <td>{truncate(user.focusByTopic)}</td>
                 <td>{truncate(user.focusByEra)}</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
