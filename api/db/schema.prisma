@@ -60,6 +60,7 @@ model User {
   tagTransIntlHist              Boolean @default(false)
   tagLocRegHist                 Boolean @default(false)
   tagOralHist                   Boolean @default(false)
+  tagRaceRacism                 Boolean @default(false)
 }
 
 model Announcement {
