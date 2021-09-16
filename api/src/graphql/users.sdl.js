@@ -43,6 +43,7 @@ export const schema = gql`
     tagTransIntlHist: Boolean
     tagLocRegHist: Boolean
     tagOralHist: Boolean
+    tagRaceRacism: Boolean
 
   }
 
@@ -94,6 +95,7 @@ export const schema = gql`
     tagTransIntlHist: Boolean
     tagLocRegHist: Boolean
     tagOralHist: Boolean
+    tagRaceRacism: Boolean
   }
 
   input LoginInput {
@@ -144,6 +146,7 @@ export const schema = gql`
     tagTransIntlHist: Boolean
     tagLocRegHist: Boolean
     tagOralHist: Boolean
+    tagRaceRacism: Boolean
   }
 
   type Mutation {

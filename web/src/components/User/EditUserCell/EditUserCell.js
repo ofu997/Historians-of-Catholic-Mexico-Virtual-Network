@@ -50,6 +50,7 @@ export const QUERY = gql`
       tagTransIntlHist
       tagLocRegHist
       tagOralHist
+      tagRaceRacism
     }
   }
 `

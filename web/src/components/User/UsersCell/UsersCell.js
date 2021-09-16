@@ -6,47 +6,13 @@ export const QUERY = gql`
   query USERS {
     users {
       id
-      email
       name
-      password
-      isAdmin
-      jwt
-      localSessionPassword
-      preferSpanish
-      bio
       location
       university
       credentials
       status
-      profilePicUrl
-      linkAcademia
-      linkTwitter
-      linkLinkedIn
-      otherMedia
-      pub1
-      pub1desc
-      pub2
-      pub2desc
-      pub3
-      pub3desc
-      pub4
-      pub4desc
       focusByTopic
       focusByEra
-      tagChurchStateRels
-      tagCathGender
-      tagRightLeftWing
-      tagViolenceMilitancyMartyrdom
-      tagCathYouthStudentGroups
-      tagNationalism
-      tagMigrations
-      tagModernitySecSciences
-      tagPressLitIntelHist
-      tagMusArts
-      tagVisCulture
-      tagTransIntlHist
-      tagLocRegHist
-      tagOralHist
     }
   }
 `

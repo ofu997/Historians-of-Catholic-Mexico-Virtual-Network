@@ -187,6 +187,9 @@ const User = ({ user }) => {
           {user.tagOralHist && (
             <div>{isSpanish ? <span>Testimonio oral</span> : <span>Oral history</span>}</div>
           )}
+          {user.tagRaceRacism && (
+            <div>{isSpanish ? <span>Etnia, razas y racismo</span> : <span>Race and racism</span>}</div>
+          )}
         </section>
 
         <h4 className="rw-heading cntr-h">{isSpanish?`Contacto`:`Contact`}</h4>

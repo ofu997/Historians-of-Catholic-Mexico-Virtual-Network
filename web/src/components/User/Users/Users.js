@@ -16,11 +16,12 @@ const UsersList = props => {
   const language = currentUser.preferSpanish ? 'Spanish' : sessionStorage.getItem('language') || 'English';
   const isSpanish = Boolean(language==='Spanish' ? true : false)
 
-  const users = props.users.filter(user => user.email != 'ofu997@gmail.com')
+  const users = props.users.filter(user => user.email != 'trees73@gmail.com')
 
   return (
     <>
       <section className='flex-wrap-items tags v-margin'>
+
         <Link
           to={routes.taggedUsers({ tag: "church-and-state-relations" })}
           className='tagLink'
@@ -46,7 +47,7 @@ const UsersList = props => {
           to={routes.taggedUsers({ tag: "violence-militancy-martyrdom" })}
           className='tagLink'
         >
-          <div>{isSpanish ? <span>Violencia, militancia, y martirio</span> : <span>Violence, militancy, and martyrdom</span>}</div>
+          <div>{isSpanish ? <span>Violencia, militancia y martirio</span> : <span>Violence, militancy, and martyrdom</span>}</div>
         </Link>
 
         <Link
@@ -81,7 +82,7 @@ const UsersList = props => {
           className='tagLink'
         >
           <div>
-            {isSpanish ? <span>Modernidad, ciencias, y secularizaci&oacute;n</span> : <span>Modernity, secularization, and the sciences</span>}
+            {isSpanish ? <span>Modernidad, ciencias y secularizaci&oacute;n</span> : <span>Modernity, secularization, and the sciences</span>}
           </div>
         </Link>
 
@@ -90,7 +91,7 @@ const UsersList = props => {
           className='tagLink'
         >
           <div>
-            {isSpanish ? <span>Prensa, literatura, e historia intelectual</span> : <span>Press, literature, and intellectual history</span>}
+            {isSpanish ? <span>Prensa, literatura e historia intelectual</span> : <span>Press, literature, and intellectual history</span>}
           </div>
         </Link>
 
@@ -138,6 +139,16 @@ const UsersList = props => {
             {isSpanish ? <span>Testimonio oral</span> : <span>Oral history</span>}
           </div>
         </Link>
+
+        <Link
+          to={routes.taggedUsers({ tag: "race-and-racism" })}
+          className='tagLink'
+        >
+          <div>
+            {isSpanish ? <span>Etnia, razas y racismo</span> : <span>Race and racism</span>}
+          </div>
+        </Link>
+
       </section>
       <div id='users-table' className="rw-segment rw-table-wrapper-responsive">
         <table className="rw-table">
@@ -178,6 +189,5 @@ const UsersList = props => {
     </>
   )
 }
-
 
 export default UsersList

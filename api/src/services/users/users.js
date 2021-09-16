@@ -236,13 +236,22 @@ export const findUsersByTag = ({ tag }) => {
         }
       })
       case "oral-history":
-        return db.user.findMany({
-          where: {
-            tagOralHist: true
-          },
-          orderBy: {
-            lastname: 'asc'
-          }
+      return db.user.findMany({
+        where: {
+          tagOralHist: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
+      })
+      case "race-and-racism":
+      return db.user.findMany({
+        where: {
+          tagRaceRacism: true
+        },
+        orderBy: {
+          lastname: 'asc'
+        }
       })
       default:
         return;
