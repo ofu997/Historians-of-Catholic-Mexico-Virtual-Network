@@ -68,8 +68,17 @@ const HomePageContent = props => {
           </>
         )
       }
-      <section id='homepageContent'>
-        <h1 className='rokkitt'>{isSpanish?<span>Resumen de HISTCATMEX</span>:<span>Summary of HISTCATMEX</span>}</h1>
+      <section
+        style={{ display: 'flex', justifyContent: 'center' }}
+      >
+        {isSpanish
+          ? (
+            <h3 className='home-or-about-page-content rokkitt'><strong>La Red de Historiadores del Catolicismo en México (HISTCATMEX) reúne a un conjunto de historiadores e investigadores de metodología multidisciplinaria cuyo objetivo es estudiar el catolicismo en México durante el siglo XX.</strong> Por medio de investigaciones innovadoras que adoptan perspectivas locales, regionales, nacionales y transnacionales, nuestros integrantes buscan analizar intersecciones entre la vida religiosa en México, la política, la violencia, las relaciones de género, las relaciones étnicas y entre razas, la vida intelectual y la producción artística.</h3>
+          )
+          : (
+            <h3 className='home-or-about-page-content rokkitt'><strong>The “Historians of Catholic Mexico” Network (HISTCATMEX) brings together historians and interdisciplinary scholars who study Catholics and Catholicism in twentieth-century Mexico.</strong> Through innovative scholarship that adopts local, national, and transnational perspectives, members of our network examine intersections between Mexican religious life, politics, violence, race and gender relations, intellectual life and artistic production.</h3>
+          )
+        }
       </section>
       <ImportantAnnouncementsCell />
     </>
