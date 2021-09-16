@@ -38,6 +38,7 @@ const LoginPage = () => {
         setLanguage={setLanguage}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        showFooter={false}
       >
         <LoginPageContent />
       </MainLayout>

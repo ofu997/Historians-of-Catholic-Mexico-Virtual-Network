@@ -16,6 +16,7 @@ const AdminRegisterUserPage = () => {
         setLanguage={setLanguage}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        showFooter={false}
       >
         <AdminRegisterUserPageContent />
       </MainLayout>

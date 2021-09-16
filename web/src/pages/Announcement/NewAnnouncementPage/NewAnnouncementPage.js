@@ -30,6 +30,7 @@ const NewAnnouncementPage = () => {
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
+      showFooter={false}
     >
       <NewAnnouncement loading={loading} error={useQueryError} />
     </MainLayout>

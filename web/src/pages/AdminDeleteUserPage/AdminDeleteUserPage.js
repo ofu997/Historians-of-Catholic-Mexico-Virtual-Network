@@ -2,7 +2,6 @@ import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout';
 import { useState } from 'react'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
-// import DeleteUsers from 'src/components/User/DeleteUser'
 import DeleteUsersCell from 'src/components/DeleteUsersCell'
 import { useQuery, useMutation } from '@redwoodjs/web'
 import USER_QUERY from 'src/graphql-helpers/userquery'
@@ -27,6 +26,7 @@ const AdminDeleteUserPage = () => {
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
+      showFooter={false}
     >
     {((currentUser?.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin) ? (
       <DeleteUsersCell />

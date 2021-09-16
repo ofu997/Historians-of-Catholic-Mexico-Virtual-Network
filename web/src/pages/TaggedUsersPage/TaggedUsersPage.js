@@ -15,6 +15,7 @@ const TaggedUsersPage = ({ tag }) => {
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
+      showFooter={false}
     >
       <TaggedUsersPageContent tag={tag} />
     </MainLayout>

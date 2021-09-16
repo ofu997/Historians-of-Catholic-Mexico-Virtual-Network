@@ -15,6 +15,7 @@ const EditUserPage = ({ id }) => {
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
+      showFooter={false}
     >
       <EditUserCell id={id} language={language} />
     </MainLayout>

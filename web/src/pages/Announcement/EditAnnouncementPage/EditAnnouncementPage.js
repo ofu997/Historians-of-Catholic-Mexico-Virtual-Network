@@ -15,6 +15,7 @@ const EditAnnouncementPage = ({ id }) => {
       setLanguage={setLanguage}
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
+      showFooter={false}
     >
       <EditAnnouncementCell id={id} />
     </MainLayout>

@@ -2,7 +2,6 @@ import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { useState } from 'react'
 import NewAdmin from 'src/components/User/NewAdmin'
-// import { navigate, routes } from '@redwoodjs/router'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 
 const AdminRegisterPage = () => {
@@ -18,6 +17,7 @@ const AdminRegisterPage = () => {
         setLanguage={setLanguage}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
+        showFooter={false}
       >
         <AdminRegisterPageContent />
       </MainLayout>
