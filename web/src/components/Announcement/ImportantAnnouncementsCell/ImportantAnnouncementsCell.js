@@ -28,6 +28,8 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ importantAnnouncements }) => {
   return (
-    <Announcements announcements={importantAnnouncements} />
+    <section style={{ marginTop: '8rem' }}>
+      <Announcements announcements={importantAnnouncements} />
+    </section>
   )
 }

@@ -163,15 +163,15 @@ const EditUserForm = (props) => {
           }
 
           {profilePicUrl && (
-            <div>
-              <img src={profilePicUrl} style={{ display: 'block', margin: '2rem 0', objectFit: 'contain' }} height='300' />
+            <div className='cntr-h' id='add-image-container'>
+              <img src={profilePicUrl} style={{ display: 'flex', margin: '2rem 0', objectFit: 'contain' }} />
               <div
                 onClick={() => {
                   setProfilePicUrl(null)
                   setShowInput(true)
                 }
                 }
-                className="rw-button rw-button-small rw-button-blue"
+                className="rw-button rw-button-small rw-button-blue cntr-h"
                 style={{ textAlign: 'center', width: '50%' }}
               >
                 {isSpanish ? `Reemplazar imagen` : `Replace image`}
@@ -482,6 +482,7 @@ const EditUserForm = (props) => {
           <p style={{fontSize: '1.5rem', marginTop: 40 }}>{isSpanish? `Mis palabras claves`:`My key words`}</p>
 
           <section className='flex-wrap-items tags v-margin'>
+
             <div style={{ display: 'block' }}>
               <Label
                 name="tagChurchStateRels"
@@ -705,6 +706,23 @@ const EditUserForm = (props) => {
                 errorClassName="rw-input rw-input-error"
               />
             </div>
+
+            <div style={{ display: 'block' }}>
+              <Label
+                name="tagRaceRacism"
+                className="rw-label"
+                errorClassName="rw-label rw-label-error"
+              >
+                {isSpanish ? <span>Etnia, razas y racismo</span> : <span>Race and racism</span>}
+              </Label>
+              <CheckboxField
+                name="tagRaceRacism"
+                defaultChecked={props.user?.tagRaceRacism}
+                className="rw-input editUserCheckbox"
+                errorClassName="rw-input rw-input-error"
+              />
+            </div>
+
           </section>
 
           <div className="rw-button-group">

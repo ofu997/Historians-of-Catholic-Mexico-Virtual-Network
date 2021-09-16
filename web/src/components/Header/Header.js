@@ -67,7 +67,7 @@ const Header = props => {
               <Nav.Link
                 href={routes.about()}
               >
-                <p className='nav-item'>{ isSpanish ? `SOBRE NOSOTROS`:`ABOUT` }</p>
+                <p className='nav-item'>{ isSpanish ? `SOBRE LA RED`:`ABOUT` }</p>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className='react-bootstrap-nav'>

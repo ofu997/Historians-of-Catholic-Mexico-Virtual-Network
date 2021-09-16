@@ -105,6 +105,15 @@
 .cntr-h{
   margin: 0 auto;
   text-align: center;
+  justify-content: center;
+}
+
+.cntr-h-no-text-align {
+  margin: 0 auto;
+}
+
+#add-image-container {
+  width: 400px;
 }
 
 #user-component {
@@ -155,7 +164,6 @@
 
 .flex-wrap-items {
   display: flex;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
   padding-right: 40px;
 }
@@ -185,10 +193,6 @@
   padding: 20px 0px;
 }
 
-#homepageContent {
-  margin: 50px 0px 100px 15%;
-}
-
 /* log in page */
 
 #login-form-wrapper {
@@ -207,10 +211,10 @@
   box-shadow: 12px 12px 2px 1px #afeeee;
 }
 
-.about-page-content {
+.home-or-about-page-content {
   min-width: 275px;
   width: 50%;
-  line-height: 60px;
+  line-height: 1.5;
 }
 
 /* spinner */
@@ -256,9 +260,7 @@
 }
 
 .tagLink div:hover {
-  /* background-color: #dcdcf3; */
   background-color: #eaf8ea;
-  /* padding: 12px; */
   border-bottom: 2px solid #708090;
   border-right: 2px solid #bdc5cc;
   border-top: none;
@@ -285,6 +287,7 @@
 }
 
 @media (max-width: 768px) {
+
   .rw-main {
     padding: 0px;
   }
@@ -301,11 +304,21 @@
     font-size: 0.7rem;
   }
 
-  #homepageContent {
-    margin: 50px 0px 100px 0px;
-  }
   #footer-title {
     display: none;
+  }
+
+  #add-image-container img {
+    width: 275px;
+  }
+
+  .home-or-about-page-content {
+    font-size: 0.9rem;
+  }
+
+  .home-page-buttons {
+    max-width: 100px;
+    padding: 10px 0px;
   }
 
 }
