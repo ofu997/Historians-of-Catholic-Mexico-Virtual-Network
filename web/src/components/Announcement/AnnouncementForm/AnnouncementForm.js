@@ -4,6 +4,7 @@ import {
   FieldError,
   Label,
   TextField,
+  TextAreaField,
   Submit,
   CheckboxField,
 } from '@redwoodjs/forms'
@@ -36,7 +37,7 @@ const AnnouncementForm = (props) => {
         >
           Headline
         </Label>
-        <TextField
+        <TextAreaField
           name="englishHeadline"
           defaultValue={props.announcement?.englishHeadline}
           className="rw-input"
@@ -52,7 +53,7 @@ const AnnouncementForm = (props) => {
         >
           Subheadline
         </Label>
-        <TextField
+        <TextAreaField
           name="englishSubheadline"
           defaultValue={props.announcement?.englishSubheadline}
           className="rw-input"
@@ -67,7 +68,7 @@ const AnnouncementForm = (props) => {
         >
           Spanish headline
         </Label>
-        <TextField
+        <TextAreaField
           name="spanishHeadline"
           defaultValue={props.announcement?.spanishHeadline}
           className="rw-input"
@@ -82,7 +83,7 @@ const AnnouncementForm = (props) => {
         >
           Spanish subheadline
         </Label>
-        <TextField
+        <TextAreaField
           name="spanishSubheadline"
           defaultValue={props.announcement?.spanishSubheadline}
           className="rw-input"
@@ -97,7 +98,7 @@ const AnnouncementForm = (props) => {
         >
           Date
         </Label>
-        <TextField
+        <TextAreaField
           name="date"
           defaultValue={props.announcement?.date}
           className="rw-input"
@@ -112,7 +113,7 @@ const AnnouncementForm = (props) => {
         >
           Spanish date
         </Label>
-        <TextField
+        <TextAreaField
           name="spanishDate"
           defaultValue={props.announcement?.spanishDate}
           className="rw-input"

@@ -47,9 +47,7 @@
 
 #announcement-box h1,
 #announcement-box h2,
-#announcement-box h3,
-#announcement-box p {
-  text-align: center;
+#announcement-box h3 {
   font-family:'Rokkitt', serif;
   margin: 20px 0px;
 }
@@ -284,6 +282,11 @@
   margin-bottom: 0px;
   line-height: 35px;
   vertical-align: middle;
+}
+
+/* create announcement */
+.allow-newline {
+  white-space: pre-line;
 }
 
 @media (max-width: 768px) {

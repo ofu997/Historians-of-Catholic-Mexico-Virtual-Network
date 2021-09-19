@@ -53,9 +53,9 @@ const AnnouncementBox = ( {announcement} ) => {
   return (
     <section id='announcement-box'>
       <p>{useQueryError}</p>
-      <h1>{isSpanish?announcement.spanishHeadline:announcement.englishHeadline}</h1>
-      <h2>{isSpanish?announcement.spanishSubheadline:announcement.englishSubheadline}</h2>
-      <p>{isSpanish?announcement.spanishDate:announcement.date}</p>
+      <h1 className='allow-newline'>{isSpanish?announcement.spanishHeadline:announcement.englishHeadline}</h1>
+      <h3 style={{ color: 'crimson' }} className='allow-newline'>{isSpanish?announcement.spanishDate:announcement.date}</h3>
+      <h2 className='allow-newline'>{isSpanish?announcement.spanishSubheadline:announcement.englishSubheadline}</h2>
       {( (currentUser.localSessionPassword === data?.user.localSessionPassword) && data?.user.isAdmin ) && (
       <>
       <Link
