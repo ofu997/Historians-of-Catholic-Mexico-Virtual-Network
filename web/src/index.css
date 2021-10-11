@@ -135,6 +135,10 @@
   margin-top: 50px;
 }
 
+#users-table {
+  border: 1px solid gray;
+}
+
 .rw-table-profile {
   table-layout: auto;
   width: 100%;

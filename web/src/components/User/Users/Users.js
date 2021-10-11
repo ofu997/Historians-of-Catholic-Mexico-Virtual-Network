@@ -1,5 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
+import TagLinks from 'src/components/Tag/TagLinks'
 
 const truncate = (text) => {
   let output = text
@@ -21,134 +22,9 @@ const UsersList = props => {
   return (
     <>
       <section className='flex-wrap-items tags v-margin'>
-
-        <Link
-          to={routes.taggedUsers({ tag: "church-and-state-relations" })}
-          className='tagLink'
-        >
-          <div>{isSpanish ? <span>Relaci&oacute;n Iglesia-Estado</span> : <span>Church-State relations</span>}</div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "catholicism-and-gender" })}
-          className='tagLink'
-        >
-          <div>{isSpanish ? <span>Catolicismo y g&eacute;nero</span> : <span>Catholicism and gender</span>}</div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "right-and-left-wing-politics" })}
-          className='tagLink'
-        >
-          <div>{isSpanish ? <span>Derechas y/o izquierdas</span> : <span>Right and left-wing politics</span>}</div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "violence-militancy-martyrdom" })}
-          className='tagLink'
-        >
-          <div>{isSpanish ? <span>Violencia, militancia y martirio</span> : <span>Violence, militancy, and martyrdom</span>}</div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "catholicism-and-youth-student-groups" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Catolicismo y juventudes</span> : <span>Catholicism and youth/student groups</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "nationalism" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Nacionalismo</span> : <span>Nationalism</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "migrations" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Migraciones</span> : <span>Migrations</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "modernity-secularization-sciences" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Modernidad, ciencias y secularizaci&oacute;n</span> : <span>Modernity, secularization, and the sciences</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "press-literature-intellectual-history" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Prensa, literatura e historia intelectual</span> : <span>Press, literature, and intellectual history</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "music-and-arts" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>M&uacute;sica y artes</span> : <span>Music and the arts</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "visual-culture" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Cultura visual</span> : <span>Visual culture</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "transnational-and-international-history" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Historia transnacional o internacional</span> : <span>Transnational and/or international history</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "local-and-regional-history" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Historia local o regional</span> : <span>Local and/or regional history</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "oral-history" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Testimonio oral</span> : <span>Oral history</span>}
-          </div>
-        </Link>
-
-        <Link
-          to={routes.taggedUsers({ tag: "race-and-racism" })}
-          className='tagLink'
-        >
-          <div>
-            {isSpanish ? <span>Etnia, razas y racismo</span> : <span>Race and racism</span>}
-          </div>
-        </Link>
-
+        <TagLinks
+          tag={props.tag}
+        />
       </section>
       <div id='users-table' className="rw-segment rw-table-wrapper-responsive">
         <table className="rw-table">
