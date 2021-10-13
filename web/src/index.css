@@ -136,7 +136,7 @@
 }
 
 #users-table {
-  border: 1px solid gray;
+  border: 1px solid #d3d3d3;
 }
 
 .rw-table-profile {
@@ -291,6 +291,16 @@
 /* create announcement */
 .allow-newline {
   white-space: pre-line;
+}
+
+/* search */
+#search {
+  margin-bottom: 2rem;
+}
+
+#search input {
+  border-radius: 0.5rem;
+  border: 1px solid gray;
 }
 
 @media (max-width: 768px) {

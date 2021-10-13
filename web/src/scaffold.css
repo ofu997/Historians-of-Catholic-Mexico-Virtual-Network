@@ -138,8 +138,8 @@
   line-height: 2;
 }
 .rw-button:hover {
-  background-color: #718096;
-  color: #fff;
+  background-color: #f0fff0;
+  color: blue;
 }
 .rw-button.rw-button-small {
   font-size: 0.75rem;
