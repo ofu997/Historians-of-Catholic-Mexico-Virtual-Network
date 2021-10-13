@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout';
 import { useState } from 'react'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
@@ -43,6 +42,5 @@ export const InvalidCredentials = () => {
     </div>
   )
 }
-
 
 export default AdminDeleteUserPage

@@ -1,6 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
-import TagLinks from 'src/components/Tag/TagLinks'
 
 const truncate = (text) => {
   let output = text
@@ -21,11 +20,6 @@ const UsersList = props => {
 
   return (
     <>
-      <section className='flex-wrap-items tags v-margin'>
-        <TagLinks
-          tag={props.tag}
-        />
-      </section>
       <div id='users-table' className="rw-segment rw-table-wrapper-responsive">
         <table className="rw-table">
           <thead>

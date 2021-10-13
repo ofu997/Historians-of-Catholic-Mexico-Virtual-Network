@@ -1,7 +1,6 @@
 import { useQuery, useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
-
 import { QUERY } from 'src/components/Announcement/AnnouncementsCell'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 import USER_QUERY from 'src/graphql-helpers/userquery'

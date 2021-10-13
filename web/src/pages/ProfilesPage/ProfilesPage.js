@@ -1,8 +1,8 @@
-import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { useState } from 'react'
 import {getLoggedInUser} from 'src/functions/GetLoggedInUser'
 import UsersCell from 'src/components/User/UsersCell'
+import TagAndSearch from 'src/components/TagAndSearch/TagAndSearch'
 
 const ProfilesPage = () => {
   const [language, setLanguage] = useState(sessionStorage.getItem('language')||'English')
@@ -23,9 +23,10 @@ const ProfilesPage = () => {
   )
 }
 
-const ProfilesPageContent = props => {
+const ProfilesPageContent = () => {
   return(
     <>
+    <TagAndSearch />
       <UsersCell />
     </>
   )

@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
 import { useState } from 'react'
 import NewAdmin from 'src/components/User/NewAdmin'
@@ -25,7 +24,6 @@ const AdminRegisterPage = () => {
   )
 }
 
-
 const AdminRegisterPageContent = () => {
   return (
     <div>
@@ -39,6 +37,5 @@ const AdminRegisterPageContent = () => {
     </div>
   )
 }
-
 
 export default AdminRegisterPage

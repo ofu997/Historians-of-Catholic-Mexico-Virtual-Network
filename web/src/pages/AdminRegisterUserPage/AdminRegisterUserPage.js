@@ -34,5 +34,4 @@ export const AdminRegisterUserPageContent = props => {
   )
 }
 
-
 export default AdminRegisterUserPage
