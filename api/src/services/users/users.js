@@ -256,10 +256,22 @@ export const findUsersByTag = ({ tag }) => {
       default:
         return;
   }
+}
 
-  return db.tag
-    .findUnique({
-      where: { name: tag},
-    })
-    .users({ include: { tags: true } })
+// name location university focusByTopic focusByEra
+export const search = ({ entry }) => {
+  return db.user.findMany({
+    where: {
+      OR: [
+        { name: { contains: entry, mode: 'insensitive' } },
+        { location: { contains: entry, mode: 'insensitive' } },
+        { university: { contains: entry, mode: 'insensitive' } },
+        { focusByTopic: { contains: entry, mode: 'insensitive' } },
+        { focusByEra: { contains: entry, mode: 'insensitive' } }
+      ]
+    },
+    orderBy: {
+      lastname: 'asc'
+    }
+  })
 }

@@ -52,6 +52,7 @@ export const schema = gql`
     user(id: Int!): User
 
     findUsersByTag(tag: String): [User]
+    search(entry: String): [User]
   }
 
   input CreateUserInput {
