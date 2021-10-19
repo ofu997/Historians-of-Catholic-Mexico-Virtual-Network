@@ -56,7 +56,7 @@ const LoginPageContent = props => {
 
       const user = loginUser;
       sessionStorage.setItem('user', JSON.stringify(user));
-      user && navigate(routes.profiles());
+      navigate(routes.profiles());
     },
     onError: (e) => {
       console.log(e)
