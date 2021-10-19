@@ -56,9 +56,7 @@ const LoginPageContent = props => {
 
       const user = loginUser;
       sessionStorage.setItem('user', JSON.stringify(user));
-      user && setTimeout(() => {
-        navigate(routes.profiles())
-      }, 50)
+      user && navigate(routes.profiles());
     },
     onError: (e) => {
       console.log(e)
@@ -81,11 +79,12 @@ const LoginPageContent = props => {
             <div id='login-form-wrapper' className="rw-form-wrapper">
               <Form
                 onSubmit={handleLogin}
-                error={error}
+                // error={error}
                 id='login-form'
               >
                 <FormError
                   error={error}
+                  loading={loading}
                   wrapperClassName="rw-form-error-wrapper"
                   titleClassName="rw-form-error-title"
                   listClassName="rw-form-error-list"

@@ -68,7 +68,7 @@ const User = ({ user }) => {
             {user.bio && (
               <tr>
                 <th>Bio</th>
-                <td>{user.bio}</td>
+                <td className='allow-newline'>{user.bio}</td>
               </tr>
             )}
 

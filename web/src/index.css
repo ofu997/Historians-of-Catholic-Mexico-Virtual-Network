@@ -183,6 +183,10 @@
   border-bottom: 1px solid gray;
 }
 
+.allow-newline {
+  white-space: pre-line;
+}
+
 .userPubSeparator {
   border-bottom: 1px solid black;
   margin-bottom: 20px;
