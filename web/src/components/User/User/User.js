@@ -98,7 +98,7 @@ const User = ({ user }) => {
             )}
             {user.focusByEra && (
               <tr>
-                <th>{isSpanish?<span>Eras de enfoque</span>:<span>Focus by era</span>}</th>
+                <th>{isSpanish?<span>Épocas de enfoque</span>:<span>Focus by era</span>}</th>
                 <td>{user.focusByEra}</td>
               </tr>
             )}

@@ -35,6 +35,14 @@ export const createUser = async ({ input }) => {
   })
 }
 
+export const updateUserPassword = async ({ id, input }) => {
+  const password = await bcrypt.hash(input.password.trim(), 10);
+  return db.user.update({
+    data: { password },
+    where: { id }
+  })
+}
+
 const getLastName = name => {
   let nameArray = name.split(' ')
   return nameArray[1];

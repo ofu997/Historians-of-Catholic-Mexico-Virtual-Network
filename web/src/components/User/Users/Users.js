@@ -30,7 +30,7 @@ const UsersList = props => {
               <th>{isSpanish?<span>Ubicaci&oacute;n</span>:<span>Location</span>}</th>
               <th>{isSpanish?`Credenciales`:`Credentials`}</th>
               <th>{isSpanish?`Temas de enfoque`:`Focus by topic`}</th>
-              <th>{isSpanish?`Eras de enfoque`:`Focus by era`}</th>
+              <th>{isSpanish?`Épocas de enfoque`:`Focus by era`}</th>
             </tr>
           </thead>
           <tbody>

@@ -469,7 +469,7 @@ const EditUserForm = (props) => {
             className="rw-label"
             errorClassName="rw-label rw-label-error"
           >
-            {isSpanish ? `Eras de enfoque` : `Time periods of interest`}
+            {isSpanish ? `Épocas de enfoque` : `Time periods of interest`}
           </Label>
           <TextAreaField
             name="focusByEra"
