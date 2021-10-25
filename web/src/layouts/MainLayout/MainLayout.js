@@ -2,6 +2,8 @@ import Header from 'src/components/Header'
 import logo from '../../../public/histcatmex-logo.png'
 import twitterLogo from '../../../public/twitter.png'
 import mail from '../../../public/mail.png'
+import youtubeLogo from '../../../public/youtube.png'
+import facebookLogo from '../../../public/facebook.png'
 
 const MainLayout = props => {
   const { language, setLanguage } = props
@@ -37,6 +39,14 @@ const MainLayout = props => {
 
             <a href="https://twitter.com/histcatmex" target='_blank noopener noreferrer'>
               <img src={twitterLogo} alt='twitter-logo' height={15} width={15} />
+            </a>
+
+            <a href='https://www.facebook.com/groups/1248799175481178' target='_blank noopener noreferrer'>
+              <img src={facebookLogo} alt='facebook-logo' height={20} width={20} />
+            </a>
+
+            <a href="https://tinyurl.com/h62vyw62" target='_blank noopener noreferrer'>
+              <img src={youtubeLogo} alt='youtube-logo' height={15} />
             </a>
           </footer>
         )}
