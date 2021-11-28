@@ -11,7 +11,7 @@ const TagLinks = props => {
   const nonHighlighted = { };
   return (
     <>
-<Link
+        <Link
           to={routes.taggedUsers({ tag: "church-and-state-relations" })}
           className='tagLink'
         >
@@ -173,6 +173,39 @@ const TagLinks = props => {
             style={props.tag && props.tag == 'race-and-racism' ? highlighted : nonHighlighted}
           >
             {isSpanish ? <span>Etnia, razas y racismo</span> : <span>Race and racism</span>}
+          </div>
+        </Link>
+
+        <Link
+          to={routes.taggedUsers({ tag: "devotions" })}
+          className='tagLink'
+        >
+          <div
+            style={props.tag && props.tag == 'devotions' ? highlighted : nonHighlighted}
+          >
+            {isSpanish ? <span>Devociones</span> : <span>Devotions</span>}
+          </div>
+        </Link>
+
+        <Link
+          to={routes.taggedUsers({ tag: "clergy" })}
+          className='tagLink'
+        >
+          <div
+            style={props.tag && props.tag == 'clergy' ? highlighted : nonHighlighted}
+          >
+            {isSpanish ? <span>Clero</span> : <span>Clergy</span>}
+          </div>
+        </Link>
+
+        <Link
+          to={routes.taggedUsers({ tag: "liturgy" })}
+          className='tagLink'
+        >
+          <div
+            style={props.tag && props.tag == 'litugy' ? highlighted : nonHighlighted}
+          >
+            {isSpanish ? <span>Liturgia</span> : <span>Liturgy</span>}
           </div>
         </Link>
     </>

@@ -261,6 +261,33 @@ export const findUsersByTag = ({ tag }) => {
           lastname: 'asc'
         }
       })
+      case "devotions":
+        return db.user.findMany({
+          where: {
+            tagDevotions: true
+          },
+          orderBy: {
+            lastname: 'asc'
+          }
+        })
+      case "clergy":
+        return db.user.findMany({
+          where: {
+            tagClergy: true
+          },
+          orderBy: {
+            lastname: 'asc'
+          }
+        })
+      case "liturgy":
+        return db.user.findMany({
+          where: {
+            tagLiturgy: true
+          },
+          orderBy: {
+            lastname: 'asc'
+          }
+        })
       default:
         return;
   }

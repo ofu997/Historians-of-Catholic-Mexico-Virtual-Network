@@ -723,6 +723,54 @@ const EditUserForm = (props) => {
               />
             </div>
 
+            <div style={{ display: 'block' }}>
+              <Label
+                name="tagDevotions"
+                className="rw-label"
+                errorClassName="rw-label rw-label-error"
+              >
+                {isSpanish ? <span>Devociones</span> : <span>Devotions</span>}
+              </Label>
+              <CheckboxField
+                name="tagDevotions"
+                defaultChecked={props.user?.tagDevotions}
+                className="rw-input editUserCheckbox"
+                errorClassName="rw-input rw-input-error"
+              />
+            </div>
+
+            <div style={{ display: 'block' }}>
+              <Label
+                name="tagClergy"
+                className="rw-label"
+                errorClassName="rw-label rw-label-error"
+              >
+                {isSpanish ? <span>Clero</span> : <span>Clergy</span>}
+              </Label>
+              <CheckboxField
+                name="tagClergy"
+                defaultChecked={props.user?.tagClergy}
+                className="rw-input editUserCheckbox"
+                errorClassName="rw-input rw-input-error"
+              />
+            </div>
+
+            <div style={{ display: 'block' }}>
+              <Label
+                name="tagLiturgy"
+                className="rw-label"
+                errorClassName="rw-label rw-label-error"
+              >
+                {isSpanish ? <span>Liturgia</span> : <span>Liturgy</span>}
+              </Label>
+              <CheckboxField
+                name="tagLiturgy"
+                defaultChecked={props.user?.tagLiturgy}
+                className="rw-input editUserCheckbox"
+                errorClassName="rw-input rw-input-error"
+              />
+            </div>
+
           </section>
 
           <div className="rw-button-group">

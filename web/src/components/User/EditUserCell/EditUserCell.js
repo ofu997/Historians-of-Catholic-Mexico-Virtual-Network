@@ -51,6 +51,9 @@ export const QUERY = gql`
       tagLocRegHist
       tagOralHist
       tagRaceRacism
+      tagDevotions
+      tagClergy
+      tagLiturgy
     }
   }
 `

@@ -190,6 +190,15 @@ const User = ({ user }) => {
           {user.tagRaceRacism && (
             <div>{isSpanish ? <span>Etnia, razas y racismo</span> : <span>Race and racism</span>}</div>
           )}
+          {user.tagDevotions && (
+            <div>{isSpanish ? <span>Devociones</span> : <span>Devotions</span>}</div>
+          )}
+          {user.tagClergy && (
+            <div>{isSpanish ? <span>Clero</span> : <span>Clergy</span>}</div>
+          )}
+          {user.tagLiturgy && (
+            <div>{isSpanish ? <span>Liturgia</span> : <span>Liturgy</span>}</div>
+          )}
         </section>
 
         <h4 className="rw-heading cntr-h">{isSpanish?`Contacto`:`Contact`}</h4>
