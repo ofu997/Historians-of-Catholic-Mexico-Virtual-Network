@@ -1,3 +1,7 @@
 export const standard = defineScenario({
-  announcement: { one: { headline: 'String' }, two: { headline: 'String' } },
+  announcement: { one: {
+    data: { headline: 'String' }
+  }, two: {
+    data: { headline: 'String' }
+  } },
 })

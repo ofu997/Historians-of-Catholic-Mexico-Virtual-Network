@@ -50,11 +50,11 @@ export const schema = gql`
   }
 
   type Query {
-    users: [User!]!
-    user(id: Int!): User
+    users: [User!]! @skipAuth
+    user(id: Int!): User @skipAuth
 
-    findUsersByTag(tag: String): [User]
-    search(entry: String): [User]
+    findUsersByTag(tag: String): [User] @skipAuth
+    search(entry: String): [User] @skipAuth
   }
 
   input CreateUserInput {
@@ -159,13 +159,13 @@ export const schema = gql`
   }
 
   type Mutation {
-    createUser(input: CreateUserInput!): User!
-    updateUser(id: Int!, input: UpdateUserInput!): User!
-    deleteUser(id: Int!): User!
+    createUser(input: CreateUserInput!): User! @skipAuth
+    updateUser(id: Int!, input: UpdateUserInput!): User! @skipAuth
+    deleteUser(id: Int!): User! @skipAuth
 
-    loginUser(input: LoginInput!): User!
-    createAdmin(input: CreateUserInput!): User!
-    logoutUser(id: Int!): User!
-    updateUserPassword(id: Int!): User!
+    loginUser(input: LoginInput!): User! @skipAuth
+    createAdmin(input: CreateUserInput!): User! @skipAuth
+    logoutUser(id: Int!): User! @skipAuth
+    updateUserPassword(id: Int!): User! @skipAuth
   }
 `
