@@ -166,6 +166,6 @@ export const schema = gql`
     loginUser(input: LoginInput!): User!
     createAdmin(input: CreateUserInput!): User!
     logoutUser(id: Int!): User!
-    updateUserPassword(id: Int!): User!
+    updateUserPassword(id: Int!, input: String!): User!
   }
 `
