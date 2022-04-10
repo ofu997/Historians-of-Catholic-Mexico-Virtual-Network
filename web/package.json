@@ -13,9 +13,9 @@
     ]
   },
   "dependencies": {
-    "@redwoodjs/forms": "^0.38.0",
-    "@redwoodjs/router": "^0.38.0",
-    "@redwoodjs/web": "^0.38.0",
+    "@redwoodjs/forms": "^0.39.4",
+    "@redwoodjs/router": "^0.39.4",
+    "@redwoodjs/web": "^0.39.4",
     "bootstrap": "^5.0.2",
     "firebase": "^8.7.1",
     "node-sass": "^6.0.1",

@@ -30,7 +30,7 @@ export default () => (
                 background-color: white;
                 border-radius: 0.25rem;
                 width: 32rem;
-                padding: 1rem;
+                padding: 5rem 1rem;
                 margin: 0 auto;
                 box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
               }
@@ -47,8 +47,8 @@ export default () => (
 
     <section>
       <h1>
-        <span>Something went wrong</span>
-        <span>Ha ocurrido un error</span>
+        <h3>Something went wrong</h3>
+        <h3>Se ha ocurrido un error</h3>
       </h1>
     </section>
   </main>
