@@ -11,10 +11,10 @@ export const schema = gql`
   }
 
   type Query {
-    announcements: [Announcement!]!
-    announcement(id: Int!): Announcement
+    announcements: [Announcement!]! @skipAuth
+    announcement(id: Int!): Announcement @skipAuth
 
-    importantAnnouncements: [Announcement!]
+    importantAnnouncements: [Announcement!] @skipAuth
   }
 
   input CreateAnnouncementInput {
@@ -38,8 +38,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createAnnouncement(input: CreateAnnouncementInput!): Announcement!
-    updateAnnouncement(id: Int!, input: UpdateAnnouncementInput!): Announcement!
-    deleteAnnouncement(id: Int!): Announcement!
+    createAnnouncement(input: CreateAnnouncementInput!): Announcement! @skipAuth
+    updateAnnouncement(id: Int!, input: UpdateAnnouncementInput!): Announcement! @skipAuth
+    deleteAnnouncement(id: Int!): Announcement! @skipAuth
   }
 `

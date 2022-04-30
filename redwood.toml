@@ -7,10 +7,12 @@
 
 [web]
   port = 8910
-  apiProxyPath = "/.netlify/functions"
+  apiUrl = "/.netlify/functions"
 [api]
   port = 8911
 [browser]
   open = true
 [experimental]
   esbuild = false
+[web]
+includeEnvironmentVariables=['NODE_ENV']

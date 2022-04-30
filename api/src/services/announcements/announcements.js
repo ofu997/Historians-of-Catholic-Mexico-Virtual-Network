@@ -8,7 +8,11 @@ export const beforeResolver = (rules) => {
 }
 
 export const announcements = () => {
-  return db.announcement.findMany()
+  return db.announcement.findMany({
+    orderBy : {
+      id: 'desc'
+    }
+  })
 }
 
 export const announcement = ({ id }) => {

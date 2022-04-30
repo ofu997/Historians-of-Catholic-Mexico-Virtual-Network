@@ -209,7 +209,7 @@
 .rw-input[type='checkbox'],
 .rw-input[type='radio'] {
   width: 1rem;
-  margin-left: 0;
+  margin-left: 0.5rem;
 }
 .rw-input:focus {
   border-color: #a0aec0;
@@ -226,9 +226,7 @@
   font-size: 0.75rem;
   color: #c53030;
 }
-.rw-table-wrapper-responsive {
-  /* overflow-x: scroll; */
-}
+
 .rw-table-wrapper-responsive .rw-table {
   min-width: 48rem;
 }
@@ -313,4 +311,10 @@
     padding-top: 0;
     padding-bottom: 0;
   }
+}
+
+.rw-input-error:focus {
+  outline: none;
+  border-color: #c53030;
+  box-shadow: 0 0 5px #c53030;
 }

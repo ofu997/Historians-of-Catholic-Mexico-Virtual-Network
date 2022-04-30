@@ -27,7 +27,7 @@ const AdminRegisterUserPage = () => {
 export const AdminRegisterUserPageContent = props => {
   return (
     <>
-      <h1>AdminRegisterUserPage</h1>
+      <h1>Admin Register User Page</h1>
       <h2>The purpose of this page is to add users to the platform</h2>
       <NewUser />
     </>
