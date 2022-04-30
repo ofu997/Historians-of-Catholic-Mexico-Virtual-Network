@@ -209,7 +209,7 @@
 .rw-input[type='checkbox'],
 .rw-input[type='radio'] {
   width: 1rem;
-  margin-left: 0;
+  margin-left: 0.5rem;
 }
 .rw-input:focus {
   border-color: #a0aec0;
