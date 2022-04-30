@@ -8,11 +8,10 @@
 [web]
   port = 8910
   apiUrl = "/.netlify/functions"
+  includeEnvironmentVariables=['NODE_ENV']
 [api]
   port = 8911
 [browser]
   open = true
 [experimental]
   esbuild = false
-[web]
-includeEnvironmentVariables=['NODE_ENV']
