@@ -7,11 +7,19 @@
 // still render a generic error page, but your users will prefer something a bit more
 // thoughtful. =)
 
-export default () => (
-  <main>
-    <style
-      dangerouslySetInnerHTML={{
-        __html: `
+// Ensures that production builds do not include the error page
+let RedwoodDevFatalErrorPage = undefined
+if (process.env.NODE_ENV === 'development') {
+  RedwoodDevFatalErrorPage =
+    require('@redwoodjs/web/dist/components/DevFatalErrorPage').DevFatalErrorPage
+}
+
+export default RedwoodDevFatalErrorPage ||
+  (() => (
+    <main>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
               html, body {
                 margin: 0;
               }
@@ -30,7 +38,7 @@ export default () => (
                 background-color: white;
                 border-radius: 0.25rem;
                 width: 32rem;
-                padding: 5rem 1rem;
+                padding: 1rem;
                 margin: 0 auto;
                 box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
               }
@@ -42,14 +50,12 @@ export default () => (
                 color: #2D3748;
               }
             `,
-      }}
-    />
-
-    <section>
-      <h1>
-        <h3>Something went wrong</h3>
-        <h3>Se ha ocurrido un error</h3>
-      </h1>
-    </section>
-  </main>
-)
+        }}
+      />
+      <section>
+        <h1>
+          <span>Something went wrong</span>
+        </h1>
+      </section>
+    </main>
+  ))
