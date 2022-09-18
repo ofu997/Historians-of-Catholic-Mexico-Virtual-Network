@@ -49,6 +49,8 @@ const LoginPage = () => {
 
 const LoginPageContent = props => {
   const isSpanish = Boolean(props.language==='Spanish' ? true : false);
+  const [showPassword, setShowPassword] = useState(false);
+  const type = showPassword ? "text" : "password";
 
   const [loginUser, { loading, error }] = useMutation(LOG_IN_MUTATION, {
     onCompleted: ({ loginUser }) => {
@@ -67,6 +69,11 @@ const LoginPageContent = props => {
   const handleLogin = input => {
     loginUser({ variables: { input } })
   }
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
+
   return (
     <>
       {props.isLoggedIn ?
@@ -75,12 +82,11 @@ const LoginPageContent = props => {
         )
         :
         (
-          <>
-            <div id='login-form-wrapper' className="rw-form-wrapper">
+          <div className='LogInFormWrapper'>
+            <section className="rw-form-wrapper">
               <Form
                 onSubmit={handleLogin}
-                // error={error}
-                id='login-form'
+                className='LogInForm'
               >
                 <FormError
                   error={error}
@@ -117,6 +123,7 @@ const LoginPageContent = props => {
                   className="rw-input"
                   errorClassName="rw-input rw-input-error"
                   validation={{ required: true }}
+                  type={type}
                 />
                 <FieldError name="password" className="rw-field-error" />
                 <div className="rw-button-group">
@@ -125,8 +132,22 @@ const LoginPageContent = props => {
                   </Submit>
                 </div>
               </Form>
+            </section>
+            <div id='ShowOrMask' >
+              <button
+                disabled={loading}
+                onClick={() => handleShowPassword()}
+                style={{ backgroundColor : 'transparent', border : 'none' }}
+              >
+                <p className="button-with-blue-text" >
+                  {showPassword
+                    ? isSpanish ? `Ocultar contraseña` : `Hide password`
+                    : isSpanish ? `Mostrar contraseña` : `Show password`
+                  }
+                </p>
+              </button>
             </div>
-          </>
+          </div>
         )
       }
     </>
