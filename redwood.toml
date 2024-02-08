@@ -9,7 +9,7 @@
   title = "HISTCATMEX"
   port = 8910
   apiUrl = "/.netlify/functions"
-  includeEnvironmentVariables=['NODE_ENV']
+  includeEnvironmentVariables=['NODE_ENV', 'DATABASE_URL']
 [api]
   port = 8911
 [browser]
