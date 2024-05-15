@@ -18,7 +18,7 @@
     "@redwoodjs/web": "^6.6.4",
     "bootstrap": "^5.0.2",
     "firebase": "^8.7.1",
-    "node-sass": "^6.0.1",
+    "node-sass": "^8.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
