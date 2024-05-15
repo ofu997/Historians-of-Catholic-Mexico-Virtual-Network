@@ -19,7 +19,7 @@ const UserForm = (props) => {
   }
 
   return (
-    <div className="rw-form-wrapper">
+    (<div className="rw-form-wrapper">
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -86,7 +86,7 @@ const UserForm = (props) => {
           </Submit>
         </div>
       </Form>
-    </div>
+    </div>)
   );
 }
 

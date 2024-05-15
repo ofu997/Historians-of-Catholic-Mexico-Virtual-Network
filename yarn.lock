@@ -5950,6 +5950,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@redwoodjs/vite@npm:6.6.4":
+  version: 6.6.4
+  resolution: "@redwoodjs/vite@npm:6.6.4"
+  dependencies:
+    "@babel/runtime-corejs3": "npm:7.23.6"
+    "@redwoodjs/internal": "npm:6.6.4"
+    "@redwoodjs/project-config": "npm:6.6.4"
+    "@vitejs/plugin-react": "npm:4.2.1"
+    buffer: "npm:6.0.3"
+    core-js: "npm:3.34.0"
+    vite: "npm:4.5.1"
+    yargs-parser: "npm:21.1.1"
+  bin:
+    rw-vite-build: bins/rw-vite-build.mjs
+    rw-vite-dev: bins/rw-vite-dev.mjs
+    vite: bins/vite.mjs
+  checksum: 1296dd52b5f2e3fdd9394191279997ba7f0d548a1e046887a86656a22509f025d802b937534234e3903d0b76ea6a26d4445adf70e46fe40c9c768c5deb2a0171
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/vite@npm:^7.5.1":
   version: 7.5.1
   resolution: "@redwoodjs/vite@npm:7.5.1"
@@ -22509,6 +22529,46 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite@npm:4.5.1":
+  version: 4.5.1
+  resolution: "vite@npm:4.5.1"
+  dependencies:
+    esbuild: "npm:^0.18.10"
+    fsevents: "npm:~2.3.2"
+    postcss: "npm:^8.4.27"
+    rollup: "npm:^3.27.1"
+  peerDependencies:
+    "@types/node": ">= 14"
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 2ea9c030a5718ca0adaaa0ecc54402a725cff59131cf80bc84d0237f59c98168803ee59d23e697b98b1184be3af6c6edc2e81517f769c62159f11531b3341a4e
+  languageName: node
+  linkType: hard
+
 "vite@npm:4.5.2":
   version: 4.5.2
   resolution: "vite@npm:4.5.2"
@@ -22712,6 +22772,7 @@ __metadata:
   dependencies:
     "@redwoodjs/forms": "npm:^6.6.4"
     "@redwoodjs/router": "npm:^6.6.4"
+    "@redwoodjs/vite": "npm:6.6.4"
     "@redwoodjs/web": "npm:^6.6.4"
     bootstrap: "npm:^5.0.2"
     firebase: "npm:^8.7.1"
