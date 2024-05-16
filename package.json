@@ -8,7 +8,7 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "^6.6.4"
+    "@redwoodjs/core": "6.6.4"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
@@ -23,6 +23,6 @@
   },
   "packageManager": "yarn@4.0.2",
   "dependencies": {
-    "@redwoodjs/vite": "^7.5.1"
+    "@redwoodjs/vite": "6.6.4"
   }
 }
